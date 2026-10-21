@@ -687,8 +687,27 @@ html { scroll-behavior: smooth; }
   .list-btn .list-label { display: none; }
 }
 
+/* ---------- Motion: page slides and filter results ---------- */
+@view-transition { navigation: auto; }
+.topbar { view-transition-name: topbar; }
+.site-header { view-transition-name: site-header; }
+main { view-transition-name: main; }
+::view-transition-group(main) { animation-duration: 0.5s; }
+::view-transition-old(main) { animation: 0.5s var(--ease-out) both slide-out-left; }
+::view-transition-new(main) { animation: 0.5s var(--ease-out) both slide-in-right; }
+html:active-view-transition-type(backward)::view-transition-old(main) { animation-name: slide-out-right; }
+html:active-view-transition-type(backward)::view-transition-new(main) { animation-name: slide-in-left; }
+@keyframes slide-out-left { to { transform: translateX(-60px); opacity: 0; } }
+@keyframes slide-in-right { from { transform: translateX(60px); opacity: 0; } }
+@keyframes slide-out-right { to { transform: translateX(60px); opacity: 0; } }
+@keyframes slide-in-left { from { transform: translateX(-60px); opacity: 0; } }
+
+.entry.slide-in { animation: entry-in 0.45s var(--ease-out) both; }
+@keyframes entry-in { from { opacity: 0; transform: translateX(-24px); } }
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
 

@@ -473,7 +473,9 @@
           const n = nextDate(e);
           ok = !!n && !n.seasonal && (n.date - today) / 864e5 <= Number(when);
         }
-        document.getElementById(e.id).hidden = !ok;
+        const el = document.getElementById(e.id);
+        if (ok && el.hidden) { el.classList.remove("slide-in"); void el.offsetWidth; el.classList.add("slide-in"); }
+        el.hidden = !ok;
         if (ok) shown++;
       });
       $$(".group").forEach((g) => { g.hidden = !$$(".entry", g).some((el) => !el.hidden); });
@@ -550,16 +552,33 @@
           <span class="todo-icon">${icon(ic(e))}</span>
           <strong>${esc(e.name)}</strong><small>${esc((e.topics || [])[0] || "")}</small></a></li>`).join("");
 
-      /* Carousel: arrows slide one screen of cards at a time */
+      /* Carousel: arrows glide two cards at a time with a gentle ease */
       const prev = $(".carousel-btn.prev"), next = $(".carousel-btn.next");
       const update = () => {
         prev.disabled = pop.scrollLeft <= 2;
         next.disabled = pop.scrollLeft + pop.clientWidth >= pop.scrollWidth - 2;
       };
-      [prev, next].forEach((b) => b.addEventListener("click", () => {
-        const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches;
-        pop.scrollBy({ left: Number(b.dataset.dir) * pop.clientWidth, behavior: smooth ? "smooth" : "auto" });
-      }));
+      let gliding = 0;
+      const glide = (dir) => {
+        const card = pop.firstElementChild;
+        const gap = parseFloat(getComputedStyle(pop).columnGap) || 16;
+        const step = card ? (card.getBoundingClientRect().width + gap) * 2 : pop.clientWidth / 2;
+        const from = pop.scrollLeft;
+        const to = Math.max(0, Math.min(pop.scrollWidth - pop.clientWidth, from + dir * step));
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) { pop.scrollLeft = to; return; }
+        cancelAnimationFrame(gliding);
+        pop.style.scrollSnapType = "none";
+        const start = performance.now(), dur = 650;
+        const ease = (t) => 1 - Math.pow(1 - t, 3);
+        const tick = (now) => {
+          const t = Math.min(1, (now - start) / dur);
+          pop.scrollLeft = from + (to - from) * ease(t);
+          if (t < 1) gliding = requestAnimationFrame(tick);
+          else { pop.style.scrollSnapType = ""; update(); }
+        };
+        gliding = requestAnimationFrame(tick);
+      };
+      [prev, next].forEach((b) => b.addEventListener("click", () => glide(Number(b.dataset.dir))));
       pop.addEventListener("scroll", update, { passive: true });
       window.addEventListener("resize", update);
       update();
@@ -586,6 +605,20 @@
     if (photos) photos.innerHTML = (window.PHOTO_CREDITS || []).map((p) =>
       `<li><strong>${esc(p.subject)}</strong><small>${esc(p.credit)} File: ${esc(p.file)}</small></li>`).join("");
   }
+
+  /* ---------- Page slide transitions ----------
+     Pages slide left when moving forward in the menu order and right when going back.
+     Uses the browser's View Transitions; older browsers simply change pages normally. */
+  const navIndex = (url) => {
+    try { const f = new URL(url, location.href).pathname.split("/").pop() || "index.html"; return NAV.findIndex((n) => n.href === f); }
+    catch (e) { return -1; }
+  };
+  window.addEventListener("pagereveal", (e) => {
+    if (!e.viewTransition) return;
+    const from = window.navigation && navigation.activation && navigation.activation.from;
+    const a = from ? navIndex(from.url) : -1, b = navIndex(location.href);
+    e.viewTransition.types.add(a > b ? "backward" : "forward");
+  });
 
   /* ---------- Start ----------
      The header is built right away (this script loads just after the header spot),
