@@ -106,10 +106,10 @@
         <div class="wrap">
           <p class="topbar-help">${icon("life-buoy")}<span>Need help now? Call or text <a href="tel:988">988</a> for crisis support, or dial <a href="tel:211">2-1-1</a> for local resources.</span></p>
           <div class="tools" role="group" aria-label="Accessibility settings">
-            <span class="tools-label">Text size</span>
+            <span class="tools-label">Text Size</span>
             <button class="tool-btn" type="button" data-text-step="-1">A−<span class="visually-hidden"> smaller text</span></button>
             <button class="tool-btn" type="button" data-text-step="1">A+<span class="visually-hidden"> larger text</span></button>
-            <button class="tool-btn" type="button" id="contrast-toggle" aria-pressed="false">${icon("contrast")}<span>High contrast</span></button>
+            <button class="tool-btn" type="button" id="contrast-toggle" aria-pressed="false">${icon("contrast")}<span>High Contrast</span></button>
           </div>
         </div>
       </div>
@@ -128,13 +128,13 @@
             </div>
           </div>
         </div>
-        <nav class="site-nav" aria-label="Main">
-          <div class="wrap">
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list"><span>Menu</span>${icon("chevron-down")}</button>
-            <ul class="nav-list" id="nav-list">${navItems}</ul>
-          </div>
-        </nav>
-      </header>`;
+      </header>
+      <nav class="site-nav" aria-label="Main">
+        <div class="wrap">
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list"><span>Menu</span>${icon("chevron-down")}</button>
+          <ul class="nav-list" id="nav-list">${navItems}</ul>
+        </div>
+      </nav>`;
     $("#site-header").outerHTML = html;
   }
 
@@ -156,7 +156,7 @@
       <footer class="site-footer">
         <div class="wrap footer-grid">
           <div>
-            <div class="footer-brand">${BRAND_MARK}<span class="brand-name">Sammamish Community Resources</span></div>
+            <div class="footer-brand"><span class="brand-name">Sammamish Community Resources</span></div>
             <p>One place to find organizations, programs, services, events, and resources in Sammamish, Washington.</p>
             <p>A student project, not an official City of Sammamish website.</p>
           </div>
@@ -165,11 +165,11 @@
             <ul>${NAV.slice(1, 6).map((n) => `<li><a href="${n.href}">${n.label}</a></li>`).join("")}</ul>
           </div>
           <div>
-            <h2>About this site</h2>
+            <h2>About This Site</h2>
             <ul>
               <li><a href="sources.html">Sources</a></li>
               <li><a href="about.html">About</a></li>
-              <li><a href="about.html#rubric-guide">Rubric guide</a></li>
+              <li><a href="about.html#rubric-guide">Rubric Guide</a></li>
               <li><a href="about.html#website-ux-design">Accessibility</a></li>
             </ul>
           </div>
@@ -193,8 +193,8 @@
           <div class="drawer-body" id="list-body"></div>
           <p class="visually-hidden" role="status" aria-live="polite" id="list-status"></p>
           <div class="drawer-foot">
-            <button class="btn btn-primary" type="button" id="print-list">${icon("printer")}Print my list</button>
-            <button class="btn btn-ghost" type="button" id="clear-list">${icon("trash-2")}Clear</button>
+            <button class="btn btn-primary" type="button" id="print-list">${icon("printer")}Print List</button>
+            <button class="btn btn-ghost" type="button" id="clear-list">${icon("trash-2")}Clear List</button>
           </div>
         </div>
       </dialog>
@@ -393,7 +393,7 @@
       e.address && `<li>${icon("map-pin")}<span>${esc(e.address)}</span></li>`,
       e.phone && `<li>${icon("phone")}<span>${/^[\d\s()+-]+$/.test(e.phone) ? `<a href="tel:${e.phone.replace(/[^\d+]/g, "")}">${esc(e.phone)}</a>` : esc(e.phone)}</span></li>`,
       e.hours && `<li>${icon("clock")}<span>${esc(e.hours)}</span></li>`,
-      e.website && `<li>${icon("globe")}<a href="${esc(e.website)}" target="_blank" rel="noopener">Visit website<span class="visually-hidden"> for ${esc(e.name)} (opens in a new tab)</span></a></li>`
+      e.website && `<li>${icon("globe")}<a href="${esc(e.website)}" target="_blank" rel="noopener">Visit Website<span class="visually-hidden"> for ${esc(e.name)} (opens in a new tab)</span></a></li>`
     ].filter(Boolean).join("");
     return `
       <li class="entry${e.image ? "" : " no-photo"}" id="${e.id}" data-topics="${esc((e.topics || []).join("|"))}">
@@ -446,12 +446,12 @@
         </div>
         ${type === "event" ? `
         <ul class="chips" aria-label="Filter by date">
-          <li><button class="chip" type="button" data-when="all" aria-pressed="true">All upcoming</button></li>
-          <li><button class="chip" type="button" data-when="7" aria-pressed="false">Next 7 days</button></li>
-          <li><button class="chip" type="button" data-when="30" aria-pressed="false">Next 30 days</button></li>
+          <li><button class="chip" type="button" data-when="all" aria-pressed="true">All Upcoming</button></li>
+          <li><button class="chip" type="button" data-when="7" aria-pressed="false">Next 7 Days</button></li>
+          <li><button class="chip" type="button" data-when="30" aria-pressed="false">Next 30 Days</button></li>
         </ul>` : ""}
         <ul class="chips" aria-label="Filter by topic">
-          <li><button class="chip" type="button" data-topic="" aria-pressed="true">All topics</button></li>
+          <li><button class="chip" type="button" data-topic="" aria-pressed="true">All Topics</button></li>
           ${topics.map((t) => `<li><button class="chip" type="button" data-topic="${esc(t)}" aria-pressed="false">${esc(t)}</button></li>`).join("")}
         </ul>
         <p class="result-count" id="result-count" aria-live="polite"></p>
@@ -460,7 +460,7 @@
       <div class="empty-state" id="empty" hidden>
         <h2>No ${plural} match those filters</h2>
         <p>Try another word, or clear the filters to see everything.</p>
-        <button class="btn btn-ghost" type="button" id="clear-filters">Clear filters</button>
+        <button class="btn btn-ghost" type="button" id="clear-filters">Clear Filters</button>
       </div>`;
 
     let topic = "", q = "", when = "all";
@@ -501,12 +501,12 @@
 
   function renderResourceGroups(items) {
     const groups = [
-      { title: "Get help now", desc: "Free, confidential help, any time of day.", icon: "life-buoy", test: (e) => e.urgent },
-      { title: "Parks, lakes, and trails", desc: "Popular places to hike, swim, bike, and play in and around Sammamish.", icon: "trees", test: (e) => e.todo === "outdoors" || e.place && e.id === "sammamish-landing" },
-      { title: "Food and shopping", desc: "Local shopping centers, grocery stores, and places to eat.", icon: "utensils", test: (e) => e.todo === "food" },
-      { title: "Community places", desc: "Public spaces at the heart of the city.", icon: "map-pin", test: (e) => e.place && e.id !== "sammamish-landing" },
-      { title: "Online guides and directories", desc: "Search tools for finding even more services.", icon: "globe", test: (e) => !e.urgent && !e.place && !e.volunteer && !e.todo },
-      { title: "Get involved", desc: "Ways to volunteer and give back. Students can earn service hours.", icon: "heart-handshake", test: (e) => e.volunteer }
+      { title: "Get Help Now", desc: "Free, confidential help, any time of day.", icon: "life-buoy", test: (e) => e.urgent },
+      { title: "Parks, Lakes, and Trails", desc: "Popular places to hike, swim, bike, and play in and around Sammamish.", icon: "trees", test: (e) => e.todo === "outdoors" || e.place && e.id === "sammamish-landing" },
+      { title: "Food and Shopping", desc: "Local shopping centers, grocery stores, and places to eat.", icon: "utensils", test: (e) => e.todo === "food" },
+      { title: "Community Places", desc: "Public spaces at the heart of the city.", icon: "map-pin", test: (e) => e.place && e.id !== "sammamish-landing" },
+      { title: "Online Guides and Directories", desc: "Search tools for finding even more services.", icon: "globe", test: (e) => !e.urgent && !e.place && !e.volunteer && !e.todo },
+      { title: "Get Involved", desc: "Ways to volunteer and give back. Students can earn service hours.", icon: "heart-handshake", test: (e) => e.volunteer }
     ];
     return groups.map((g) => `
       <section class="group" aria-labelledby="g-${g.icon}">
