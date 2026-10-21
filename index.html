@@ -5,48 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sammamish Community Resources | Find help, programs, and events</title>
   <meta name="description" content="Find organizations, programs, services, events, and resources in Sammamish, Washington, all in one place.">
-  <meta name="theme-color" content="#a4471c">
+  <meta name="theme-color" content="#1e6b45">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="home">
   <div id="site-header"></div>
+  <script src="js/icons.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
   <main id="main" tabindex="-1">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap">
-        <div>
-          <h1 id="hero-title">Find help, programs, and things to do in <em>Sammamish.</em></h1>
-          <p class="hero-lede">Organizations, programs, services, events, and resources in one place. Every listing shows where its information came from.</p>
-          <div id="hero-search"></div>
-          <div class="popular">
-            <span class="popular-label">Popular:</span>
-            <button class="chip" type="button" data-popular="food">Food</button>
-            <button class="chip" type="button" data-popular="seniors">Seniors</button>
-            <button class="chip" type="button" data-popular="teens">Teens</button>
-            <button class="chip" type="button" data-popular="counseling">Counseling</button>
-            <button class="chip" type="button" data-popular="volunteer">Volunteer</button>
-          </div>
+    <section class="banner" aria-labelledby="banner-title">
+      <img class="banner-bg" src="assets/img/sammamish-landing.jpg" alt="" width="584" height="342" fetchpriority="high">
+      <div class="wrap banner-inner">
+        <img class="banner-logo" src="assets/img/sammamish-logo.png" alt="City of Sammamish, Washington logo" width="734" height="263">
+        <h1 id="banner-title">Find help, programs, and things to do in Sammamish</h1>
+        <p class="banner-lede">Food help, parks, programs, and events across the plateau.</p>
+        <div id="hero-search"></div>
+        <div class="popular">
+          <span class="popular-label">Popular:</span>
+          <button class="chip" type="button" data-popular="food">Food</button>
+          <button class="chip" type="button" data-popular="seniors">Seniors</button>
+          <button class="chip" type="button" data-popular="teens">Teens</button>
+          <button class="chip" type="button" data-popular="counseling">Counseling</button>
+          <button class="chip" type="button" data-popular="volunteer">Volunteer</button>
         </div>
-        <figure class="hero-figure">
-          <img src="assets/img/sammamish-landing.jpg" alt="Swimmers on the dock at Sammamish Landing Park on a sunny day, with Lake Sammamish and forested hills behind" width="584" height="342" fetchpriority="high">
-          <figcaption><span data-icon="map-pin"></span>Sammamish Landing Park, on the shore of Lake Sammamish</figcaption>
-        </figure>
+        <a class="scroll-cue" href="#browse"><span>Explore the guide</span><span data-icon="chevron-down"></span></a>
       </div>
+      <p class="banner-note">City of Sammamish logo shown for an FBLA student project. This is not an official City website. Background: Sammamish Landing Park.</p>
     </section>
 
-    <section class="section browse" aria-labelledby="browse-title">
+    <section class="section" id="browse" aria-labelledby="browse-title">
       <div class="wrap">
-        <h2 class="visually-hidden" id="browse-title">Browse by category</h2>
+        <div class="section-head">
+          <div>
+            <h2 id="browse-title">Browse by category</h2>
+          </div>
+        </div>
         <ul class="quick-links" id="quick-links"></ul>
       </div>
     </section>
 
-    <section class="section" style="padding-top:0" aria-labelledby="upcoming-title">
+    <section class="section todo-section" aria-labelledby="todo-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="todo-title">Popular things to do</h2>
+          <a class="btn btn-ghost" href="resources.html">See all</a>
+        </div>
+        <div class="carousel" role="region" aria-roledescription="carousel" aria-labelledby="todo-title">
+          <button class="carousel-btn prev" type="button" data-dir="-1" aria-label="Show previous things to do" aria-controls="popular-todo"><span data-icon="chevron-left"></span></button>
+          <ul class="todo-track" id="popular-todo" tabindex="0" aria-label="Popular things to do, scrollable list"></ul>
+          <button class="carousel-btn next" type="button" data-dir="1" aria-label="Show more things to do" aria-controls="popular-todo"><span data-icon="chevron-right"></span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="upcoming-title">
       <div class="wrap">
         <div class="section-head">
           <div>
             <h2 id="upcoming-title">Coming up</h2>
-            <p>The next community events and public meetings.</p>
           </div>
           <a class="btn btn-ghost" href="events.html">See all events</a>
         </div>
@@ -57,7 +75,6 @@
     <section class="section help-band" aria-labelledby="help-title">
       <div class="wrap">
         <h2 id="help-title">Need help right now?</h2>
-        <p>These lines are free and answered by real people.</p>
         <div class="help-grid">
           <a class="help-card" href="tel:911"><span class="help-number">911</span><strong>Emergency</strong><span>Police, fire, or medical help when someone is in danger.</span></a>
           <a class="help-card" href="tel:988"><span class="help-number">988</span><strong>Suicide &amp; Crisis Lifeline</strong><span>Call or text, 24/7, for mental health or emotional crisis support.</span></a>
@@ -70,8 +87,7 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <h2 id="places-title">Places at the heart of Sammamish</h2>
-            <p>Where many of these programs and events happen.</p>
+            <h2 id="places-title">Around town</h2>
           </div>
         </div>
         <ul class="places">
@@ -84,8 +100,5 @@
     </section>
   </main>
   <div id="site-footer"></div>
-  <script src="js/icons.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
 </body>
 </html>

@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About | Sammamish Community Resources</title>
   <meta name="description" content="How we planned, designed, built, and plan to measure this website, organized by the FBLA Website Design rating sheet.">
-  <meta name="theme-color" content="#a4471c">
+  <meta name="theme-color" content="#1e6b45">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="about">
   <div id="site-header"></div>
+  <script src="js/icons.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
   <main id="main" tabindex="-1">
     <div class="page-head">
       <div class="wrap">
@@ -56,7 +59,7 @@
           <ul>
             <li><strong>Read the assignment closely.</strong> The 2026–2027 topic asks for “organizations, programs, services, events, and resources.” We gave each one its own page, using those exact words in the menu, so nothing is hidden.</li>
             <li><strong>Picked a real community.</strong> We chose our own city, Sammamish, Washington. Real places let us use real, citable sources instead of made-up content.</li>
-            <li><strong>Studied what residents already know.</strong> We modeled the layout on the official City of Sammamish website: a top bar, a main menu, a large photo, a row of category links, and a footer with City Hall information. Residents already know where to look, so they need less time to learn the site.</li>
+            <li><strong>Studied what residents already know.</strong> We modeled the layout on the official City of Sammamish website: a top bar, a main menu, a large banner with the city name, a row of category links, and a footer with City Hall information. Residents already know where to look, so they need less time to learn the site.</li>
             <li><strong>Researched every listing.</strong> We gathered facts from official sources (City of Sammamish, King County Library System, Washington 211) and recorded the date we checked each one.</li>
           </ul>
 
@@ -80,13 +83,13 @@
           <h2 id="h-ux">Website UX Design</h2>
 
           <h3>Colors</h3>
-          <p>Our warm palette comes from Sammamish itself: the cedar siding of Sammamish Commons and the sunset over Lake Sammamish. Every text color passes the WCAG 2.2 AA contrast minimum of 4.5:1.</p>
+          <p>Our green palette comes from Sammamish itself: its evergreen forests and the blue of Lake Sammamish. Every text color passes the WCAG 2.2 AA contrast minimum of 4.5:1.</p>
           <ul class="swatches">
-            <li class="swatch"><div class="swatch-chip" style="background:#a4471c"></div><div><strong>Cedar</strong>#A4471C · menu and buttons<br>6.0:1 with white</div></li>
-            <li class="swatch"><div class="swatch-chip" style="background:#2b1b12"></div><div><strong>Espresso</strong>#2B1B12 · text and footer<br>14.0:1 on sand</div></li>
-            <li class="swatch"><div class="swatch-chip" style="background:#f2a93b"></div><div><strong>Sunset amber</strong>#F2A93B · highlights and focus<br>8.3:1 with espresso</div></li>
-            <li class="swatch"><div class="swatch-chip" style="background:#fbf4ec"></div><div><strong>Sand</strong>#FBF4EC · page headers<br>background tint</div></li>
-            <li class="swatch"><div class="swatch-chip" style="background:#2f6b4f"></div><div><strong>Evergreen</strong>#2F6B4F · saved and next-date<br>6.3:1 with white</div></li>
+            <li class="swatch"><div class="swatch-chip" style="background:#1e6b45"></div><div><strong>Evergreen</strong>#1E6B45 · menu and buttons<br>6.5:1 with white</div></li>
+            <li class="swatch"><div class="swatch-chip" style="background:#0f2a1d"></div><div><strong>Forest</strong>#0F2A1D · top bar and footer<br>14.6:1 page text</div></li>
+            <li class="swatch"><div class="swatch-chip" style="background:#f2c14e"></div><div><strong>Gold</strong>#F2C14E · highlights on dark<br>9.1:1 on forest</div></li>
+            <li class="swatch"><div class="swatch-chip" style="background:#f1f7f3"></div><div><strong>Mist</strong>#F1F7F3 · page headers<br>background tint</div></li>
+            <li class="swatch"><div class="swatch-chip" style="background:#1b5e8c"></div><div><strong>Lake blue</strong>#1B5E8C · saved and next-date<br>6.9:1 with white</div></li>
           </ul>
 
           <h3>Fonts</h3>
@@ -102,7 +105,7 @@
           <ul>
             <li>Text size buttons (A− and A+) and a High contrast mode in the top bar on every page. Your choice is remembered.</li>
             <li>A “Skip to main content” link, clear headings, and labeled regions for screen readers.</li>
-            <li>Everything works with a keyboard, with a visible amber focus outline.</li>
+            <li>Everything works with a keyboard, with a thick, high-contrast focus outline.</li>
             <li>Every photo has descriptive alternative text.</li>
             <li>Animations turn off automatically for visitors who set “reduce motion” on their device.</li>
             <li>Crisis numbers (988 and 2-1-1) appear at the top of every page.</li>
@@ -179,8 +182,5 @@
     </div>
   </main>
   <div id="site-footer"></div>
-  <script src="js/icons.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
 </body>
 </html>

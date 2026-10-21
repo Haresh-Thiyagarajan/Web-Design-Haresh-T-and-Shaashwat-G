@@ -33,11 +33,11 @@ Every required content type has its own page, named exactly as the assignment na
 
 - Pages: Home, Organizations, Programs, Services, Events, Resources, Sources, About. Page names and About-page section headings use the exact wording from the FBLA topic and rating sheet.
 - Interactive features: site-wide search, topic filters, an event list with next-date calculation, a "My List" that saves entries and prints them, and accessibility controls (text size, high contrast).
-- This is a student project, not an official City of Sammamish site. It must not use the city logo or imply affiliation.
+- This is a student project, not an official City of Sammamish site. The user chose to show the city logo in the home banner; it is credited on the Sources page and paired with a visible "not an official City website" note.
 
 ## Brand Commitments
 
-- Layout and structure are modeled on the official City of Sammamish website (utility bar, main navigation, photo hero, icon quick-link row, information-rich footer) but with a warm color palette instead of the city's colors.
+- Layout and structure are modeled on the official City of Sammamish website (utility bar, main navigation, photo hero, icon quick-link row, information-rich footer) with a large opening banner showing the City of Sammamish logo (background removed) and a clean, accessible green theme. All corners are square.
 - Clean and friendly.
 - Photos are supplied by the team. Never use AI-generated images.
 

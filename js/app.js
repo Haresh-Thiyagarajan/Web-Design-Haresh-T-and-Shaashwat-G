@@ -33,7 +33,7 @@
     program: { page: "programs.html", label: "Program", plural: "Programs", icon: "users", blurb: "Ongoing activities you can join, for kids, teens, adults, and seniors." },
     service: { page: "services.html", label: "Service", plural: "Services", icon: "hand-heart", blurb: "Help you can get: counseling, legal advice, bill help, and more." },
     event: { page: "events.html", label: "Event", plural: "Events", icon: "calendar-days", blurb: "Upcoming community events and meetings, with the next date for each." },
-    resource: { page: "resources.html", label: "Resource", plural: "Resources", icon: "book-open", blurb: "Crisis lines, online directories, parks, and ways to volunteer." }
+    resource: { page: "resources.html", label: "Resource", plural: "Resources", icon: "book-open", blurb: "Crisis lines, parks and trails, food and shopping, and ways to volunteer." }
   };
 
   const NAV = [
@@ -49,10 +49,10 @@
 
   const BRAND_MARK = `
     <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-      <rect width="48" height="48" rx="13" fill="#a4471c"/>
-      <path d="M12 27a12 12 0 0 1 24 0z" fill="#f2a93b"/>
+      <rect width="48" height="48" rx="13" fill="#1e6b45"/>
+      <path d="M12 27a12 12 0 0 1 24 0z" fill="#f2c14e"/>
       <path d="M8 32.5c3.2 0 3.2-2 6.4-2s3.2 2 6.4 2 3.2-2 6.4-2 3.2 2 6.4 2 3.2-2 6.4-2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
-      <path d="M12 38c3 0 3-1.8 6-1.8s3 1.8 6 1.8 3-1.8 6-1.8 3 1.8 6 1.8" fill="none" stroke="#f6e3d6" stroke-width="2.2" stroke-linecap="round" opacity=".75"/>
+      <path d="M12 38c3 0 3-1.8 6-1.8s3 1.8 6 1.8 3-1.8 6-1.8 3 1.8 6 1.8" fill="none" stroke="#cfe8d8" stroke-width="2.2" stroke-linecap="round" opacity=".75"/>
     </svg>`;
 
   /* ---------- Dates for events ---------- */
@@ -107,8 +107,8 @@
           <p class="topbar-help">${icon("life-buoy")}<span>Need help now? Call or text <a href="tel:988">988</a> for crisis support, or dial <a href="tel:211">2-1-1</a> for local resources.</span></p>
           <div class="tools" role="group" aria-label="Accessibility settings">
             <span class="tools-label">Text size</span>
-            <button class="tool-btn" type="button" data-text-step="-1" aria-label="Make text smaller">A−</button>
-            <button class="tool-btn" type="button" data-text-step="1" aria-label="Make text larger">A+</button>
+            <button class="tool-btn" type="button" data-text-step="-1">A−<span class="visually-hidden"> smaller text</span></button>
+            <button class="tool-btn" type="button" data-text-step="1">A+<span class="visually-hidden"> larger text</span></button>
             <button class="tool-btn" type="button" id="contrast-toggle" aria-pressed="false">${icon("contrast")}<span>High contrast</span></button>
           </div>
         </div>
@@ -116,7 +116,7 @@
       <header class="site-header">
         <div class="header-main">
           <div class="wrap">
-            <a class="brand" href="index.html" aria-label="Sammamish Community Resources, home">
+            <a class="brand" href="index.html">
               ${BRAND_MARK}
               <span class="brand-text"><span class="brand-name">Sammamish</span><span class="brand-sub">Community Resources</span></span>
             </a>
@@ -144,7 +144,7 @@
         <label class="visually-hidden" for="search-${id}">Search all community resources</label>
         ${icon("search")}
         <input class="search-input" id="search-${id}" type="search" autocomplete="off"
-          placeholder="${big ? "Try “food”, “seniors”, or “counseling”" : "Search resources"}"
+          placeholder="${big ? "Try “food” or “seniors”" : "Search resources"}"
           role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="results-${id}">
         <ul class="search-results" id="results-${id}" role="listbox" aria-label="Search results" hidden></ul>
       </div>`;
@@ -191,6 +191,7 @@
             <button class="icon-btn" type="button" id="close-list" aria-label="Close My List">${icon("x")}</button>
           </div>
           <div class="drawer-body" id="list-body"></div>
+          <p class="visually-hidden" role="status" aria-live="polite" id="list-status"></p>
           <div class="drawer-foot">
             <button class="btn btn-primary" type="button" id="print-list">${icon("printer")}Print my list</button>
             <button class="btn btn-ghost" type="button" id="clear-list">${icon("trash-2")}Clear</button>
@@ -237,6 +238,7 @@
   /* ---------- Toast ---------- */
   let toastTimer;
   function toast(msg) {
+    const d = $("#list-drawer"); if (d && d.open) { $("#list-status").textContent = msg; }
     const t = $("#toast"); if (!t) return;
     t.textContent = msg; t.classList.add("show");
     clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
@@ -291,7 +293,7 @@
         ? results.map((e, i) => `
             <li role="option" id="${list.id}-${i}" aria-selected="${i === active}">
               <a class="search-option" href="${entryHref(e)}" tabindex="-1">
-                <span class="icon-badge type-dot" style="width:36px;height:36px;border-radius:10px">${icon(TYPES[e.type].icon)}</span>
+                <span class="icon-badge type-dot" style="width:36px;height:36px">${icon(TYPES[e.type].icon)}</span>
                 <strong>${esc(e.name)}</strong><small>${TYPES[e.type].label} · ${esc((e.topics || []).join(", "))}</small>
               </a></li>`).join("")
         : `<li class="search-empty" role="option" aria-disabled="true">No matches for “${esc(q)}”. Try a simpler word, like “food” or “youth”.</li>`;
@@ -334,7 +336,8 @@
     $$(".save-btn").forEach((b) => {
       const on = saved.includes(b.dataset.id);
       b.setAttribute("aria-pressed", String(on));
-      b.innerHTML = on ? `${icon("bookmark-check")}Saved` : `${icon("bookmark")}Save to My List`;
+      const nm = esc((ENTRIES.find((x) => x.id === b.dataset.id) || {}).name || "");
+      b.innerHTML = on ? `${icon("bookmark-check")}Saved<span class="visually-hidden">: ${nm}</span>` : `${icon("bookmark")}Save to My List<span class="visually-hidden">: ${nm}</span>`;
     });
     const body = $("#list-body"); if (!body) return;
     const items = saved.map((id) => ENTRIES.find((e) => e.id === id)).filter(Boolean);
@@ -382,7 +385,7 @@
   }
 
   /* ---------- One listing entry ---------- */
-  function renderEntry(e) {
+  function renderEntry(e, level = 2) {
     const src = SOURCES[e.source];
     const n = e.type === "event" ? nextDate(e) : null;
     const details = [
@@ -390,13 +393,13 @@
       e.address && `<li>${icon("map-pin")}<span>${esc(e.address)}</span></li>`,
       e.phone && `<li>${icon("phone")}<span>${/^[\d\s()+-]+$/.test(e.phone) ? `<a href="tel:${e.phone.replace(/[^\d+]/g, "")}">${esc(e.phone)}</a>` : esc(e.phone)}</span></li>`,
       e.hours && `<li>${icon("clock")}<span>${esc(e.hours)}</span></li>`,
-      e.website && `<li>${icon("globe")}<a href="${esc(e.website)}" target="_blank" rel="noopener">Visit website<span class="visually-hidden"> (opens in a new tab)</span></a></li>`
+      e.website && `<li>${icon("globe")}<a href="${esc(e.website)}" target="_blank" rel="noopener">Visit website<span class="visually-hidden"> for ${esc(e.name)} (opens in a new tab)</span></a></li>`
     ].filter(Boolean).join("");
     return `
       <li class="entry${e.image ? "" : " no-photo"}" id="${e.id}" data-topics="${esc((e.topics || []).join("|"))}">
         ${e.image ? `<img class="entry-photo" src="${e.image}" alt="${esc(e.imageAlt || "")}" loading="lazy" width="320" height="240">` : ""}
         <div class="entry-main">
-          <h3 class="entry-name">${esc(e.name)}</h3>
+          <h${level} class="entry-name">${e.website ? `<a class="entry-link" href="${esc(e.website)}" target="_blank" rel="noopener">${esc(e.name)}${icon("external-link", "ext")}<span class="visually-hidden"> (opens website in a new tab)</span></a>` : esc(e.name)}</h${level}>
           <div class="entry-meta-line">
             ${(e.topics || []).map((t) => `<span class="tag">${esc(t)}</span>`).join("")}
           </div>
@@ -453,7 +456,7 @@
         </ul>
         <p class="result-count" id="result-count" aria-live="polite"></p>
       </div>
-      ${type === "resource" ? renderResourceGroups(items) : `<ul class="entries">${items.map(renderEntry).join("")}</ul>`}
+      ${type === "resource" ? renderResourceGroups(items) : `<ul class="entries">${items.map((e) => renderEntry(e)).join("")}</ul>`}
       <div class="empty-state" id="empty" hidden>
         <h2>No ${plural} match those filters</h2>
         <p>Try another word, or clear the filters to see everything.</p>
@@ -499,15 +502,17 @@
   function renderResourceGroups(items) {
     const groups = [
       { title: "Get help now", desc: "Free, confidential help, any time of day.", icon: "life-buoy", test: (e) => e.urgent },
-      { title: "Online guides and directories", desc: "Search tools for finding even more services.", icon: "globe", test: (e) => !e.urgent && !e.place && !e.volunteer },
-      { title: "Places to go", desc: "Parks and public spaces at the heart of the city.", icon: "map-pin", test: (e) => e.place },
+      { title: "Parks, lakes, and trails", desc: "Popular places to hike, swim, bike, and play in and around Sammamish.", icon: "trees", test: (e) => e.todo === "outdoors" || e.place && e.id === "sammamish-landing" },
+      { title: "Food and shopping", desc: "Local shopping centers, grocery stores, and places to eat.", icon: "utensils", test: (e) => e.todo === "food" },
+      { title: "Community places", desc: "Public spaces at the heart of the city.", icon: "map-pin", test: (e) => e.place && e.id !== "sammamish-landing" },
+      { title: "Online guides and directories", desc: "Search tools for finding even more services.", icon: "globe", test: (e) => !e.urgent && !e.place && !e.volunteer && !e.todo },
       { title: "Get involved", desc: "Ways to volunteer and give back. Students can earn service hours.", icon: "heart-handshake", test: (e) => e.volunteer }
     ];
     return groups.map((g) => `
       <section class="group" aria-labelledby="g-${g.icon}">
         <h2 class="group-title" id="g-${g.icon}"><span class="icon-badge">${icon(g.icon)}</span>${g.title}</h2>
         <p class="group-desc">${g.desc}</p>
-        <ul class="entries">${items.filter(g.test).map(renderEntry).join("")}</ul>
+        <ul class="entries">${items.filter(g.test).map((e) => renderEntry(e, 3)).join("")}</ul>
       </section>`).join("");
   }
 
@@ -534,6 +539,32 @@
           ${icon("arrow-right")}</a></li>`).join("");
     }
 
+    const pop = $("#popular-todo");
+    if (pop) {
+      const byId = (id) => ENTRIES.find((e) => e.id === id);
+      const list = [byId("sammamish-landing"), ...ENTRIES.filter((e) => e.todo === "outdoors"),
+        byId("farmers-market"), byId("summer-concerts"), ...ENTRIES.filter((e) => e.todo === "food")].filter(Boolean).slice(0, 20);
+      const ic = (e) => e.todo === "food" ? "utensils" : e.type === "event" ? "calendar-days" : /bike/i.test(e.name) ? "bike" : /lake|landing|beach/i.test(e.name) ? "waves" : "trees";
+      pop.innerHTML = list.map((e, i) => `
+        <li aria-label="${i + 1} of ${list.length}"><a class="todo" href="${entryHref(e)}">
+          <span class="todo-icon">${icon(ic(e))}</span>
+          <strong>${esc(e.name)}</strong><small>${esc((e.topics || [])[0] || "")}</small></a></li>`).join("");
+
+      /* Carousel: arrows slide one screen of cards at a time */
+      const prev = $(".carousel-btn.prev"), next = $(".carousel-btn.next");
+      const update = () => {
+        prev.disabled = pop.scrollLeft <= 2;
+        next.disabled = pop.scrollLeft + pop.clientWidth >= pop.scrollWidth - 2;
+      };
+      [prev, next].forEach((b) => b.addEventListener("click", () => {
+        const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+        pop.scrollBy({ left: Number(b.dataset.dir) * pop.clientWidth, behavior: smooth ? "smooth" : "auto" });
+      }));
+      pop.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    }
+
     $$("[data-popular]").forEach((b) => b.addEventListener("click", () => {
       const input = $("#search-hero"); input.value = b.dataset.popular; input.focus();
       input.dispatchEvent(new Event("input"));
@@ -556,18 +587,23 @@
       `<li><strong>${esc(p.subject)}</strong><small>${esc(p.credit)} File: ${esc(p.file)}</small></li>`).join("");
   }
 
-  /* ---------- Start ---------- */
-  $$("[data-icon]").forEach((el) => { el.outerHTML = el.classList.contains("icon-badge") ? `<span class="icon-badge">${icon(el.dataset.icon)}</span>` : icon(el.dataset.icon); });
+  /* ---------- Start ----------
+     The header is built right away (this script loads just after the header spot),
+     so the page doesn't jump when the menu appears. Everything else waits for the page. */
   renderHeader();
-  renderFooter();
   initPrefs();
   initNav();
-  initList();
-  if (page === "home") renderHome();
-  if (TYPES[page]) renderCategory(page);
-  if (page === "sources") renderSources();
-  $$("[data-search]").forEach(initSearch);
-  updateListUI();
-  if (location.hash) setTimeout(highlightTarget, 60);
-  window.addEventListener("hashchange", highlightTarget);
+  function start() {
+    $$("[data-icon]").forEach((el) => { el.outerHTML = el.classList.contains("icon-badge") ? `<span class="icon-badge">${icon(el.dataset.icon)}</span>` : icon(el.dataset.icon); });
+    renderFooter();
+    initList();
+    if (page === "home") renderHome();
+    if (TYPES[page]) renderCategory(page);
+    if (page === "sources") renderSources();
+    $$("[data-search]").forEach(initSearch);
+    updateListUI();
+    if (location.hash) setTimeout(highlightTarget, 60);
+    window.addEventListener("hashchange", highlightTarget);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();

@@ -27,7 +27,26 @@ window.SOURCES = {
   diwaliBazaar: { title: "Sammamish Diwali Bazaar 2026", publisher: "The Craft Map", url: "https://www.thecraftmap.com/fair/sammamish-diwali-bazaar-2026-sammamish-wa" },
   lifeline988: { title: "988 Suicide & Crisis Lifeline", publisher: "U.S. Department of Health and Human Services (SAMHSA)", url: "https://988lifeline.org/" },
   wa211: { title: "Washington 211", publisher: "Washington 211", url: "https://wa211.org/" },
-  kingCountyFind: { title: "Find Human Services", publisher: "King County", url: "https://find-human-services.kingcounty.gov/" }
+  kingCountyFind: { title: "Department of Community and Human Services", publisher: "King County", url: "https://kingcounty.gov/en/dept/dchs" },
+  wtaIllahee: { title: "Illahee Lake Trail", publisher: "Washington Trails Association", url: "https://www.wta.org/go-hiking/hikes/illahee-lake-trail" },
+  cityIllahee: { title: "Illahee Park Trail", publisher: "City of Sammamish", url: "https://sammamishwa.gov/our-community/recreation/parks-trails/illahee-park-trail/" },
+  cityEvans: { title: "Evans Creek Preserve", publisher: "City of Sammamish", url: "https://www.sammamish.us/parks-recreation/parks-trails/evans-creek-preserve/" },
+  wtaSoaringEagle: { title: "Soaring Eagle Park", publisher: "Washington Trails Association", url: "https://www.wta.org/go-hiking/hikes/soaring-eagle-park" },
+  cityBeaverLake: { title: "Beaver Lake Park", publisher: "City of Sammamish", url: "https://sammamishwa.gov/our-community/recreation/parks-trails/beaver-lake-park/" },
+  wtaBeaverPreserve: { title: "Beaver Lake Preserve", publisher: "Washington Trails Association", url: "https://www.wta.org/go-hiking/hikes/beaver-lake-preserve" },
+  cityPineLake: { title: "Pine Lake Park", publisher: "City of Sammamish", url: "https://www.sammamish.us/parks-recreation/parks-trails/pine-lake-park/" },
+  cityBigRock: { title: "Big Rock Park", publisher: "City of Sammamish", url: "https://www.sammamish.us/parks-recreation-facilities/parks-trails/big-rock-park/" },
+  cityKlahanie: { title: "Klahanie Park", publisher: "City of Sammamish", url: "https://www.sammamish.us/our-community/recreation/parks-trails/klahanie-park/" },
+  kcDuthie: { title: "Duthie Hill Park", publisher: "King County Parks", url: "https://kingcounty.gov/en/dept/dnrp/nature-recreation/parks-recreation/king-county-parks/parks/duthie-hill" },
+  traillinkELST: { title: "East Lake Sammamish Trail", publisher: "TrailLink", url: "https://www.traillink.com/trail/east-lake-sammamish-trail" },
+  stateParkLS: { title: "Lake Sammamish State Park brochure", publisher: "Washington State Parks", url: "https://parks.wa.gov/sites/default/files/2023-05/Lake%20Sammamish%20State%20Park%20Brochure.pdf" },
+  saffronFlyer: { title: "Saffron Center leasing flyer, 22840 NE 8th St", publisher: "Kidder Mathews via Commercial MLS", url: "https://cbaimage.commercialmls.com/content/upload/photos/pdf/FL/69b090efa86fe7331df6546b_saffron_center_22840_ne_8th_st_030926.pdf" },
+  pagliacci: { title: "Sammamish store opening", publisher: "Pagliacci Pizza", url: "https://pagliacci.com/blog/posts/sammamish-store-opening" },
+  regencyHighlands: { title: "Sammamish Highlands", publisher: "Regency Centers", url: "https://www.regencycenters.com/" },
+  regencyInglewood: { title: "Inglewood Plaza", publisher: "Regency Centers", url: "https://www.regencycenters.com/" },
+  regencyPineLake: { title: "Pine Lake Village", publisher: "Regency Centers", url: "https://www.regencycenters.com/" },
+  metMarket: { title: "Metropolitan Market to open in Sammamish March 22", publisher: "Issaquah Reporter, 2017", url: "https://www.issaquahreporter.com/2017/02/28/metropolitan-market-to-open-in-sammamish-march-22/" },
+  concerts: { title: "Sammamish Summer Concerts in the Park", publisher: "ParentMap", url: "https://www.parentmap.com/?p=10052850" }
 };
 
 window.ENTRIES = [
@@ -277,10 +296,10 @@ window.ENTRIES = [
     source: "cityContact", checked: "2026-10-21"
   },
   {
-    id: "king-county-find", type: "resource", name: "King County Find Human Services",
+    id: "king-county-find", type: "resource", name: "King County Community & Human Services",
     topics: ["Food", "Health & Counseling", "Legal & Safety"],
-    summary: "Online search for food banks, shelters, clinics, and other services across King County.",
-    website: "https://find-human-services.kingcounty.gov/",
+    summary: "King County’s guide to food, housing, behavioral health, and other services across the county.",
+    website: "https://kingcounty.gov/en/dept/dchs",
     source: "kingCountyFind", checked: "2026-10-21"
   },
   {
@@ -331,10 +350,164 @@ window.ENTRIES = [
     topics: ["Volunteer", "Seniors"], volunteer: true,
     summary: "Lead a walk, help with senior programs, or join environmental projects.",
     website: "", source: "sammamishFriends", checked: "2026-10-21"
+  },
+  /* ---------------- THINGS TO DO (Resources) ----------------
+     todo: "outdoors" = Parks, lakes & trails · todo: "food" = Food & shopping */
+  {
+    id: "illahee-lake", type: "resource", name: "Illahee Lake Trail", todo: "outdoors",
+    topics: ["Parks & Trails"],
+    summary: "An easy, paved half-mile loop around a seasonal pond and wetlands. Good for kids, and dogs on leash are welcome. Street parking on NE 8th St.",
+    address: "NE 8th St near 228th Ave NE, Sammamish, WA",
+    website: "https://sammamishwa.gov/our-community/recreation/parks-trails/illahee-park-trail/",
+    source: "wtaIllahee", checked: "2026-10-21"
+  },
+  {
+    id: "evans-creek", type: "resource", name: "Evans Creek Preserve", todo: "outdoors",
+    topics: ["Parks & Trails"],
+    summary: "Quiet, hiker-only trails through meadows, wetlands, and forest. The lower lot has gentle trails. The upper lot on Sahalee Way starts with a steep climb.",
+    address: "Lower lot: 4001 224th Ave NE · Upper lot: 3650 Sahalee Way NE",
+    website: "https://www.sammamish.us/parks-recreation/parks-trails/evans-creek-preserve/",
+    source: "cityEvans", checked: "2026-10-21"
+  },
+  {
+    id: "soaring-eagle", type: "resource", name: "Soaring Eagle Regional Park", todo: "outdoors",
+    topics: ["Parks & Trails"],
+    summary: "600 acres of forest and wetlands with miles of hiking, mountain biking, and horse trails. The wide, flat Pipeline Trail is great for families and strollers.",
+    website: "https://www.wta.org/go-hiking/hikes/soaring-eagle-park",
+    source: "wtaSoaringEagle", checked: "2026-10-21"
+  },
+  {
+    id: "beaver-lake-park", type: "resource", name: "Beaver Lake Park", todo: "outdoors",
+    topics: ["Parks & Trails", "Recreation"],
+    summary: "An 83-acre city park with lake access, sports fields, a playground, a picnic shelter, an off-leash dog park, and restrooms.",
+    address: "25101 SE 24th St, Sammamish, WA 98075",
+    website: "https://sammamishwa.gov/our-community/recreation/parks-trails/beaver-lake-park/",
+    source: "cityBeaverLake", checked: "2026-10-21"
+  },
+  {
+    id: "beaver-lake-preserve", type: "resource", name: "Beaver Lake Preserve", todo: "outdoors",
+    topics: ["Parks & Trails"],
+    summary: "An easy 1.2-mile loop through quiet forest. Free, open until dusk, and dogs on leash are allowed.",
+    address: "W Beaver Lake Dr SE, Sammamish, WA",
+    website: "https://www.wta.org/go-hiking/hikes/beaver-lake-preserve",
+    source: "wtaBeaverPreserve", checked: "2026-10-21"
+  },
+  {
+    id: "pine-lake-park", type: "resource", name: "Pine Lake Park", todo: "outdoors",
+    topics: ["Parks & Trails", "Recreation"],
+    summary: "Summer swimming with lifeguards, a stocked fishing lake, a playground, and a basketball court. Home of the free summer concert series.",
+    address: "2401 228th Ave SE, Sammamish, WA 98075",
+    website: "https://www.sammamish.us/parks-recreation/parks-trails/pine-lake-park/",
+    source: "cityPineLake", checked: "2026-10-21"
+  },
+  {
+    id: "big-rock-park", type: "resource", name: "Big Rock Park", todo: "outdoors",
+    topics: ["Parks & Trails"],
+    summary: "A city park in three parts with woodland paths. Park at Big Rock Park Central. The south section has no parking.",
+    address: "North: 21805 SE 8th St, Sammamish, WA 98074",
+    website: "https://www.sammamish.us/parks-recreation-facilities/parks-trails/big-rock-park/",
+    source: "cityBigRock", checked: "2026-10-21"
+  },
+  {
+    id: "klahanie-park", type: "resource", name: "Klahanie Park", todo: "outdoors",
+    topics: ["Parks & Trails", "Recreation"],
+    summary: "A 64-acre city park next to Challenger Elementary with sports fields and open space.",
+    address: "25000 SE Klahanie Blvd, Sammamish, WA 98029",
+    website: "https://www.sammamish.us/our-community/recreation/parks-trails/klahanie-park/",
+    source: "cityKlahanie", checked: "2026-10-21"
+  },
+  {
+    id: "duthie-hill", type: "resource", name: "Duthie Hill Mountain Bike Park", todo: "outdoors",
+    topics: ["Parks & Trails", "Recreation"],
+    summary: "A famous King County mountain bike park on the edge of Sammamish, with trails for beginners through experts. On weekends, overflow parking is at Cascade Ridge Elementary.",
+    address: "26300 SE Issaquah-Fall City Rd",
+    website: "https://kingcounty.gov/en/dept/dnrp/nature-recreation/parks-recreation/king-county-parks/parks/duthie-hill",
+    source: "kcDuthie", checked: "2026-10-21"
+  },
+  {
+    id: "east-lake-trail", type: "resource", name: "East Lake Sammamish Trail", todo: "outdoors",
+    topics: ["Parks & Trails"],
+    summary: "A flat regional trail along the east shore of Lake Sammamish for walking, running, and biking. It passes right by Sammamish Landing Park.",
+    website: "https://www.traillink.com/trail/east-lake-sammamish-trail",
+    source: "traillinkELST", checked: "2026-10-21"
+  },
+  {
+    id: "lake-sammamish-state-park", type: "resource", name: "Lake Sammamish State Park", todo: "outdoors",
+    topics: ["Parks & Trails", "Recreation"],
+    summary: "Big swimming beaches, picnic areas, and boat launches at the south end of the lake in Issaquah. A Discover Pass is required for parking.",
+    address: "2000 NW Sammamish Rd, Issaquah, WA 98027",
+    website: "https://parks.wa.gov/find-parks/state-parks/lake-sammamish-state-park",
+    source: "stateParkLS", checked: "2026-10-21"
+  },
+  {
+    id: "saffron-center", type: "resource", name: "Saffron Center", todo: "food",
+    topics: ["Food & Shopping"],
+    summary: "A shopping center with Pagliacci Pizza, Vinason Pho Kitchen, Sammamish Cafe & Spirits, Orangetheory Fitness, a salon, and more, with free parking.",
+    address: "22820–22850 NE 8th St, Sammamish, WA 98074",
+    website: "https://www.google.com/maps/search/?api=1&query=Saffron+Center+22840+NE+8th+St+Sammamish+WA",
+    source: "saffronFlyer", checked: "2026-10-21"
+  },
+  {
+    id: "pagliacci", type: "resource", name: "Pagliacci Pizza (Saffron)", todo: "food",
+    topics: ["Food & Shopping"],
+    summary: "Seattle’s favorite local pizza chain, with a slice bar for quick meals.",
+    address: "22830 NE 8th St, Sammamish, WA 98074",
+    website: "https://pagliacci.com/locations/sammamish",
+    source: "pagliacci", checked: "2026-10-21"
+  },
+  {
+    id: "vinason-pho", type: "resource", name: "Vinason Pho Kitchen", todo: "food",
+    topics: ["Food & Shopping"],
+    summary: "Vietnamese pho and noodle dishes in the Saffron Center.",
+    address: "22830 NE 8th St, Suite 107, Sammamish, WA 98074",
+    website: "https://www.google.com/maps/search/?api=1&query=Vinason+Pho+Kitchen+Sammamish+WA",
+    source: "saffronFlyer", checked: "2026-10-21"
+  },
+  {
+    id: "sammamish-highlands", type: "resource", name: "Sammamish Highlands", todo: "food",
+    topics: ["Food & Shopping"],
+    summary: "The plateau’s main shopping center, with Trader Joe’s, Safeway, Bartell Drugs, and restaurants.",
+    address: "430–710 228th Ave NE, Sammamish, WA 98074",
+    website: "https://www.google.com/maps/search/?api=1&query=Sammamish+Highlands+228th+Ave+NE+Sammamish+WA",
+    source: "regencyHighlands", checked: "2026-10-21"
+  },
+  {
+    id: "inglewood-plaza", type: "resource", name: "Inglewood Plaza", todo: "food",
+    topics: ["Food & Shopping"],
+    summary: "A convenient neighborhood center next to Sammamish Highlands, with quick-service food and everyday shops.",
+    address: "653–715 228th Ave NE, Sammamish, WA 98074",
+    website: "https://www.google.com/maps/search/?api=1&query=Inglewood+Plaza+228th+Ave+NE+Sammamish+WA",
+    source: "regencyInglewood", checked: "2026-10-21"
+  },
+  {
+    id: "metropolitan-market", type: "resource", name: "Metropolitan Market", todo: "food",
+    topics: ["Food & Shopping"],
+    summary: "A full-service grocery store in Sammamish Town Center with a deli, bakery, and prepared foods.",
+    address: "301 228th Ave SE, Sammamish, WA 98075",
+    website: "https://metropolitan-market.com",
+    source: "metMarket", checked: "2026-10-21"
+  },
+  {
+    id: "pine-lake-village", type: "resource", name: "Pine Lake Village", todo: "food",
+    topics: ["Food & Shopping"],
+    summary: "A QFC-anchored center with about 25 stores. The QFC has a Starbucks, sushi, a salad bar, and a deli.",
+    address: "2902 228th Ave SE, Sammamish, WA 98075",
+    website: "https://www.google.com/maps/search/?api=1&query=Pine+Lake+Village+2902+228th+Ave+SE+Sammamish+WA",
+    source: "regencyPineLake", checked: "2026-10-21"
+  },
+  {
+    id: "summer-concerts", type: "event", name: "Summer Concerts in the Park",
+    topics: ["Recreation"],
+    summary: "Free outdoor concerts at Pine Lake Park on summer Thursday evenings. Bring a blanket and a picnic.",
+    address: "Pine Lake Park, 2401 228th Ave SE, Sammamish, WA 98075",
+    season: { startMonth: 7, endMonth: 8 }, recur: { weekdays: [4] }, when: "Thursdays in July and August",
+    website: "https://www.parentmap.com/?p=10052850",
+    source: "concerts", checked: "2026-10-21"
   }
 ];
 
 window.PHOTO_CREDITS = [
+  { file: "sammamish-logo.png", subject: "City of Sammamish logo", credit: "© City of Sammamish. Shown for an educational FBLA project; white background removed by the team. Not an official city website." },
   { file: "sammamish-landing.jpg", subject: "Sammamish Landing Park", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
   { file: "sammamish-library.jpg", subject: "Sammamish Library at dusk", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
   { file: "community-center-dusk.jpg", subject: "Sammamish Community & Aquatic Center at dusk", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
