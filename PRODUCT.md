@@ -43,7 +43,7 @@ Every required content type has its own page, named exactly as the assignment na
 
 ## Evidence on Hand
 
-- Photos in `assets/img/` were supplied by the user (gathered from the web). See the Sources page for credits. Two carry visible watermarks (`lake-sunset.jpg` © Gary Hamburgh, `farmers-market.jpg` © 2017) and need permission or replacement before competition.
+- Photos in `assets/img/` were supplied by the user (gathered from the web). See the Sources page for credits. Two watermarked photos (lake sunset © Gary Hamburgh, farmers market © 2017) were removed from the site and moved to ~/Downloads/fbla-unused-photos until permission is obtained.
 - Organization facts were gathered from official sites (sammamish.us, kcls.org) and directories on 2026-10-21. They must be re-verified before competition.
 - No testimonials, statistics, or usage numbers exist. Do not invent them.
 

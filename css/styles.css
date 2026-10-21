@@ -481,7 +481,7 @@ html { scrollbar-color: var(--line-strong) var(--sand-soft); }
 .note .icon { color: var(--cedar-deep); margin-top: 3px; }
 .note p { margin: 0; }
 
-.source-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.source-list, .prose .source-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; max-width: none; }
 .source-list li { padding: 16px 0; border-bottom: 1px solid var(--line); }
 .source-list strong { display: block; }
 .source-list small { color: var(--ink-soft); font-size: 0.9rem; }

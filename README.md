@@ -32,7 +32,7 @@ The shared header, menu, and footer are in `js/app.js`. The colors and fonts are
 ## Before competition: checklist
 
 - [ ] Re-check every listing's address, phone, and hours, then update its `checked` date.
-- [ ] Replace or get permission for the two watermarked photos: `assets/img/lake-sunset.jpg` (© Gary Hamburgh) and `assets/img/farmers-market.jpg` (© 2017).
+- [ ] Optional: get permission for the two watermarked photos (lake sunset © Gary Hamburgh, farmers market © 2017). They were left out of the site and are saved in `~/Downloads/fbla-unused-photos`.
 - [ ] Find the original photographer for each other photo and add credits in `js/data.js` (`PHOTO_CREDITS`).
 - [ ] Add real upcoming events for the competition date.
 - [ ] Proofread every page (grammar is 5 rubric points).
