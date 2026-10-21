@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sammamish Community Resources | Find help, programs, and events</title>
+  <meta name="description" content="Find organizations, programs, services, events, and resources in Sammamish, Washington, all in one place.">
+  <meta name="theme-color" content="#a4471c">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+  <main id="main" tabindex="-1">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div>
+          <h1 id="hero-title">Find help, programs, and things to do in <em>Sammamish.</em></h1>
+          <p class="hero-lede">Organizations, programs, services, events, and resources in one place. Every listing shows where its information came from.</p>
+          <div id="hero-search"></div>
+          <div class="popular">
+            <span class="popular-label">Popular:</span>
+            <button class="chip" type="button" data-popular="food">Food</button>
+            <button class="chip" type="button" data-popular="seniors">Seniors</button>
+            <button class="chip" type="button" data-popular="teens">Teens</button>
+            <button class="chip" type="button" data-popular="counseling">Counseling</button>
+            <button class="chip" type="button" data-popular="volunteer">Volunteer</button>
+          </div>
+        </div>
+        <figure class="hero-figure">
+          <img src="assets/img/sammamish-landing.jpg" alt="Swimmers on the dock at Sammamish Landing Park on a sunny day, with Lake Sammamish and forested hills behind" width="584" height="342" fetchpriority="high">
+          <figcaption><span data-icon="map-pin"></span>Sammamish Landing Park, on the shore of Lake Sammamish</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section browse" aria-labelledby="browse-title">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="browse-title">Browse by category</h2>
+        <ul class="quick-links" id="quick-links"></ul>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0" aria-labelledby="upcoming-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 id="upcoming-title">Coming up</h2>
+            <p>The next community events and public meetings.</p>
+          </div>
+          <a class="btn btn-ghost" href="events.html">See all events</a>
+        </div>
+        <ul class="upcoming" id="upcoming"></ul>
+      </div>
+    </section>
+
+    <section class="section help-band" aria-labelledby="help-title">
+      <div class="wrap">
+        <h2 id="help-title">Need help right now?</h2>
+        <p>These lines are free and answered by real people.</p>
+        <div class="help-grid">
+          <a class="help-card" href="tel:911"><span class="help-number">911</span><strong>Emergency</strong><span>Police, fire, or medical help when someone is in danger.</span></a>
+          <a class="help-card" href="tel:988"><span class="help-number">988</span><strong>Suicide &amp; Crisis Lifeline</strong><span>Call or text, 24/7, for mental health or emotional crisis support.</span></a>
+          <a class="help-card" href="tel:211"><span class="help-number">2-1-1</span><strong>Community Information Line</strong><span>Referrals for food, housing, utility bills, legal help, and health care.</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="places-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 id="places-title">Places at the heart of Sammamish</h2>
+            <p>Where many of these programs and events happen.</p>
+          </div>
+        </div>
+        <ul class="places">
+          <li><a class="place" href="resources.html#sammamish-commons"><img src="assets/img/commons-plaza-night.jpg" alt="Sammamish Commons plaza at night, lit by tall street lamps" loading="lazy" width="738" height="414"><span class="place-label"><strong>Sammamish Commons</strong><span>City Hall, library, and plaza</span></span></a></li>
+          <li><a class="place" href="organizations.html#sammamish-library"><img src="assets/img/sammamish-library.jpg" alt="Sammamish Library glowing at dusk" loading="lazy" width="758" height="404"><span class="place-label"><strong>Sammamish Library</strong><span>Books, classes, and teen programs</span></span></a></li>
+          <li><a class="place" href="organizations.html#sammamish-ymca"><img src="assets/img/community-center-dusk.jpg" alt="Sammamish Community and Aquatic Center at dusk" loading="lazy" width="738" height="318"><span class="place-label"><strong>Community &amp; Aquatic Center</strong><span>Pools, gyms, and youth sports</span></span></a></li>
+          <li class="wide"><a class="place" href="resources.html#sammamish-landing"><img src="assets/img/sammamish-landing.jpg" alt="Swim dock at Sammamish Landing Park" loading="lazy" width="584" height="342"><span class="place-label"><strong>Sammamish Landing Park</strong><span>Lakefront swimming and the East Lake Sammamish Trail</span></span></a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="js/icons.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
