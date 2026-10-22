@@ -95,6 +95,102 @@
     return `Next: ${fmtDate(n.date)}${entry.recur && entry.recur.time ? ", " + entry.recur.time : ""}`;
   }
 
+  const WEEKDAY_CODES = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
+  const pad2 = (n) => String(n).padStart(2, "0");
+  const ymd = (d) => `${d.getFullYear()}${pad2(d.getMonth() + 1)}${pad2(d.getDate())}`;
+  const stamp = (d, min) => `${ymd(d)}T${pad2(Math.floor(min / 60))}${pad2(min % 60)}00`;
+  function parseTimes(t) {
+    const parts = [...(t || "").matchAll(/(\d{1,2})(?::(\d{2}))?\s*(am|pm)?/gi)];
+    if (!parts.length) return null;
+    const fallback = (parts[parts.length - 1][3] || "").toLowerCase();
+    const toMinutes = (m) => {
+      let h = Number(m[1]);
+      const mer = (m[3] || fallback).toLowerCase();
+      if (mer === "pm" && h < 12) h += 12;
+      if (mer === "am" && h === 12) h = 0;
+      return h * 60 + Number(m[2] || 0);
+    };
+    const start = toMinutes(parts[0]);
+    return { start, end: parts.length > 1 ? toMinutes(parts[1]) : start + 60 };
+  }
+  function repeatRule(e) {
+    if (!e.recur) return "";
+    const days = e.recur.weekdays.flatMap((w) => e.recur.nth ? e.recur.nth.map((n) => `${n}${WEEKDAY_CODES[w]}`) : [WEEKDAY_CODES[w]]);
+    let rule = `FREQ=${e.recur.nth ? "MONTHLY" : "WEEKLY"};BYDAY=${days.join(",")}`;
+    if (e.season) {
+      const months = []; for (let m = e.season.startMonth; m <= e.season.endMonth; m++) months.push(m);
+      rule += `;BYMONTH=${months.join(",")}`;
+    }
+    return rule;
+  }
+  function calendarEvent(e, n) {
+    const times = e.recur ? parseTimes(e.recur.time) : null;
+    const next = new Date(n.date); next.setDate(next.getDate() + 1);
+    return {
+      title: e.name,
+      location: e.address || "",
+      details: `${e.summary} More information: ${e.website || ""}`.trim(),
+      start: times ? stamp(n.date, times.start) : ymd(n.date),
+      end: times ? stamp(n.date, times.end) : ymd(next),
+      allDay: !times,
+      rule: repeatRule(e)
+    };
+  }
+  const icsEscape = (t) => t.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
+  const icsFold = (line) => line.match(/.{1,70}/g).join("\r\n ");
+  function buildIcs(e, n) {
+    const c = calendarEvent(e, n);
+    const now = new Date().toISOString().replace(/[-:]|\.\d{3}/g, "");
+    const lines = [
+      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Sammamish Community Resources//EN", "CALSCALE:GREGORIAN", "BEGIN:VEVENT",
+      `UID:${e.id}-${ymd(n.date)}@sammamish-community-resources`, `DTSTAMP:${now}`,
+      c.allDay ? `DTSTART;VALUE=DATE:${c.start}` : `DTSTART:${c.start}`,
+      c.allDay ? `DTEND;VALUE=DATE:${c.end}` : `DTEND:${c.end}`,
+      c.rule && `RRULE:${c.rule}`,
+      `SUMMARY:${icsEscape(c.title)}`, c.location && `LOCATION:${icsEscape(c.location)}`, `DESCRIPTION:${icsEscape(c.details)}`,
+      "END:VEVENT", "END:VCALENDAR"
+    ].filter(Boolean);
+    return lines.map(icsFold).join("\r\n") + "\r\n";
+  }
+  function googleCalendarUrl(e, n) {
+    const c = calendarEvent(e, n);
+    const q = new URLSearchParams({ action: "TEMPLATE", text: c.title, dates: `${c.start}/${c.end}`, details: c.details, location: c.location, ctz: "America/Los_Angeles" });
+    if (c.rule) q.set("recur", `RRULE:${c.rule}`);
+    return `https://calendar.google.com/calendar/render?${q}`;
+  }
+  function calendarMenu(e, n) {
+    if (e.type !== "event" || !n || n.seasonal) return "";
+    return `
+          <details class="cal-menu">
+            <summary class="cal-btn">${icon("calendar-plus")}Add to calendar<span class="visually-hidden">: ${esc(e.name)}</span></summary>
+            <div class="cal-options">
+              <button type="button" data-ics="${e.id}">Apple, Outlook, or other calendar app</button>
+              <a href="${esc(googleCalendarUrl(e, n))}" target="_blank" rel="noopener">Google Calendar<span class="visually-hidden"> (opens in a new tab)</span></a>
+            </div>
+          </details>`;
+  }
+  function initCalendar() {
+    document.addEventListener("click", (ev) => {
+      const b = ev.target.closest("[data-ics]");
+      if (b) {
+        const e = ENTRIES.find((x) => x.id === b.dataset.ics), n = nextDate(e);
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(new Blob([buildIcs(e, n)], { type: "text/calendar" }));
+        link.download = `${e.id}.ics`;
+        document.body.appendChild(link); link.click(); link.remove();
+        setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+        b.closest("details").open = false;
+        toast("Calendar file downloaded. Open it to add the event.");
+        return;
+      }
+      $$(".cal-menu[open]").forEach((d) => { if (!d.contains(ev.target)) d.open = false; });
+    });
+    document.addEventListener("keydown", (ev) => {
+      if (ev.key !== "Escape") return;
+      $$(".cal-menu[open]").forEach((d) => { d.open = false; d.querySelector("summary").focus(); });
+    });
+  }
+
   function renderHeader() {
     const current = page === "home" ? "home" : page;
     const navItems = NAV.map((n) =>
@@ -412,7 +508,7 @@
         </div>
         <div class="entry-aside">
           <ul class="entry-details">${details}</ul>
-          <button class="save-btn" type="button" data-id="${e.id}" aria-pressed="false">${icon("bookmark")}Save to My List</button>
+          <button class="save-btn" type="button" data-id="${e.id}" aria-pressed="false">${icon("bookmark")}Save to My List</button>${calendarMenu(e, n)}
         </div>
       </li>`;
   }
@@ -641,6 +737,7 @@
     $$("[data-icon]").forEach((el) => { el.outerHTML = el.classList.contains("icon-badge") ? `<span class="icon-badge">${icon(el.dataset.icon)}</span>` : icon(el.dataset.icon); });
     renderFooter();
     initList();
+    initCalendar();
     if (page === "home") renderHome();
     if (TYPES[page]) renderCategory(page);
     if (page === "sources") renderSources();

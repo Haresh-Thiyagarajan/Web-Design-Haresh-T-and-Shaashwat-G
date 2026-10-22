@@ -705,3 +705,22 @@ html:active-view-transition-type(backward)::view-transition-new(main) { animatio
 .team-role { margin: 18px 0 8px; max-width: none; font-weight: 700; font-size: clamp(0.72rem, 1.9vw, 0.95rem); letter-spacing: 0.06em; text-transform: uppercase; color: var(--brand-deep); }
 .team-cards p { max-width: none; margin: 0; font-size: clamp(0.88rem, 2.2vw, 1rem); }
 .team-cards .team-role { margin-block: 18px 8px; }
+
+.entry-aside .save-btn + .cal-menu { margin-top: 10px; }
+.cal-menu { position: relative; display: block; }
+.cal-btn {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 8px 16px; border-radius: 999px;
+  border: 1.5px solid var(--brand); background: var(--brand); color: #fff; font-weight: 700; cursor: pointer; list-style: none;
+}
+.cal-btn::-webkit-details-marker { display: none; }
+.cal-btn:hover { background: var(--brand-deep); border-color: var(--brand-deep); }
+.cal-options {
+  position: absolute; z-index: 20; left: 0; top: calc(100% + 6px); min-width: 260px; display: grid; padding: 6px;
+  background: var(--paper); border: 1px solid var(--line-strong); border-radius: var(--radius); box-shadow: var(--shadow-md);
+}
+.cal-options a, .cal-options button {
+  display: block; width: 100%; text-align: left; padding: 11px 12px; border: 0; border-radius: 8px; background: none;
+  font: inherit; color: var(--ink); text-decoration: none; cursor: pointer; min-height: 44px;
+}
+.cal-options a:hover, .cal-options button:hover { background: var(--brand-tint); color: var(--brand-deep); }
+@media print { .cal-menu { display: none; } }
