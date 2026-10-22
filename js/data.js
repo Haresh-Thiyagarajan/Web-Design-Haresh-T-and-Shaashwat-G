@@ -80,6 +80,7 @@ window.ENTRIES = [
   },
   {
     id: "issaquah-food-bank", type: "organization", name: "Issaquah Food & Clothing Bank",
+    image: "assets/img/issaquah-food-bank.png", imageAlt: "Issaquah Food & Clothing Bank logo", logo: true,
     topics: ["Food"],
     summary: "The closest food bank to Sammamish (Sammamish has none of its own). Market shopping and referrals are open to everyone; home delivery covers ZIP codes 98074 and 98075.",
     address: "179 1st Ave SE, Issaquah, WA 98027", phone: "(425) 392-4123",
@@ -88,6 +89,7 @@ window.ENTRIES = [
   },
   {
     id: "hopelink", type: "organization", name: "Hopelink",
+    image: "assets/img/hopelink.jpg", imageAlt: "Red-sided community services building with a covered entrance",
     topics: ["Food", "Legal & Safety"],
     summary: "Food, emergency financial help, energy assistance, housing, and employment services for residents of east and north King County.",
     address: "", phone: "(425) 869-6000", hours: "", website: "https://www.hopelink.org",
@@ -95,6 +97,7 @@ window.ENTRIES = [
   },
   {
     id: "sammamish-friends", type: "organization", name: "Sammamish Friends",
+    image: "assets/img/sammamish-friends.png", imageAlt: "Sammamish Friends logo with evergreen trees and hikers", logo: true,
     topics: ["Volunteer", "Seniors", "Recreation"],
     summary: "Local volunteer nonprofit focused on community and the environment. Runs Sammamish Walks and Sammamish Seniors.",
     address: "", phone: "", hours: "", website: "",
@@ -102,6 +105,7 @@ window.ENTRIES = [
   },
   {
     id: "friends-of-youth", type: "organization", name: "Friends of Youth",
+    image: "assets/img/friends-of-youth.png", imageAlt: "Friends of Youth logo", logo: true,
     topics: ["Youth & Family", "Health & Counseling"],
     summary: "Services for young people on the Eastside: homeless youth and young adult services and behavioral health care.",
     address: "", phone: "(425) 869-6490", hours: "Youth drop-in line", website: "https://www.friendsofyouth.org",
@@ -109,6 +113,7 @@ window.ENTRIES = [
   },
   {
     id: "lifewire", type: "organization", name: "LifeWire",
+    image: "assets/img/lifewire.png", imageAlt: "LifeWire logo: Together Against Domestic Violence", logo: true,
     topics: ["Legal & Safety"],
     summary: "Support for survivors of domestic violence: advocacy, safety planning, and housing stability help.",
     address: "", phone: "1-800-827-8840", hours: "", website: "https://www.lifewire.org",
@@ -116,6 +121,7 @@ window.ENTRIES = [
   },
   {
     id: "kindering", type: "organization", name: "Kindering",
+    image: "assets/img/kindering.png", imageAlt: "Kindering logo: Embracing children of diverse abilities and their families", logo: true,
     topics: ["Youth & Family"],
     summary: "Early intervention for young children with developmental needs, plus Families in Transition support for families facing homelessness.",
     address: "", phone: "", hours: "", website: "https://kindering.org",
@@ -134,6 +140,7 @@ window.ENTRIES = [
   },
   {
     id: "sammamish-walks", type: "program", name: "Sammamish Walks",
+    image: "assets/img/sammamish-walks.jpg", imageAlt: "Two people walking a forest trail under tall trees",
     topics: ["Recreation", "Seniors"],
     summary: "Group walks around Sammamish led by volunteers from Sammamish Friends. A free way to stay active and meet neighbors.",
     address: "", phone: "", hours: "", website: "",
@@ -141,6 +148,7 @@ window.ENTRIES = [
   },
   {
     id: "library-tutors", type: "program", name: "Tutors & Reading Buddies",
+    image: "assets/img/library-tutors.jpg", imageAlt: "A tutor helping a student at a library table",
     topics: ["Learning", "Youth & Family"],
     summary: "Free homework help and reading practice for students at Sammamish Library.",
     address: "825 228th Ave SE, Sammamish, WA 98075", phone: "(425) 392-3130",
@@ -149,6 +157,7 @@ window.ENTRIES = [
   },
   {
     id: "teens-around-the-fire", type: "program", name: "Teens Around the Fire",
+    image: "assets/img/teens-around-the-fire.jpg", imageAlt: "Teens playing a game together at a library table",
     topics: ["Youth & Family"],
     summary: "A relaxed hangout space for teens at Sammamish Library.",
     address: "825 228th Ave SE, Sammamish, WA 98075", phone: "",
@@ -157,6 +166,7 @@ window.ENTRIES = [
   },
   {
     id: "ell-classes", type: "program", name: "English Language Learner Classes",
+    image: "assets/img/ell-classes.jpg", imageAlt: "Families gathered in a bright library reading space",
     topics: ["Learning"],
     summary: "Free classes and conversation practice (Talk Time) for adults learning English.",
     address: "825 228th Ave SE, Sammamish, WA 98075", phone: "(425) 392-3130",
@@ -176,6 +186,7 @@ window.ENTRIES = [
   /* ---------------- SERVICES ---------------- */
   {
     id: "crosspath", type: "service", name: "CrossPath Counseling",
+    image: "assets/img/crosspath.png", imageAlt: "CrossPath Counseling & Consultation logo", logo: true,
     topics: ["Health & Counseling", "Youth & Family"],
     summary: "Counseling for children, youth, and families through a city partnership that started in 2008. Based at Sammamish Town Center.",
     address: "Town Center, Lower Commons Park area, Sammamish, WA", phone: "",
@@ -184,6 +195,7 @@ window.ENTRIES = [
   },
   {
     id: "211-line", type: "service", name: "2-1-1 Community Information Line",
+    image: "assets/img/211-line.png", imageAlt: "United Way 2-1-1 logo: Get Connected. Get Answers.", logo: true,
     topics: ["Food", "Legal & Safety", "Health & Counseling"],
     summary: "Free referrals to local help with housing, food and clothing, legal aid, utility bills, and health care. Dial 2-1-1, or use the toll-free number if 2-1-1 doesn't connect.",
     address: "", phone: "2-1-1 or 1-800-621-4636", hours: "", website: "https://wa211.org",
@@ -191,6 +203,7 @@ window.ENTRIES = [
   },
   {
     id: "elap", type: "service", name: "Free Legal Advice (Eastside Legal Assistance Program)",
+    image: "assets/img/elap.png", imageAlt: "Eastside Legal Assistance Program logo", logo: true,
     topics: ["Legal & Safety"],
     summary: "Advice clinics with volunteer attorneys, consultations for domestic violence survivors, and help with simple legal documents.",
     address: "", phone: "(425) 747-7274", hours: "", website: "https://elap.org",
@@ -198,6 +211,7 @@ window.ENTRIES = [
   },
   {
     id: "energy-assistance", type: "service", name: "Energy & Emergency Bill Assistance",
+    image: "assets/img/energy-assistance.png", imageAlt: "Community Energy Fund logo: energy assistance for neighbors in need", logo: true,
     topics: ["Food", "Legal & Safety"],
     summary: "Help paying heating and utility bills, plus emergency financial assistance, through Hopelink.",
     address: "", phone: "(425) 869-6000", hours: "", website: "https://www.hopelink.org",
@@ -205,6 +219,7 @@ window.ENTRIES = [
   },
   {
     id: "tech-help", type: "service", name: "Library Tech Help",
+    image: "assets/img/tech-help.jpg", imageAlt: "A volunteer helping an older man with a laptop at the library",
     topics: ["Learning", "Seniors"],
     summary: "One-on-one help with phones, computers, email, and online forms at Sammamish Library.",
     address: "825 228th Ave SE, Sammamish, WA 98075", phone: "(425) 392-3130",
@@ -213,6 +228,7 @@ window.ENTRIES = [
   },
   {
     id: "immigrant-resources", type: "service", name: "Immigrant & Refugee Resources",
+    image: "assets/img/immigrant-resources.jpg", imageAlt: "Immigration Resources title over a photo of children in a classroom",
     topics: ["Legal & Safety", "Civic Life"],
     summary: "City-collected information and referrals for immigrant and refugee residents, including legal help and community connections.",
     address: "801 228th Ave SE, Sammamish, WA 98075", phone: "(425) 295-0500",
@@ -227,6 +243,7 @@ window.ENTRIES = [
   */
   {
     id: "council-meeting", type: "event", name: "City Council Regular Meeting",
+    image: "assets/img/sammamish-commons.jpg", imageAlt: "Sammamish Commons, home of City Hall",
     topics: ["Civic Life"],
     summary: "Open to the public, with up to three minutes per person for public comment. Agendas are posted the Tuesday before.",
     address: "City Hall, 801 228th Ave SE, Sammamish, WA 98075",
@@ -236,6 +253,7 @@ window.ENTRIES = [
   },
   {
     id: "council-study", type: "event", name: "City Council Study Session",
+    image: "assets/img/sammamish-commons-winter.jpg", imageAlt: "Sammamish Commons in winter",
     topics: ["Civic Life"],
     summary: "Council members discuss upcoming topics in detail. Open to the public.",
     address: "City Hall, 801 228th Ave SE, Sammamish, WA 98075",
@@ -245,6 +263,7 @@ window.ENTRIES = [
   },
   {
     id: "friends-library", type: "event", name: "Friends of the Sammamish Library Meeting",
+    image: "assets/img/friends-library.jpg", imageAlt: "Library volunteers smiling beside tables of books for sale",
     topics: ["Learning", "Volunteer"],
     summary: "Monthly meeting of the volunteer group that supports the library. New members welcome.",
     address: "Sammamish Library, 825 228th Ave SE, Sammamish, WA 98075",
@@ -254,6 +273,7 @@ window.ENTRIES = [
   },
   {
     id: "youth-chess", type: "event", name: "Youth Chess Club",
+    image: "assets/img/youth-library.jpg", imageAlt: "Young children choosing books from library shelves",
     topics: ["Youth & Family", "Learning"],
     summary: "Drop-in chess for kids and teens at the library. All skill levels.",
     address: "Sammamish Library, 825 228th Ave SE, Sammamish, WA 98075",
@@ -272,6 +292,7 @@ window.ENTRIES = [
   },
   {
     id: "farmers-market", type: "event", name: "Sammamish Farmers Market",
+    image: "assets/img/farmers-market.jpg", imageAlt: "Crowds walking between white vendor tents at the Sammamish Farmers Market",
     topics: ["Food", "Recreation"],
     summary: "Local produce, handmade goods, and about six food trucks every Wednesday in season. The 2026 season has ended. It returns in May 2027.",
     address: "Sammamish Commons, 801 228th Ave SE, Sammamish, WA 98075",
@@ -297,6 +318,7 @@ window.ENTRIES = [
   },
   {
     id: "king-county-find", type: "resource", name: "King County Community & Human Services",
+    image: "assets/img/king-county.png", imageAlt: "King County logo", logo: true,
     topics: ["Food", "Health & Counseling", "Legal & Safety"],
     summary: "King County’s guide to food, housing, behavioral health, and other services across the county.",
     website: "https://kingcounty.gov/en/dept/dchs",
@@ -304,12 +326,14 @@ window.ENTRIES = [
   },
   {
     id: "wa211-search", type: "resource", name: "Washington 211 Online Search",
+    image: "assets/img/211-line.png", imageAlt: "United Way 2-1-1 logo: Get Connected. Get Answers.", logo: true,
     topics: ["Food", "Legal & Safety"],
     summary: "Statewide directory of social services that you can search by ZIP code (try 98074 or 98075).",
     website: "https://wa211.org", source: "wa211", checked: "2026-10-21"
   },
   {
     id: "city-human-services", type: "resource", name: "City Human Services Guide",
+    image: "assets/img/city-human-services.jpg", imageAlt: "Cupped hands holding a paper chain of people",
     topics: ["Seniors", "Health & Counseling", "Food"],
     summary: "The city's guide to its nonprofit partners: senior services, food and housing help, mental health, and legal assistance.",
     phone: "(425) 295-0579", website: "https://www.sammamish.us/our-community/services/",
@@ -335,18 +359,21 @@ window.ENTRIES = [
   },
   {
     id: "volunteer-food-bank", type: "resource", name: "Volunteer: Issaquah Food & Clothing Bank",
+    image: "assets/img/volunteer-food-bank.jpg", imageAlt: "Volunteers in blue shirts packing groceries at a food bank",
     topics: ["Volunteer", "Food"], volunteer: true,
     summary: "Help sort donations and stock the market. Students can earn service hours.",
     website: "https://issaquahfoodbank.org", source: "foodBankHours", checked: "2026-10-21"
   },
   {
     id: "volunteer-friends-library", type: "resource", name: "Volunteer: Friends of the Sammamish Library",
+    image: "assets/img/friends-library.jpg", imageAlt: "Library volunteers beside tables of books for sale",
     topics: ["Volunteer", "Learning"], volunteer: true,
     summary: "Support library programs and book sales. Meets the first Thursday of each month.",
     website: "https://kcls.org/sammamish", source: "kcls", checked: "2026-10-21"
   },
   {
     id: "volunteer-sammamish-friends", type: "resource", name: "Volunteer: Sammamish Friends",
+    image: "assets/img/volunteer-sammamish-friends.jpg", imageAlt: "A smiling group of Sammamish Friends volunteers",
     topics: ["Volunteer", "Seniors"], volunteer: true,
     summary: "Lead a walk, help with senior programs, or join environmental projects.",
     website: "", source: "sammamishFriends", checked: "2026-10-21"
@@ -355,6 +382,7 @@ window.ENTRIES = [
      todo: "outdoors" = Parks, lakes & trails · todo: "food" = Food & shopping */
   {
     id: "illahee-lake", type: "resource", name: "Illahee Lake Trail", todo: "outdoors",
+    image: "assets/img/illahee-lake.jpg", imageAlt: "Illahee Lake and its loop trail",
     topics: ["Parks & Trails"],
     summary: "An easy, paved half-mile loop around a seasonal pond and wetlands. Good for kids, and dogs on leash are welcome. Street parking on NE 8th St.",
     address: "NE 8th St near 228th Ave NE, Sammamish, WA",
@@ -363,6 +391,7 @@ window.ENTRIES = [
   },
   {
     id: "evans-creek", type: "resource", name: "Evans Creek Preserve", todo: "outdoors",
+    image: "assets/img/evans-creek.jpg", imageAlt: "Trail through Evans Creek Preserve",
     topics: ["Parks & Trails"],
     summary: "Quiet, hiker-only trails through meadows, wetlands, and forest. The lower lot has gentle trails. The upper lot on Sahalee Way starts with a steep climb.",
     address: "Lower lot: 4001 224th Ave NE · Upper lot: 3650 Sahalee Way NE",
@@ -371,6 +400,7 @@ window.ENTRIES = [
   },
   {
     id: "soaring-eagle", type: "resource", name: "Soaring Eagle Regional Park", todo: "outdoors",
+    image: "assets/img/soaring-eagle.jpg", imageAlt: "Forest trail in Soaring Eagle Regional Park",
     topics: ["Parks & Trails"],
     summary: "600 acres of forest and wetlands with miles of hiking, mountain biking, and horse trails. The wide, flat Pipeline Trail is great for families and strollers.",
     website: "https://www.wta.org/go-hiking/hikes/soaring-eagle-park",
@@ -378,6 +408,7 @@ window.ENTRIES = [
   },
   {
     id: "beaver-lake-park", type: "resource", name: "Beaver Lake Park", todo: "outdoors",
+    image: "assets/img/beaver-lake-park.jpg", imageAlt: "Beaver Lake Park",
     topics: ["Parks & Trails", "Recreation"],
     summary: "An 83-acre city park with lake access, sports fields, a playground, a picnic shelter, an off-leash dog park, and restrooms.",
     address: "25101 SE 24th St, Sammamish, WA 98075",
@@ -386,6 +417,7 @@ window.ENTRIES = [
   },
   {
     id: "beaver-lake-preserve", type: "resource", name: "Beaver Lake Preserve", todo: "outdoors",
+    image: "assets/img/beaver-lake-preserve.jpg", imageAlt: "Forest loop trail in Beaver Lake Preserve",
     topics: ["Parks & Trails"],
     summary: "An easy 1.2-mile loop through quiet forest. Free, open until dusk, and dogs on leash are allowed.",
     address: "W Beaver Lake Dr SE, Sammamish, WA",
@@ -394,6 +426,7 @@ window.ENTRIES = [
   },
   {
     id: "pine-lake-park", type: "resource", name: "Pine Lake Park", todo: "outdoors",
+    image: "assets/img/pine-lake-park.jpg", imageAlt: "Pine Lake Park",
     topics: ["Parks & Trails", "Recreation"],
     summary: "Summer swimming with lifeguards, a stocked fishing lake, a playground, and a basketball court. Home of the free summer concert series.",
     address: "2401 228th Ave SE, Sammamish, WA 98075",
@@ -402,6 +435,7 @@ window.ENTRIES = [
   },
   {
     id: "big-rock-park", type: "resource", name: "Big Rock Park", todo: "outdoors",
+    image: "assets/img/big-rock-park.jpg", imageAlt: "Big Rock Park",
     topics: ["Parks & Trails"],
     summary: "A city park in three parts with woodland paths. Park at Big Rock Park Central. The south section has no parking.",
     address: "North: 21805 SE 8th St, Sammamish, WA 98074",
@@ -410,6 +444,7 @@ window.ENTRIES = [
   },
   {
     id: "klahanie-park", type: "resource", name: "Klahanie Park", todo: "outdoors",
+    image: "assets/img/klahanie-park.jpg", imageAlt: "Klahanie Park",
     topics: ["Parks & Trails", "Recreation"],
     summary: "A 64-acre city park next to Challenger Elementary with sports fields and open space.",
     address: "25000 SE Klahanie Blvd, Sammamish, WA 98029",
@@ -418,6 +453,7 @@ window.ENTRIES = [
   },
   {
     id: "duthie-hill", type: "resource", name: "Duthie Hill Mountain Bike Park", todo: "outdoors",
+    image: "assets/img/duthie-hill.jpg", imageAlt: "Mountain bike trail at Duthie Hill",
     topics: ["Parks & Trails", "Recreation"],
     summary: "A famous King County mountain bike park on the edge of Sammamish, with trails for beginners through experts. On weekends, overflow parking is at Cascade Ridge Elementary.",
     address: "26300 SE Issaquah-Fall City Rd",
@@ -426,6 +462,7 @@ window.ENTRIES = [
   },
   {
     id: "east-lake-trail", type: "resource", name: "East Lake Sammamish Trail", todo: "outdoors",
+    image: "assets/img/east-lake-trail.jpg", imageAlt: "East Lake Sammamish Trail",
     topics: ["Parks & Trails"],
     summary: "A flat regional trail along the east shore of Lake Sammamish for walking, running, and biking. It passes right by Sammamish Landing Park.",
     website: "https://www.traillink.com/trail/east-lake-sammamish-trail",
@@ -433,6 +470,7 @@ window.ENTRIES = [
   },
   {
     id: "lake-sammamish-state-park", type: "resource", name: "Lake Sammamish State Park", todo: "outdoors",
+    image: "assets/img/lake-sammamish-state-park.jpg", imageAlt: "Lake Sammamish State Park beach",
     topics: ["Parks & Trails", "Recreation"],
     summary: "Big swimming beaches, picnic areas, and boat launches at the south end of the lake in Issaquah. A Discover Pass is required for parking.",
     address: "2000 NW Sammamish Rd, Issaquah, WA 98027",
@@ -441,6 +479,7 @@ window.ENTRIES = [
   },
   {
     id: "saffron-center", type: "resource", name: "Saffron Center", todo: "food",
+    image: "assets/img/saffron-center.jpg", imageAlt: "Saffron Center shopping area in Sammamish",
     topics: ["Food & Shopping"],
     summary: "A shopping center with Pagliacci Pizza, Vinason Pho Kitchen, Sammamish Cafe & Spirits, Orangetheory Fitness, a salon, and more, with free parking.",
     address: "22820–22850 NE 8th St, Sammamish, WA 98074",
@@ -449,6 +488,7 @@ window.ENTRIES = [
   },
   {
     id: "pagliacci", type: "resource", name: "Pagliacci Pizza (Saffron)", todo: "food",
+    image: "assets/img/pagliacci.jpg", imageAlt: "Pagliacci Pizza in Sammamish",
     topics: ["Food & Shopping"],
     summary: "Seattle’s favorite local pizza chain, with a slice bar for quick meals.",
     address: "22830 NE 8th St, Sammamish, WA 98074",
@@ -457,6 +497,7 @@ window.ENTRIES = [
   },
   {
     id: "vinason-pho", type: "resource", name: "Vinason Pho Kitchen", todo: "food",
+    image: "assets/img/vinason-pho.jpg", imageAlt: "Vinason Pho Kitchen storefront",
     topics: ["Food & Shopping"],
     summary: "Vietnamese pho and noodle dishes in the Saffron Center.",
     address: "22830 NE 8th St, Suite 107, Sammamish, WA 98074",
@@ -465,6 +506,7 @@ window.ENTRIES = [
   },
   {
     id: "sammamish-highlands", type: "resource", name: "Sammamish Highlands", todo: "food",
+    image: "assets/img/sammamish-highlands.jpg", imageAlt: "Sammamish Highlands shopping center",
     topics: ["Food & Shopping"],
     summary: "The plateau’s main shopping center, with Trader Joe’s, Safeway, Bartell Drugs, and restaurants.",
     address: "430–710 228th Ave NE, Sammamish, WA 98074",
@@ -473,6 +515,7 @@ window.ENTRIES = [
   },
   {
     id: "inglewood-plaza", type: "resource", name: "Inglewood Plaza", todo: "food",
+    image: "assets/img/inglewood-plaza.jpg", imageAlt: "Inglewood Plaza shopping center",
     topics: ["Food & Shopping"],
     summary: "A convenient neighborhood center next to Sammamish Highlands, with quick-service food and everyday shops.",
     address: "653–715 228th Ave NE, Sammamish, WA 98074",
@@ -481,6 +524,7 @@ window.ENTRIES = [
   },
   {
     id: "metropolitan-market", type: "resource", name: "Metropolitan Market", todo: "food",
+    image: "assets/img/metropolitan-market.jpg", imageAlt: "Metropolitan Market in Sammamish",
     topics: ["Food & Shopping"],
     summary: "A full-service grocery store in Sammamish Town Center with a deli, bakery, and prepared foods.",
     address: "301 228th Ave SE, Sammamish, WA 98075",
@@ -489,6 +533,7 @@ window.ENTRIES = [
   },
   {
     id: "pine-lake-village", type: "resource", name: "Pine Lake Village", todo: "food",
+    image: "assets/img/pine-lake-village.jpg", imageAlt: "Pine Lake Village sign surrounded by flowers",
     topics: ["Food & Shopping"],
     summary: "A QFC-anchored center with about 25 stores. The QFC has a Starbucks, sushi, a salad bar, and a deli.",
     address: "2902 228th Ave SE, Sammamish, WA 98075",
@@ -497,6 +542,7 @@ window.ENTRIES = [
   },
   {
     id: "summer-concerts", type: "event", name: "Summer Concerts in the Park",
+    image: "assets/img/pine-lake-park.jpg", imageAlt: "Pine Lake Park, home of the summer concerts",
     topics: ["Recreation"],
     summary: "Free outdoor concerts at Pine Lake Park on summer Thursday evenings. Bring a blanket and a picnic.",
     address: "Pine Lake Park, 2401 228th Ave SE, Sammamish, WA 98075",
@@ -507,6 +553,9 @@ window.ENTRIES = [
 ];
 
 window.PHOTO_CREDITS = [
+  { file: "logos (food bank, Sammamish Friends, Friends of Youth, LifeWire, Kindering, CrossPath, 2-1-1, ELAP, Energy Fund, King County)", subject: "Organization logos", credit: "Each logo © its organization. Shown only to identify the organization." },
+  { file: "parks, trails, shopping, and program photos", subject: "Parks, trails, shopping centers, restaurants, and library programs", credit: "Web photos supplied by the team. Original photographers to be confirmed." },
+  { file: "farmers-market.jpg", subject: "Sammamish Farmers Market", credit: "© 2017 (watermarked photographer). Permission needed before competition." },
   { file: "sammamish-logo.png", subject: "City of Sammamish logo", credit: "© City of Sammamish. Shown for an educational FBLA project; white background removed by the team. Not an official city website." },
   { file: "sammamish-landing.jpg", subject: "Sammamish Landing Park", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
   { file: "sammamish-library.jpg", subject: "Sammamish Library at dusk", credit: "Web photo supplied by the team. Original photographer to be confirmed." },

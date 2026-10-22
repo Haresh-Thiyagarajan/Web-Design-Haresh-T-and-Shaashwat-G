@@ -104,12 +104,13 @@
       <a class="skip-link" href="#main">Skip to main content</a>
       <div class="topbar">
         <div class="wrap">
-          <p class="topbar-help">${icon("life-buoy")}<span>Need help now? Call or text <a href="tel:988">988</a> for crisis support, or dial <a href="tel:211">2-1-1</a> for local resources.</span></p>
+          <p class="topbar-help">${icon("life-buoy")}<span class="help-long">Need help now? Call or text <a href="tel:988">988</a> for crisis support, or dial <a href="tel:211">2-1-1</a> for local resources.</span><span class="help-short">Need help now? Call or text <a href="tel:988">988</a> or dial <a href="tel:211">2-1-1</a>.</span></p>
           <div class="tools" role="group" aria-label="Accessibility settings">
             <span class="tools-label">Text size</span>
             <button class="tool-btn" type="button" data-text-step="-1">A−<span class="visually-hidden"> smaller text</span></button>
             <button class="tool-btn" type="button" data-text-step="1">A+<span class="visually-hidden"> larger text</span></button>
             <button class="tool-btn" type="button" id="contrast-toggle" aria-pressed="false">${icon("contrast")}<span>High contrast</span></button>
+            <button class="tool-btn" type="button" id="motion-toggle" aria-pressed="false">${icon("circle-pause")}<span>Stop animations</span></button>
           </div>
         </div>
       </div>
@@ -208,10 +209,13 @@
     const root = document.documentElement;
     let text = store.get("pref-text", 0);
     let contrast = store.get("pref-contrast", false);
+    let still = store.get("pref-motion-off", false);
     const apply = () => {
       if (text) root.dataset.text = text; else delete root.dataset.text;
       if (contrast) root.dataset.contrast = "high"; else delete root.dataset.contrast;
+      if (still) root.dataset.motion = "off"; else delete root.dataset.motion;
       const btn = $("#contrast-toggle"); if (btn) btn.setAttribute("aria-pressed", String(contrast));
+      const mb = $("#motion-toggle"); if (mb) mb.setAttribute("aria-pressed", String(still));
     };
     apply();
     $$("[data-text-step]").forEach((b) => b.addEventListener("click", () => {
@@ -222,6 +226,10 @@
     $("#contrast-toggle").addEventListener("click", () => {
       contrast = !contrast; store.set("pref-contrast", contrast); apply();
       toast(contrast ? "High contrast on" : "High contrast off");
+    });
+    $("#motion-toggle").addEventListener("click", () => {
+      still = !still; store.set("pref-motion-off", still); apply();
+      toast(still ? "Animations off" : "Animations on");
     });
   }
 
@@ -397,7 +405,7 @@
     ].filter(Boolean).join("");
     return `
       <li class="entry${e.image ? "" : " no-photo"}" id="${e.id}" data-topics="${esc((e.topics || []).join("|"))}">
-        ${e.image ? `<img class="entry-photo" src="${e.image}" alt="${esc(e.imageAlt || "")}" loading="lazy" width="320" height="240">` : ""}
+        ${e.image ? `<img class="entry-photo${e.logo ? " is-logo" : ""}" src="${e.image}" alt="${esc(e.imageAlt || "")}" loading="lazy" width="320" height="240">` : ""}
         <div class="entry-main">
           <h${level} class="entry-name">${e.website ? `<a class="entry-link" href="${esc(e.website)}" target="_blank" rel="noopener">${esc(e.name)}${icon("external-link", "ext")}<span class="visually-hidden"> (opens website in a new tab)</span></a>` : esc(e.name)}</h${level}>
           <div class="entry-meta-line">
@@ -549,8 +557,8 @@
       const ic = (e) => e.todo === "food" ? "utensils" : e.type === "event" ? "calendar-days" : /bike/i.test(e.name) ? "bike" : /lake|landing|beach/i.test(e.name) ? "waves" : "trees";
       pop.innerHTML = list.map((e, i) => `
         <li aria-label="${i + 1} of ${list.length}"><a class="todo" href="${entryHref(e)}">
-          <span class="todo-icon">${icon(ic(e))}</span>
-          <strong>${esc(e.name)}</strong><small>${esc((e.topics || [])[0] || "")}</small></a></li>`).join("");
+          ${e.image ? `<img class="todo-photo" src="${e.image}" alt="" loading="lazy" width="320" height="200">` : `<span class="todo-icon">${icon(ic(e))}</span>`}
+          <span class="todo-text"><strong>${esc(e.name)}</strong><small>${esc((e.topics || [])[0] || "")}</small></span></a></li>`).join("");
 
       /* Carousel: arrows glide two cards at a time with a gentle ease */
       const prev = $(".carousel-btn.prev"), next = $(".carousel-btn.next");
@@ -565,7 +573,7 @@
         const step = card ? (card.getBoundingClientRect().width + gap) * 2 : pop.clientWidth / 2;
         const from = pop.scrollLeft;
         const to = Math.max(0, Math.min(pop.scrollWidth - pop.clientWidth, from + dir * step));
-        if (matchMedia("(prefers-reduced-motion: reduce)").matches) { pop.scrollLeft = to; return; }
+        if (motionOff()) { pop.scrollLeft = to; return; }
         cancelAnimationFrame(gliding);
         pop.style.scrollSnapType = "none";
         const start = performance.now(), dur = 650;
@@ -606,6 +614,8 @@
       `<li><strong>${esc(p.subject)}</strong><small>${esc(p.credit)} File: ${esc(p.file)}</small></li>`).join("");
   }
 
+  const motionOff = () => document.documentElement.dataset.motion === "off" || matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   /* ---------- Page slide transitions ----------
      Pages slide left when moving forward in the menu order and right when going back.
      Uses the browser's View Transitions; older browsers simply change pages normally. */
@@ -613,8 +623,10 @@
     try { const f = new URL(url, location.href).pathname.split("/").pop() || "index.html"; return NAV.findIndex((n) => n.href === f); }
     catch (e) { return -1; }
   };
+  window.addEventListener("pageswap", (e) => { if (e.viewTransition && motionOff()) e.viewTransition.skipTransition(); });
   window.addEventListener("pagereveal", (e) => {
     if (!e.viewTransition) return;
+    if (store.get("pref-motion-off", false)) { e.viewTransition.skipTransition(); return; }
     const from = window.navigation && navigation.activation && navigation.activation.from;
     const a = from ? navIndex(from.url) : -1, b = navIndex(location.href);
     e.viewTransition.types.add(a > b ? "backward" : "forward");
