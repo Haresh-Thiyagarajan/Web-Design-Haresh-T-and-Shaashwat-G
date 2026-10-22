@@ -110,7 +110,6 @@
             <button class="tool-btn" type="button" data-text-step="-1">A−<span class="visually-hidden"> smaller text</span></button>
             <button class="tool-btn" type="button" data-text-step="1">A+<span class="visually-hidden"> larger text</span></button>
             <button class="tool-btn" type="button" id="contrast-toggle" aria-pressed="false">${icon("contrast")}<span>High contrast</span></button>
-            <button class="tool-btn" type="button" id="motion-toggle" aria-pressed="false">${icon("circle-pause")}<span>Stop animations</span></button>
           </div>
         </div>
       </div>
@@ -209,13 +208,10 @@
     const root = document.documentElement;
     let text = store.get("pref-text", 0);
     let contrast = store.get("pref-contrast", false);
-    let still = store.get("pref-motion-off", false);
     const apply = () => {
       if (text) root.dataset.text = text; else delete root.dataset.text;
       if (contrast) root.dataset.contrast = "high"; else delete root.dataset.contrast;
-      if (still) root.dataset.motion = "off"; else delete root.dataset.motion;
       const btn = $("#contrast-toggle"); if (btn) btn.setAttribute("aria-pressed", String(contrast));
-      const mb = $("#motion-toggle"); if (mb) mb.setAttribute("aria-pressed", String(still));
     };
     apply();
     $$("[data-text-step]").forEach((b) => b.addEventListener("click", () => {
@@ -226,10 +222,6 @@
     $("#contrast-toggle").addEventListener("click", () => {
       contrast = !contrast; store.set("pref-contrast", contrast); apply();
       toast(contrast ? "High contrast on" : "High contrast off");
-    });
-    $("#motion-toggle").addEventListener("click", () => {
-      still = !still; store.set("pref-motion-off", still); apply();
-      toast(still ? "Animations off" : "Animations on");
     });
   }
 
@@ -614,7 +606,7 @@
       `<li><strong>${esc(p.subject)}</strong><small>${esc(p.credit)} File: ${esc(p.file)}</small></li>`).join("");
   }
 
-  const motionOff = () => document.documentElement.dataset.motion === "off" || matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const motionOff = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- Page slide transitions ----------
      Pages slide left when moving forward in the menu order and right when going back.
@@ -626,7 +618,6 @@
   window.addEventListener("pageswap", (e) => { if (e.viewTransition && motionOff()) e.viewTransition.skipTransition(); });
   window.addEventListener("pagereveal", (e) => {
     if (!e.viewTransition) return;
-    if (store.get("pref-motion-off", false)) { e.viewTransition.skipTransition(); return; }
     const from = window.navigation && navigation.activation && navigation.activation.from;
     const a = from ? navIndex(from.url) : -1, b = navIndex(location.href);
     e.viewTransition.types.add(a > b ? "backward" : "forward");

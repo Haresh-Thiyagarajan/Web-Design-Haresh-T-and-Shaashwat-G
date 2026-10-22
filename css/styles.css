@@ -714,11 +714,6 @@ html:active-view-transition-type(backward)::view-transition-new(main) { animatio
 .entry.slide-in { animation: entry-in 0.45s var(--ease-out) both; }
 @keyframes entry-in { from { opacity: 0; transform: translateX(-24px); } }
 
-/* "Stop animations" button in the top bar */
-:root[data-motion="off"] *, :root[data-motion="off"] *::before, :root[data-motion="off"] *::after {
-  animation: none !important; transition: none !important; scroll-behavior: auto !important;
-}
-
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }

@@ -283,6 +283,7 @@ window.ENTRIES = [
   },
   {
     id: "diwali-bazaar", type: "event", name: "Sammamish Diwali Bazaar",
+    image: "assets/img/diwali-bazaar.jpg", imageAlt: "A vendor in a teal sari beside her craft bazaar table of clothing and jewelry",
     topics: ["Civic Life", "Recreation"],
     summary: "A festival market with Diwali pooja items, jewelry, and clothing vendors.",
     address: "Pine Lake Community Center, 21333 SE 20th St, Sammamish, WA",
@@ -555,7 +556,8 @@ window.ENTRIES = [
 window.PHOTO_CREDITS = [
   { file: "logos (food bank, Sammamish Friends, Friends of Youth, LifeWire, Kindering, CrossPath, 2-1-1, ELAP, Energy Fund, King County)", subject: "Organization logos", credit: "Each logo © its organization. Shown only to identify the organization." },
   { file: "parks, trails, shopping, and program photos", subject: "Parks, trails, shopping centers, restaurants, and library programs", credit: "Web photos supplied by the team. Original photographers to be confirmed." },
-  { file: "farmers-market.jpg", subject: "Sammamish Farmers Market", credit: "© 2017 (watermarked photographer). Permission needed before competition." },
+  { file: "farmers-market.jpg", subject: "Sammamish Farmers Market", credit: "© 2017 Jean Johnson (watermarked on the photo). Permission needed before competition." },
+  { file: "diwali-bazaar.jpg", subject: "Craft bazaar vendor", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
   { file: "sammamish-logo.png", subject: "City of Sammamish logo", credit: "© City of Sammamish. Shown for an educational FBLA project; white background removed by the team. Not an official city website." },
   { file: "sammamish-landing.jpg", subject: "Sammamish Landing Park", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
   { file: "sammamish-library.jpg", subject: "Sammamish Library at dusk", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
