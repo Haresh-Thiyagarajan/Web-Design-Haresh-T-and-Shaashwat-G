@@ -601,7 +601,7 @@
     }
     const photos = $("#photo-credits");
     if (photos) photos.innerHTML = (window.PHOTO_CREDITS || []).map((p) =>
-      `<li><strong>${esc(p.subject)}</strong><small>${esc(p.credit)} File: ${esc(p.file)}</small></li>`).join("");
+      `<li><strong>${esc(p.subject)}</strong><small>${esc(p.credit)}${p.url ? ` <a href="${esc(p.url)}" target="_blank" rel="noopener">Source page</a>` : ""} File: ${esc(p.file)}</small></li>`).join("");
   }
 
   const motionOff = () => matchMedia("(prefers-reduced-motion: reduce)").matches;

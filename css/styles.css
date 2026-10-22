@@ -686,11 +686,20 @@ html:active-view-transition-type(backward)::view-transition-new(main) { animatio
 @keyframes to-top-in { from { opacity: 0; transform: translateY(12px); } }
 @media print { .to-top { display: none; } }
 
-.about-wrap { padding-block: 48px 72px; max-width: 860px; }
-.about-wrap section + section { margin-top: 48px; }
-.team-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 4vw, 40px); list-style: none; padding: 0; margin: 24px 0 0; }
-.team-cards li { text-align: center; padding: clamp(20px, 4vw, 36px) clamp(12px, 2.5vw, 20px); background: var(--sand-soft); border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow-sm); }
-.team-cards img { width: min(100%, 220px); aspect-ratio: 1; object-fit: cover; object-position: center 18%; border-radius: 50%; border: 4px solid var(--paper); box-shadow: 0 0 0 2px var(--brand), var(--shadow-md); }
-.team-cards strong { display: block; margin-top: 16px; font-family: var(--font-display); font-size: clamp(1.15rem, 3vw, 1.5rem); }
-.team-cards span { display: block; margin-top: 4px; color: var(--ink-soft); font-size: clamp(0.9rem, 2.4vw, 1rem); }
-.about-wrap p { max-width: 62ch; }
+.about-wrap { padding-block: 48px 72px; max-width: 900px; text-align: center; }
+.about-wrap section + section { margin-top: 56px; }
+.about-wrap p { max-width: 62ch; margin-inline: auto; }
+.about-wrap .note { text-align: left; }
+.team-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 5vw, 48px); list-style: none; padding: 0; margin: 32px 0 0; text-align: left; }
+.team-photo { position: relative; }
+.team-photo img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 20%; border-radius: 12px; box-shadow: var(--shadow-md); }
+.team-badge {
+  position: absolute; top: clamp(-10px, -1.5vw, -6px); right: clamp(-10px, -1.5vw, -6px);
+  display: grid; place-items: center; width: clamp(80px, 17vw, 132px); aspect-ratio: 1; border-radius: 50%;
+  background: var(--brand); color: #fff; border: 3px solid var(--paper); text-align: center;
+  font-family: var(--font-display); font-weight: 700; text-transform: uppercase; line-height: 1.15;
+  font-size: clamp(0.56rem, 1.6vw, 0.95rem); padding: 4px; overflow-wrap: normal;
+}
+.team-role { margin: 18px 0 8px; max-width: none; font-weight: 700; font-size: clamp(0.72rem, 1.9vw, 0.95rem); letter-spacing: 0.06em; text-transform: uppercase; color: var(--brand-deep); }
+.team-cards p { max-width: none; margin: 0; font-size: clamp(0.88rem, 2.2vw, 1rem); }
+.team-cards .team-role { margin-block: 18px 8px; }

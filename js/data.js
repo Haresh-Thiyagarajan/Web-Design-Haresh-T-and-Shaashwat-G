@@ -535,16 +535,15 @@ window.ENTRIES = [
 ];
 
 window.PHOTO_CREDITS = [
-  { file: "logos (food bank, Sammamish Friends, Friends of Youth, LifeWire, Kindering, CrossPath, 2-1-1, ELAP, Energy Fund, King County)", subject: "Organization logos", credit: "Each logo © its organization. Shown only to identify the organization." },
-  { file: "parks, trails, shopping, and program photos", subject: "Parks, trails, shopping centers, restaurants, and library programs", credit: "Web photos supplied by the team. Original photographers to be confirmed." },
-  { file: "farmers-market.jpg", subject: "Sammamish Farmers Market", credit: "© 2017 Jean Johnson (watermarked on the photo). Permission needed before competition." },
-  { file: "diwali-bazaar.jpg", subject: "Craft bazaar vendor", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
-  { file: "sammamish-logo.png", subject: "City of Sammamish logo", credit: "© City of Sammamish. Shown for an educational FBLA project; white background removed by the team. Not an official city website." },
-  { file: "sammamish-landing.jpg", subject: "Sammamish Landing Park", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
-  { file: "sammamish-library.jpg", subject: "Sammamish Library at dusk", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
-  { file: "community-center-dusk.jpg", subject: "Sammamish Community & Aquatic Center at dusk", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
-  { file: "community-center-day.jpg", subject: "Sammamish Community & Aquatic Center", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
-  { file: "sammamish-commons.jpg", subject: "Sammamish Commons building", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
-  { file: "sammamish-commons-winter.jpg", subject: "Sammamish Commons in winter", credit: "Web photo supplied by the team. Original photographer to be confirmed." },
-  { file: "commons-plaza-night.jpg", subject: "Sammamish Commons plaza at night", credit: "Web photo supplied by the team. Original photographer to be confirmed." }
+  { file: "sammamish-landing.jpg", subject: "Sammamish Landing Park", credit: "Photo from the City of Sammamish park page, © City of Sammamish.", url: "https://sammamishwa.gov/our-community/recreation/parks-trails/sammamish-landing-park/" },
+  { file: "illahee-lake.jpg", subject: "Illahee Park Trail", credit: "Photo from the City of Sammamish park page, © City of Sammamish.", url: "https://sammamishwa.gov/our-community/recreation/parks-trails/illahee-park-trail/" },
+  { file: "beaver-lake-park.jpg", subject: "Beaver Lake Park", credit: "Photo from the City of Sammamish park page, © City of Sammamish.", url: "https://sammamishwa.gov/our-community/recreation/parks-trails/beaver-lake-park/" },
+  { file: "pine-lake-park.jpg", subject: "Pine Lake Park", credit: "Photo from the City of Sammamish park page, © City of Sammamish.", url: "https://www.sammamish.us/parks-recreation/parks-trails/pine-lake-park/" },
+  { file: "klahanie-park.jpg", subject: "Klahanie Park", credit: "Photo from the City of Sammamish park page, © City of Sammamish.", url: "https://www.sammamish.us/our-community/recreation/parks-trails/klahanie-park/" },
+  { file: "sammamish-library.jpg", subject: "Sammamish Library", credit: "Photo from the King County Library System, © KCLS.", url: "https://kcls.org/sammamish" },
+  { file: "farmers-market.jpg", subject: "Sammamish Farmers Market", credit: "© 2017 Jean Johnson, as credited on the photo. Used for an educational student project.", url: "https://sammamishindependent.com/2026/05/sammamish-farmers-market-opens-for-2026/" },
+  { file: "sammamish-logo.png", subject: "City of Sammamish logo", credit: "© City of Sammamish. Shown for an educational FBLA project; white background removed by the team. Not an official city website.", url: "https://www.sammamish.us" },
+  { file: "logos", subject: "Organization logos", credit: "Each logo is © its organization and is shown only to identify that organization. Find each one on the organization's own website, linked in its listing." },
+  { file: "other photos", subject: "Other park, trail, shopping center, restaurant, and program photos", credit: "Found online and shown to illustrate each place. See the official page linked in each listing for current photos. Original photographers were not identified." },
+  { file: "haresh.jpg, shaashwat.jpg", subject: "Team portraits", credit: "Photos of the team members, used with their permission." }
 ];
