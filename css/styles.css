@@ -694,11 +694,13 @@ html:active-view-transition-type(backward)::view-transition-new(main) { animatio
 .team-photo { position: relative; }
 .team-photo img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 20%; border-radius: 12px; box-shadow: var(--shadow-md); }
 .team-badge {
-  position: absolute; top: clamp(-10px, -1.5vw, -6px); right: clamp(-10px, -1.5vw, -6px);
-  display: grid; place-items: center; width: clamp(80px, 17vw, 132px); aspect-ratio: 1; border-radius: 50%;
-  background: var(--brand); color: #fff; border: 3px solid var(--paper); text-align: center;
-  font-family: var(--font-display); font-weight: 700; text-transform: uppercase; line-height: 1.15;
-  font-size: clamp(0.56rem, 1.6vw, 0.95rem); padding: 4px; overflow-wrap: normal;
+  position: absolute; top: clamp(-14px, -2vw, -8px); right: clamp(-14px, -2vw, -8px);
+  display: grid; place-items: center; width: clamp(96px, 24vw, 168px); aspect-ratio: 1; border-radius: 50%;
+  background: var(--brand); color: #fff; border: 3px solid var(--paper); container-type: inline-size;
+}
+.team-badge span {
+  font-family: var(--font-display); font-weight: 800; text-transform: uppercase; text-align: center;
+  line-height: 1.02; letter-spacing: -0.01em; font-size: calc(var(--fit) * 1cqw); white-space: nowrap;
 }
 .team-role { margin: 18px 0 8px; max-width: none; font-weight: 700; font-size: clamp(0.72rem, 1.9vw, 0.95rem); letter-spacing: 0.06em; text-transform: uppercase; color: var(--brand-deep); }
 .team-cards p { max-width: none; margin: 0; font-size: clamp(0.88rem, 2.2vw, 1rem); }
