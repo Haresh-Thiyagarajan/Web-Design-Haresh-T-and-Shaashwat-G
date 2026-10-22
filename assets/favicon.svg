@@ -1,1 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect width="48" height="48" rx="13" fill="#1e6b45"/><path d="M12 27a12 12 0 0 1 24 0z" fill="#f2c14e"/><path d="M8 32.5c3.2 0 3.2-2 6.4-2s3.2 2 6.4 2 3.2-2 6.4-2 3.2 2 6.4 2 3.2-2 6.4-2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><path d="M12 38c3 0 3-1.8 6-1.8s3 1.8 6 1.8 3-1.8 6-1.8 3 1.8 6 1.8" fill="none" stroke="#cfe8d8" stroke-width="2.2" stroke-linecap="round" opacity=".75"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs><clipPath id="fav-clip"><circle cx="24" cy="24" r="22"/></clipPath></defs>
+      <g clip-path="url(#fav-clip)">
+        <rect width="48" height="48" fill="#e3f1e8"/>
+        <circle cx="11" cy="13" r="3.2" fill="#f2c14e"/>
+        <path d="M2 32L14 19.5L20 25.5L29 10L46 32Z" fill="#5f9a7a"/>
+        <path d="M29 10L25.1 16.5L27.2 15.2L29 17.8L31 15.2L34.3 16.6Z" fill="#fff"/>
+        <path d="M13 20L9.8 26H11.6L8 32H18L14.4 26H16.2Z" fill="#15532f"/>
+        <path d="M21 24.5L18.6 29H20L17.5 32H24.5L22 29H23.5Z" fill="#15532f"/>
+        <rect y="32" width="48" height="16" fill="#1e6b45"/>
+        <path d="M8 37q4-2.4 8 0t8 0 8 0 8 0" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M13 42q4-2.4 8 0t8 0 8 0" fill="none" stroke="#cfe8d8" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
+      </g>
+      <circle cx="24" cy="24" r="22.5" fill="none" stroke="#1e6b45" stroke-width="1.8"/></svg>

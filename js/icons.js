@@ -1,5 +1,5 @@
-/* Lucide icons (ISC License, lucide.dev), inlined so they work offline and take the text color. */
 window.ICONS = {
+ "arrow-up": "<path d=\"M12 19V5\" /> <path d=\"m5 12 7-7 7 7\" />",
  "arrow-right": "<path d=\"M5 12h14\" /> <path d=\"m12 5 7 7-7 7\" />",
  "book-open": "<path d=\"M12 7v14\" /> <path d=\"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z\" />",
  "bookmark-check": "<path d=\"m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z\" /> <path d=\"m9 10 2 2 4-4\" />",

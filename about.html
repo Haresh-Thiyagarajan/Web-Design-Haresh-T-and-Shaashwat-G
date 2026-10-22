@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About | Sammamish Community Resources</title>
-  <meta name="description" content="How we planned, designed, built, and plan to measure this website, organized by the FBLA Website Design rating sheet.">
+  <meta name="description" content="Meet the two students behind the Sammamish Community Resources website.">
   <meta name="theme-color" content="#1e6b45">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/styles.css">
@@ -20,165 +20,29 @@
         <div>
           <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">About</span></nav>
           <h1>About</h1>
-          <p class="page-lede">How we planned, designed, built, and plan to measure this website, organized by the FBLA Website Design rating sheet.</p>
+          <p class="page-lede">Meet the two students behind the Sammamish Community Resources website.</p>
         </div>
-        <img class="page-head-photo" src="assets/img/sammamish-library.jpg" alt="Sammamish Library glowing at dusk" width="360" height="270">
       </div>
     </div>
-    <div class="wrap prose-layout">
-      <nav class="toc" aria-label="On this page">
-        <h2>On this page</h2>
-        <ol><li><a href="#rubric-guide">Rubric guide</a></li><li><a href="#planning-development-and-implementation">Planning, Development, and Implementation</a></li><li><a href="#website-ux-design">Website UX Design</a></li><li><a href="#website-evaluation">Website Evaluation</a></li><li><a href="#website-content">Website Content: Grammar, spelling, and punctuation</a></li><li><a href="#team">Our team</a></li></ol>
-      </nav>
-      <div class="prose">
-        <section id="rubric-guide" aria-labelledby="h-rubric">
-          <h2 id="h-rubric">Rubric guide</h2>
-          <p>Each item from the FBLA Website Design rating sheet, and where to find it on this website.</p>
-          <div class="table-scroll">
-            <table class="rubric-table">
-              <thead><tr><th scope="col">Rating sheet item</th><th scope="col">Where it is on this website</th></tr></thead>
-              <tbody>
-                <tr><td>Planning, Development, and Implementation</td><td><a href="#planning-development-and-implementation">This page, below</a></td></tr>
-                <tr><td>Website Features</td><td>The required elements each have their own page: <a href="organizations.html">Organizations</a>, <a href="programs.html">Programs</a>, <a href="services.html">Services</a>, <a href="events.html">Events</a>, and <a href="resources.html">Resources</a>. Extras: site-wide search, My List with printing, automatic event dates, accessibility controls, and a Get Involved section.</td></tr>
-                <tr><td>Website UX Design</td><td><a href="#website-ux-design">This page, below</a></td></tr>
-                <tr><td>Website Content: Grammar, spelling, and punctuation</td><td><a href="#website-content">This page, below</a></td></tr>
-                <tr><td>Website Content: Substantiates and cites sources used while conducting research</td><td>The <a href="sources.html">Sources</a> page, plus a “Source” line on every single listing</td></tr>
-                <tr><td>Website Evaluation: Website is compatible with multiple platforms</td><td><a href="#compatible">This page, below</a></td></tr>
-                <tr><td>Website Evaluation: Website interactivity functions and is error free</td><td><a href="#interactivity">This page, below</a></td></tr>
-                <tr><td>Website Evaluation: Website elements are consistent across all pages</td><td><a href="#consistent">This page, below</a></td></tr>
-                <tr><td>Website Evaluation: Description of metrics planned to use to measure the success of the website</td><td><a href="#metrics">This page, below</a></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section id="planning-development-and-implementation" aria-labelledby="h-planning">
-          <h2 id="h-planning">Planning, Development, and Implementation</h2>
-
-          <h3>Planning</h3>
-          <ul>
-            <li><strong>Read the assignment closely.</strong> The 2026–2027 topic asks for “organizations, programs, services, events, and resources.” We gave each one its own page, using those exact words in the menu, so nothing is hidden.</li>
-            <li><strong>Picked a real community.</strong> We chose our own city, Sammamish, Washington. Real places let us use real, citable sources instead of made-up content.</li>
-            <li><strong>Studied what residents already know.</strong> We modeled the layout on the official City of Sammamish website: a top bar, a main menu, a large banner with the city name, a row of category links, and a footer with City Hall information. Residents already know where to look, so they need less time to learn the site.</li>
-            <li><strong>Researched every listing.</strong> We gathered facts from official sources (City of Sammamish, King County Library System, Washington 211) and recorded the date we checked each one.</li>
-          </ul>
-
-          <h3>Development</h3>
-          <ul>
-            <li><strong>Plain HTML, CSS, and JavaScript.</strong> There is no framework and no build step, so the site loads quickly and is easy to maintain.</li>
-            <li><strong>Works without internet.</strong> Fonts, icons, and photos are stored with the website itself, so it still works if the connection drops. That matters for residents with limited data, and for our presentation.</li>
-            <li><strong>One data file.</strong> Every listing lives in one file (<code>js/data.js</code>). Each page reads from it, so a correction made once shows up everywhere, including in search and on the Sources page.</li>
-            <li><strong>One shared header and footer.</strong> One script builds the same header, menu, and footer on every page, so the pages can’t drift apart.</li>
-          </ul>
-
-          <h3>Implementation</h3>
-          <ul>
-            <li><strong>Version control.</strong> The code is stored on GitHub, so both team members can work on it and every change is tracked.</li>
-            <li><strong>Hosting.</strong> The site is published free with GitHub Pages, which uses a secure HTTPS connection.</li>
-            <li><strong>Testing checklist.</strong> Before each update we check the site on a desktop browser, a tablet, and a phone. We also try every interactive feature using only the keyboard, and run Google Lighthouse for accessibility and performance.</li>
-          </ul>
-        </section>
-
-        <section id="website-ux-design" aria-labelledby="h-ux">
-          <h2 id="h-ux">Website UX Design</h2>
-
-          <h3>Colors</h3>
-          <p>Our green palette comes from Sammamish itself: its evergreen forests and the blue of Lake Sammamish. Every text color passes the WCAG 2.2 AA contrast minimum of 4.5:1.</p>
-          <ul class="swatches">
-            <li class="swatch"><div class="swatch-chip" style="background:#1e6b45"></div><div><strong>Evergreen</strong>#1E6B45 · menu and buttons<br>6.5:1 with white</div></li>
-            <li class="swatch"><div class="swatch-chip" style="background:#0f2a1d"></div><div><strong>Forest</strong>#0F2A1D · top bar and footer<br>14.6:1 page text</div></li>
-            <li class="swatch"><div class="swatch-chip" style="background:#f2c14e"></div><div><strong>Gold</strong>#F2C14E · highlights on dark<br>9.1:1 on forest</div></li>
-            <li class="swatch"><div class="swatch-chip" style="background:#f1f7f3"></div><div><strong>Mist</strong>#F1F7F3 · page headers<br>background tint</div></li>
-            <li class="swatch"><div class="swatch-chip" style="background:#1b5e8c"></div><div><strong>Lake blue</strong>#1B5E8C · saved and next-date<br>6.9:1 with white</div></li>
-          </ul>
-
-          <h3>Fonts</h3>
-          <ul>
-            <li><strong>Atkinson Hyperlegible</strong> for body text. The Braille Institute designed it for readers with low vision: letters that are easy to confuse, like I, l, and 1, have distinct shapes.</li>
-            <li><strong>Bricolage Grotesque</strong> for headings. It is friendly and bold, and it makes headings easy to scan.</li>
-          </ul>
-
-          <h3>Graphics</h3>
-          <p>We use real photos of Sammamish places and one consistent set of line icons, one icon for each category. There are no AI images. Photo credits are listed on the <a href="sources.html">Sources</a> page.</p>
-
-          <h3>Accessibility features</h3>
-          <ul>
-            <li>Text size buttons (A− and A+) and a High contrast mode in the top bar on every page. Your choice is remembered.</li>
-            <li>A “Skip to main content” link, clear headings, and labeled regions for screen readers.</li>
-            <li>Everything works with a keyboard, with a thick, high-contrast focus outline.</li>
-            <li>Every photo has descriptive alternative text.</li>
-            <li>Animations turn off automatically for visitors who set “reduce motion” on their device.</li>
-            <li>Crisis numbers (988 and 2-1-1) appear at the top of every page.</li>
-          </ul>
-        </section>
-
-        <section id="website-evaluation" aria-labelledby="h-eval">
-          <h2 id="h-eval">Website Evaluation</h2>
-
-          <h3 id="compatible">Website is compatible with multiple platforms</h3>
-          <p>The layout is responsive. It rearranges itself for each screen size instead of shrinking.</p>
-          <ul>
-            <li><strong>Desktop (1280px and wider):</strong> the full menu, a five-across category row, and listings with the photo, description, and details side by side.</li>
-            <li><strong>Tablet (about 768–1080px):</strong> three-across categories, and listings with the photo beside the text.</li>
-            <li><strong>Phone (about 390px):</strong> a Menu button opens the navigation, listings stack in one column, and buttons are at least 40px tall for easy tapping.</li>
-            <li><strong>Browsers:</strong> built with standard HTML, CSS, and JavaScript supported by current Chrome, Safari, Edge, and Firefox.</li>
-          </ul>
-
-          <h3 id="interactivity">Website interactivity functions and is error free</h3>
-          <ul>
-            <li><strong>Site-wide search:</strong> the search box in the header searches all five categories as you type. It also understands everyday words, so “groceries” finds food help and “lawyer” finds legal aid.</li>
-            <li><strong>Topic filters:</strong> each category page has filter buttons and its own search box, with a live count of results.</li>
-            <li><strong>Automatic event dates:</strong> the Events page works out the next date for repeating events (like “1st and 3rd Tuesdays”), and can filter to the next 7 or 30 days.</li>
-            <li><strong>My List:</strong> save any listing, see your list from any page, and print it as a one-page resource sheet.</li>
-            <li><strong>Accessibility controls:</strong> text size and high contrast, remembered between visits.</li>
-            <li><strong>Mobile menu:</strong> opens and closes with one tap.</li>
-          </ul>
-
-          <h3 id="consistent">Website elements are consistent across all pages</h3>
-          <ul>
-            <li>The same top bar, header, search, menu, and footer on every page, built by one shared script.</li>
-            <li>The menu always lists the pages in the same order, and highlights the page you are on.</li>
-            <li>Every category page uses the same layout: breadcrumb, page title with icon, search, topic filters, then listings.</li>
-            <li>Every listing has the same parts in the same order: name, type, topics, description, source, details, and a Save button.</li>
-            <li>One stylesheet controls all colors, fonts, and spacing.</li>
-          </ul>
-
-          <h3 id="metrics">Description of metrics planned to use to measure the success of the website</h3>
-          <p>These are the measurements we plan to use once the website has visitors. We have not collected results yet.</p>
-          <div class="table-scroll">
-            <table class="rubric-table metric-table">
-              <thead><tr><th scope="col">Metric</th><th scope="col">What it tells us, and our goal</th></tr></thead>
-              <tbody>
-                <tr><td>Task success rate</td><td>In usability tests, the share of testers who find a requested resource (for example, “find food help”). Goal: 90% or more.</td></tr>
-                <tr><td>Time on task</td><td>How long it takes a tester to find a resource. Goal: under 30 seconds.</td></tr>
-                <tr><td>System Usability Scale (SUS)</td><td>A standard 10-question usability survey. Goal: a score of 80 or higher.</td></tr>
-                <tr><td>Search zero-result rate</td><td>How often a search finds nothing. This tells us which words to add. Goal: under 5%.</td></tr>
-                <tr><td>Bounce rate and engagement time</td><td>Measured with Google Analytics 4. Shows whether visitors leave right away or explore.</td></tr>
-                <tr><td>Conversion events</td><td>How often visitors use Save to My List, print, or tap a phone number. These are the real signs that someone found help.</td></tr>
-                <tr><td>Core Web Vitals</td><td>Google’s speed measures. Goals: Largest Contentful Paint (LCP) under 2.5 s, Interaction to Next Paint (INP) under 200 ms, and Cumulative Layout Shift (CLS) under 0.1.</td></tr>
-                <tr><td>Lighthouse scores</td><td>Automated audit. Goals: Accessibility 100, Performance 90 or higher.</td></tr>
-                <tr><td>Content freshness</td><td>The share of listings checked within the last 90 days. Goal: 100%.</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section id="website-content" aria-labelledby="h-content">
-          <h2 id="h-content">Website Content: Grammar, spelling, and punctuation</h2>
-          <p>We wrote every page in plain, friendly language. Both team members proofread every page, and we checked all text with a spell checker before publishing. Organization names are spelled the way the organizations spell them.</p>
-        </section>
-
-        <section id="team" aria-labelledby="h-team">
-          <h2 id="h-team">Our team</h2>
-          <p>We are FBLA members from Sammamish, Washington.</p>
-          <ul class="team">
-            <li><strong>Haresh T</strong>Design and development</li>
-            <li><strong>Shaashwat G</strong>Design and development</li>
-          </ul>
-          <p class="note"><span data-icon="info"></span><span>This website is a student project for the FBLA 2026–2027 Website Design event. It is not an official City of Sammamish website.</span></p>
-        </section>
-
-      </div>
+    <div class="wrap about-wrap">
+      <section aria-labelledby="h-team">
+        <h2 id="h-team">Our team</h2>
+        <ul class="team-cards">
+          <li>
+            <img src="assets/img/haresh.jpg" alt="Haresh T" width="400" height="460" loading="lazy">
+            <strong>Haresh T</strong>
+          </li>
+          <li>
+            <img src="assets/img/shaashwat.jpg" alt="Shaashwat G" width="400" height="460" loading="lazy">
+            <strong>Shaashwat G</strong>
+          </li>
+        </ul>
+      </section>
+      <section aria-labelledby="h-about-us">
+        <h2 id="h-about-us">A little about us</h2>
+        <p>We are FBLA members from Sammamish, Washington. We built this website for the FBLA 2026–2027 Website Design event to make it easier for our neighbors to find local organizations, programs, services, events, and resources in one place.</p>
+        <p class="note"><span data-icon="info"></span><span>This website is a student project. It is not an official City of Sammamish website.</span></p>
+      </section>
     </div>
   </main>
   <div id="site-footer"></div>

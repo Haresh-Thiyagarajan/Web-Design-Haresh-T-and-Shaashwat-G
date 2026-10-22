@@ -1,8 +1,3 @@
-/*
-  Sammamish Community Resources: shared site script
-  - Builds the same header, navigation, and footer on every page (consistency)
-  - Site-wide search, page filters, event dates, My List, accessibility controls
-*/
 (function () {
   "use strict";
 
@@ -11,7 +6,6 @@
   const ICONS = window.ICONS || {};
   const page = document.body.dataset.page || "home";
 
-  /* ---------- Small helpers ---------- */
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -23,11 +17,10 @@
       try { const v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); } catch (e) { return fallback; }
     },
     set(key, value) {
-      try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* storage unavailable: feature still works for this visit */ }
+      try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { }
     }
   };
 
-  /* The five required content types, named exactly as the FBLA topic names them */
   const TYPES = {
     organization: { page: "organizations.html", label: "Organization", plural: "Organizations", icon: "building-2", blurb: "Local groups, nonprofits, and public agencies that serve Sammamish." },
     program: { page: "programs.html", label: "Program", plural: "Programs", icon: "users", blurb: "Ongoing activities you can join, for kids, teens, adults, and seniors." },
@@ -49,13 +42,21 @@
 
   const BRAND_MARK = `
     <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
-      <rect width="48" height="48" rx="13" fill="#1e6b45"/>
-      <path d="M12 27a12 12 0 0 1 24 0z" fill="#f2c14e"/>
-      <path d="M8 32.5c3.2 0 3.2-2 6.4-2s3.2 2 6.4 2 3.2-2 6.4-2 3.2 2 6.4 2 3.2-2 6.4-2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
-      <path d="M12 38c3 0 3-1.8 6-1.8s3 1.8 6 1.8 3-1.8 6-1.8 3 1.8 6 1.8" fill="none" stroke="#cfe8d8" stroke-width="2.2" stroke-linecap="round" opacity=".75"/>
+      <defs><clipPath id="bm-clip"><circle cx="24" cy="24" r="22"/></clipPath></defs>
+      <g clip-path="url(#bm-clip)">
+        <rect width="48" height="48" fill="#e3f1e8"/>
+        <circle cx="11" cy="13" r="3.2" fill="#f2c14e"/>
+        <path d="M2 32L14 19.5L20 25.5L29 10L46 32Z" fill="#5f9a7a"/>
+        <path d="M29 10L25.1 16.5L27.2 15.2L29 17.8L31 15.2L34.3 16.6Z" fill="#fff"/>
+        <path d="M13 20L9.8 26H11.6L8 32H18L14.4 26H16.2Z" fill="#15532f"/>
+        <path d="M21 24.5L18.6 29H20L17.5 32H24.5L22 29H23.5Z" fill="#15532f"/>
+        <rect y="32" width="48" height="16" fill="#1e6b45"/>
+        <path d="M8 37q4-2.4 8 0t8 0 8 0 8 0" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M13 42q4-2.4 8 0t8 0 8 0" fill="none" stroke="#cfe8d8" stroke-width="1.6" stroke-linecap="round" opacity=".8"/>
+      </g>
+      <circle cx="24" cy="24" r="22.5" fill="none" stroke="#1e6b45" stroke-width="1.8"/>
     </svg>`;
 
-  /* ---------- Dates for events ---------- */
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const today = new Date(); today.setHours(0, 0, 0, 0);
@@ -66,7 +67,6 @@
     const m = d.getMonth() + 1;
     return m >= entry.season.startMonth && m <= entry.season.endMonth;
   }
-  /* Returns { date, seasonal } for the next time this event happens, or null */
   function nextDate(entry) {
     if (entry.date) {
       const d = parseDate(entry.date);
@@ -95,13 +95,11 @@
     return `Next: ${fmtDate(n.date)}${entry.recur && entry.recur.time ? ", " + entry.recur.time : ""}`;
   }
 
-  /* ---------- Header ---------- */
   function renderHeader() {
     const current = page === "home" ? "home" : page;
     const navItems = NAV.map((n) =>
       `<li><a href="${n.href}"${n.key === current ? ' aria-current="page"' : ""}>${n.label}</a></li>`).join("");
     const html = `
-      <a class="skip-link" href="#main">Skip to main content</a>
       <div class="topbar">
         <div class="wrap">
           <p class="topbar-help">${icon("life-buoy")}<span class="help-long">Need help now? Call or text <a href="tel:988">988</a> for crisis support, or dial <a href="tel:211">2-1-1</a> for local resources.</span><span class="help-short">Need help now? Call or text <a href="tel:988">988</a> or dial <a href="tel:211">2-1-1</a>.</span></p>
@@ -150,7 +148,6 @@
       </div>`;
   }
 
-  /* ---------- Footer + My List drawer ---------- */
   function renderFooter() {
     const html = `
       <footer class="site-footer">
@@ -169,8 +166,6 @@
             <ul>
               <li><a href="sources.html">Sources</a></li>
               <li><a href="about.html">About</a></li>
-              <li><a href="about.html#rubric-guide">Rubric guide</a></li>
-              <li><a href="about.html#website-ux-design">Accessibility</a></li>
             </ul>
           </div>
           <div>
@@ -203,7 +198,6 @@
     $("#site-footer").outerHTML = html;
   }
 
-  /* ---------- Accessibility settings ---------- */
   function initPrefs() {
     const root = document.documentElement;
     let text = store.get("pref-text", 0);
@@ -225,7 +219,6 @@
     });
   }
 
-  /* ---------- Mobile menu ---------- */
   function initNav() {
     const toggle = $(".nav-toggle"), list = $("#nav-list");
     toggle.addEventListener("click", () => {
@@ -235,7 +228,6 @@
     });
   }
 
-  /* ---------- Toast ---------- */
   let toastTimer;
   function toast(msg) {
     const d = $("#list-drawer"); if (d && d.open) { $("#list-status").textContent = msg; }
@@ -244,40 +236,54 @@
     clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
   }
 
-  /* ---------- Search (works across every page's content) ---------- */
-  /* Everyday words people use, mapped to the words the listings use */
-  const SYNONYMS = {
-    groceries: "food", hungry: "food", meal: "food", meals: "food", pantry: "food",
-    rent: "financial", bills: "bill", utility: "energy", heating: "energy", money: "financial",
-    therapy: "counseling", therapist: "counseling", mental: "counseling", depressed: "crisis", suicide: "crisis",
-    lawyer: "legal", attorney: "legal", court: "legal",
-    kids: "youth", children: "youth", child: "youth", teen: "teens", teenager: "teens",
-    elderly: "seniors", older: "seniors", senior: "seniors",
-    swim: "pool", swimming: "pool", gym: "fitness", exercise: "fitness",
-    job: "employment", jobs: "employment", work: "employment",
-    english: "english", esl: "english", immigrant: "immigrant", refugee: "refugee",
-    volunteering: "volunteer", "service hours": "volunteer",
-    park: "park", lake: "lake", beach: "lake", library: "library", books: "library",
-    abuse: "domestic", dv: "domestic", emergency: "emergency"
+  const TOPIC_WORDS = {
+    "Food": ["food", "foods", "groceries", "grocery", "hungry", "meal", "meals", "pantry", "eat", "restaurant", "restaurants", "pizza", "pho", "shopping", "market", "farmers market", "food bank"],
+    "Health & Safety": ["health", "safety", "counseling", "counselling", "therapy", "therapist", "mental health", "crisis", "suicide", "emergency", "abuse", "domestic violence", "dv"],
+    "Assistance & Referrals": ["assistance", "referrals", "help", "legal", "lawyer", "attorney", "bills", "bill", "rent", "money", "utility", "energy", "immigrant", "immigrants", "refugee", "211", "2-1-1"],
+    "Kids & Teens": ["kids", "kid", "children", "child", "teens", "teen", "teenager", "youth", "family", "families"],
+    "Seniors": ["seniors", "senior", "elderly", "older adults", "older"],
+    "Learning": ["learning", "learn", "library", "classes", "class", "english", "esl", "tutor", "tutoring", "tech help", "computer"],
+    "Parks & Recreation": ["parks", "park", "recreation", "trail", "trails", "hike", "hiking", "outdoors", "swim", "swimming", "beach", "lake", "bike", "biking", "pool", "gym", "concert", "concerts"],
+    "Community": ["community", "city", "city hall", "council", "government", "festival", "events"],
+    "Volunteer": ["volunteer", "volunteers", "volunteering", "service hours", "give back"]
   };
-  function searchText(e) { return `${e.name} ${e.summary} ${(e.topics || []).join(" ")} ${TYPES[e.type].label}`.toLowerCase(); }
+  const TOPIC_MAIN = {
+    "Food": ["food", "foods", "groceries", "grocery", "hungry", "eat", "food help"],
+    "Health & Safety": ["health", "safety", "health and safety", "crisis", "emergency"],
+    "Assistance & Referrals": ["assistance", "referrals", "help", "assistance and referrals"],
+    "Kids & Teens": ["kids", "kid", "children", "child", "teens", "teen", "teenagers", "youth", "kids and teens"],
+    "Seniors": ["seniors", "senior", "elderly", "older adults"],
+    "Learning": ["learning", "learn", "classes", "education"],
+    "Parks & Recreation": ["parks", "park", "recreation", "outdoors", "parks and recreation", "hike", "hiking", "hikes", "trails", "trail"],
+    "Community": ["community", "city"],
+    "Volunteer": ["volunteer", "volunteers", "volunteering", "service hours"]
+  };
+  const topicFor = (q, broad) => {
+    const t = q.trim().toLowerCase().replace(/&/g, "and");
+    const table = broad ? TOPIC_MAIN : TOPIC_WORDS;
+    return Object.keys(table).find((k) => k.toLowerCase().replace(/&/g, "and") === t || table[k].includes(t)) || null;
+  };
+  const TYPE_ORDER = ["organization", "program", "service", "event", "resource"];
+  function searchText(e) { return `${e.name} ${e.summary} ${e.topics.join(" ")}`.toLowerCase(); }
   function search(query) {
     const q = query.trim().toLowerCase();
     if (!q) return [];
-    const words = q.split(/\s+/).map((w) => SYNONYMS[w] || w);
-    return ENTRIES.map((e) => {
+    const byTopic = (topic) => ENTRIES.filter((e) => e.topics.includes(topic))
+      .sort((a, b) => TYPE_ORDER.indexOf(a.type) - TYPE_ORDER.indexOf(b.type) || a.name.localeCompare(b.name));
+    const broad = topicFor(q, true);
+    if (broad) return byTopic(broad);
+    const words = q.split(/\s+/);
+    const matches = ENTRIES.map((e) => {
       const name = e.name.toLowerCase(), text = searchText(e);
+      if (!words.every((w) => text.includes(w))) return null;
       let score = 0;
-      if (name.startsWith(q)) score += 50;
-      else if (name.includes(q)) score += 30;
-      for (const w of words) {
-        if (name.includes(w)) score += 12;
-        else if ((e.topics || []).some((t) => t.toLowerCase().includes(w))) score += 8;
-        else if (text.includes(w)) score += 4;
-        else if (!text.includes(w.slice(0, Math.max(3, w.length - 2)))) return null; /* every word must match */
-      }
-      return score ? { e, score } : null;
-    }).filter(Boolean).sort((a, b) => b.score - a.score).map((r) => r.e);
+      if (name.startsWith(q)) score += 50; else if (name.includes(q)) score += 30;
+      words.forEach((w) => { if (name.includes(w)) score += 10; else score += 2; });
+      return { e, score };
+    }).filter(Boolean).sort((x, y) => y.score - x.score || x.e.name.localeCompare(y.e.name)).map((r) => r.e);
+    if (matches.length) return matches;
+    const related = topicFor(q, false);
+    return related ? byTopic(related) : [];
   }
   const entryHref = (e) => `${TYPES[e.type].page}#${e.id}`;
 
@@ -310,7 +316,7 @@
         if (target) { ev.preventDefault(); go(target); }
       } else if (ev.key === "Escape") { close(); }
     });
-    list.addEventListener("mousedown", (ev) => ev.preventDefault()); /* keep focus so clicks register */
+    list.addEventListener("mousedown", (ev) => ev.preventDefault());
     list.addEventListener("click", (ev) => {
       const a = ev.target.closest("a"); if (!a) return;
       ev.preventDefault(); const i = $$("a", list).indexOf(a); go(results[i]);
@@ -324,7 +330,6 @@
     }
   }
 
-  /* ---------- My List ---------- */
   let saved = store.get("my-list", []).filter((id) => ENTRIES.some((e) => e.id === id));
   function updateListUI(bump) {
     const c = $(".list-count");
@@ -384,7 +389,6 @@
     setTimeout(() => document.body.classList.remove("printing"), 400);
   }
 
-  /* ---------- One listing entry ---------- */
   function renderEntry(e, level = 2) {
     const src = SOURCES[e.source];
     const n = e.type === "event" ? nextDate(e) : null;
@@ -422,11 +426,10 @@
     el.classList.remove("is-target"); void el.offsetWidth; el.classList.add("is-target");
   }
 
-  /* ---------- Category pages (Organizations, Programs, Services, Events, Resources) ---------- */
   let resetFilters = () => {};
   function renderCategory(type) {
     const mount = $("#listing"); if (!mount) return;
-    let items = ENTRIES.filter((e) => e.type === type);
+    let items = ENTRIES.filter((e) => e.type === type).sort((a, b) => a.name.localeCompare(b.name));
     if (type === "event") {
       items = items.map((e) => ({ e, n: nextDate(e) }))
         .sort((a, b) => (a.n ? (a.n.seasonal ? 1e13 : 0) + a.n.date.getTime() : 9e15) - (b.n ? (b.n.seasonal ? 1e13 : 0) + b.n.date.getTime() : 9e15))
@@ -503,22 +506,19 @@
 
   function renderResourceGroups(items) {
     const groups = [
-      { title: "Get help now", desc: "Free, confidential help, any time of day.", icon: "life-buoy", test: (e) => e.urgent },
-      { title: "Parks, lakes, and trails", desc: "Popular places to hike, swim, bike, and play in and around Sammamish.", icon: "trees", test: (e) => e.todo === "outdoors" || e.place && e.id === "sammamish-landing" },
-      { title: "Food and shopping", desc: "Local shopping centers, grocery stores, and places to eat.", icon: "utensils", test: (e) => e.todo === "food" },
-      { title: "Community places", desc: "Public spaces at the heart of the city.", icon: "map-pin", test: (e) => e.place && e.id !== "sammamish-landing" },
-      { title: "Online guides and directories", desc: "Search tools for finding even more services.", icon: "globe", test: (e) => !e.urgent && !e.place && !e.volunteer && !e.todo },
-      { title: "Get involved", desc: "Ways to volunteer and give back. Students can earn service hours.", icon: "heart-handshake", test: (e) => e.volunteer }
+      { title: "Get help", desc: "Crisis lines and guides to local services.", icon: "life-buoy", test: (e) => ["Health & Safety", "Assistance & Referrals"].includes(e.topics[0]) },
+      { title: "Parks and recreation", desc: "Places to hike, swim, bike, and play.", icon: "trees", test: (e) => e.topics[0] === "Parks & Recreation" },
+      { title: "Food", desc: "Grocery stores, shopping centers, and places to eat.", icon: "utensils", test: (e) => e.topics[0] === "Food" },
+      { title: "Community and volunteering", desc: "Public spaces and ways to give back.", icon: "heart-handshake", test: (e) => ["Community", "Volunteer"].includes(e.topics[0]) }
     ];
     return groups.map((g) => `
       <section class="group" aria-labelledby="g-${g.icon}">
         <h2 class="group-title" id="g-${g.icon}"><span class="icon-badge">${icon(g.icon)}</span>${g.title}</h2>
         <p class="group-desc">${g.desc}</p>
-        <ul class="entries">${items.filter(g.test).map((e) => renderEntry(e, 3)).join("")}</ul>
+        <ul class="entries">${items.filter(g.test).sort((a, b) => (b.urgent ? 1 : 0) - (a.urgent ? 1 : 0)).map((e) => renderEntry(e, 3)).join("")}</ul>
       </section>`).join("");
   }
 
-  /* ---------- Home page ---------- */
   function renderHome() {
     const hs = $("#hero-search"); if (hs) hs.outerHTML = searchBox("hero", true);
     const q = $("#quick-links");
@@ -552,7 +552,6 @@
           ${e.image ? `<img class="todo-photo" src="${e.image}" alt="" loading="lazy" width="320" height="200">` : `<span class="todo-icon">${icon(ic(e))}</span>`}
           <span class="todo-text"><strong>${esc(e.name)}</strong><small>${esc((e.topics || [])[0] || "")}</small></span></a></li>`).join("");
 
-      /* Carousel: arrows glide two cards at a time with a gentle ease */
       const prev = $(".carousel-btn.prev"), next = $(".carousel-btn.next");
       const update = () => {
         prev.disabled = pop.scrollLeft <= 2;
@@ -590,7 +589,6 @@
     }));
   }
 
-  /* ---------- Sources page ---------- */
   function renderSources() {
     const list = $("#source-list");
     if (list) {
@@ -608,9 +606,6 @@
 
   const motionOff = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- Page slide transitions ----------
-     Pages slide left when moving forward in the menu order and right when going back.
-     Uses the browser's View Transitions; older browsers simply change pages normally. */
   const navIndex = (url) => {
     try { const f = new URL(url, location.href).pathname.split("/").pop() || "index.html"; return NAV.findIndex((n) => n.href === f); }
     catch (e) { return -1; }
@@ -623,10 +618,23 @@
     e.viewTransition.types.add(a > b ? "backward" : "forward");
   });
 
-  /* ---------- Start ----------
-     The header is built right away (this script loads just after the header spot),
-     so the page doesn't jump when the menu appears. Everything else waits for the page. */
+  function initBackToTop() {
+    const btn = document.createElement("button");
+    btn.type = "button"; btn.className = "to-top"; btn.hidden = true;
+    btn.setAttribute("aria-label", "Back to top");
+    btn.innerHTML = icon("arrow-up") + "<span>Top</span>";
+    btn.addEventListener("click", () => {
+      scrollTo({ top: 0, behavior: motionOff() ? "auto" : "smooth" });
+    });
+    document.body.appendChild(btn);
+    let ticking = false;
+    const update = () => { ticking = false; btn.hidden = scrollY < innerHeight * 1.2; };
+    addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+  }
+
   renderHeader();
+  initBackToTop();
   initPrefs();
   initNav();
   function start() {
