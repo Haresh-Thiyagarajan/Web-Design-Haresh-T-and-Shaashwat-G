@@ -199,11 +199,31 @@
       <div class="topbar">
         <div class="wrap">
           <p class="topbar-help">${icon("life-buoy")}<span class="help-long">Need help now? Call or text <a href="tel:988">988</a> for crisis support, or dial <a href="tel:211">2-1-1</a> for local resources.</span><span class="help-short">Need help now? Call or text <a href="tel:988">988</a> or dial <a href="tel:211">2-1-1</a>.</span></p>
-          <div class="tools" role="group" aria-label="Accessibility settings">
-            <span class="tools-label">Text size</span>
-            <button class="tool-btn" type="button" data-text-step="-1">A−<span class="visually-hidden"> smaller text</span></button>
-            <button class="tool-btn" type="button" data-text-step="1">A+<span class="visually-hidden"> larger text</span></button>
-            <button class="tool-btn" type="button" id="contrast-toggle" aria-pressed="false">${icon("contrast")}<span>High contrast</span></button>
+          <div class="a11y" id="a11y">
+            <button class="a11y-toggle" type="button" aria-expanded="false" aria-controls="a11y-panel">${icon("settings", "gear")}<span>Accessibility settings</span>${icon("chevron-down", "chev")}</button>
+            <div class="a11y-panel" id="a11y-panel" role="group" aria-labelledby="a11y-title">
+              <p class="a11y-title" id="a11y-title">Accessibility settings</p>
+              <div class="a11y-row">
+                <span class="a11y-icon">${icon("type")}</span>
+                <span class="a11y-text"><strong id="text-size-title">Text size</strong><small id="text-size-label" aria-live="polite">Normal</small></span>
+                <span class="a11y-stepper" role="group" aria-labelledby="text-size-title">
+                  <button type="button" data-text-step="-1">A−<span class="visually-hidden"> Smaller text</span></button>
+                  <span class="a11y-dots" aria-hidden="true">${TEXT_SIZES.map(() => "<i></i>").join("")}</span>
+                  <button type="button" data-text-step="1">A+<span class="visually-hidden"> Larger text</span></button>
+                </span>
+              </div>
+              <div class="a11y-row">
+                <span class="a11y-icon">${icon("contrast")}</span>
+                <span class="a11y-text"><strong id="contrast-title">High contrast</strong><small>Stronger colors and borders</small></span>
+                <button class="a11y-switch" type="button" role="switch" aria-checked="false" aria-labelledby="contrast-title" id="contrast-toggle"><span></span></button>
+              </div>
+              <div class="a11y-row">
+                <span class="a11y-icon">${icon("moon")}</span>
+                <span class="a11y-text"><strong id="theme-title">Dark mode</strong><small>Light text on a dark background</small></span>
+                <button class="a11y-switch" type="button" role="switch" aria-checked="false" aria-labelledby="theme-title" id="theme-toggle"><span></span></button>
+              </div>
+              <button class="a11y-reset" type="button" id="a11y-reset">${icon("rotate-ccw")}Reset to default</button>
+            </div>
           </div>
         </div>
       </div>
@@ -284,7 +304,7 @@
           <div class="drawer-body" id="list-body"></div>
           <p class="visually-hidden" role="status" aria-live="polite" id="list-status"></p>
           <div class="drawer-foot">
-            <button class="btn btn-primary" type="button" id="print-list">${icon("printer")}Print my list</button>
+            <a class="btn btn-primary" href="my-calendar.html" id="go-calendar">${icon("calendar-days")}Go to my calendar</a>
             <button class="btn btn-ghost" type="button" id="clear-list">${icon("trash-2")}Clear</button>
           </div>
         </div>
@@ -294,25 +314,52 @@
     $("#site-footer").outerHTML = html;
   }
 
+  // Text size steps run from -1 (small) to 2 (largest); 0 is the default.
+  const TEXT_SIZES = ["Small", "Normal", "Large", "Largest"];
   function initPrefs() {
     const root = document.documentElement;
-    let text = store.get("pref-text", 0);
+    const wrap = $("#a11y"), toggle = $(".a11y-toggle");
+    let text = Math.max(-1, Math.min(2, store.get("pref-text", 0)));
     let contrast = store.get("pref-contrast", false);
+    let dark = store.get("pref-dark", false);
     const apply = () => {
       if (text) root.dataset.text = text; else delete root.dataset.text;
       if (contrast) root.dataset.contrast = "high"; else delete root.dataset.contrast;
-      const btn = $("#contrast-toggle"); if (btn) btn.setAttribute("aria-pressed", String(contrast));
+      if (dark) root.dataset.theme = "dark"; else delete root.dataset.theme;
+      $("#contrast-toggle").setAttribute("aria-checked", String(contrast));
+      $("#theme-toggle").setAttribute("aria-checked", String(dark));
+      $("#text-size-label").textContent = TEXT_SIZES[text + 1];
+      $$(".a11y-dots i").forEach((dot, i) => dot.classList.toggle("on", i === text + 1));
+      $('[data-text-step="-1"]').disabled = text <= -1;
+      $('[data-text-step="1"]').disabled = text >= 2;
+      $("#a11y-reset").disabled = !text && !contrast && !dark;
     };
     apply();
     $$("[data-text-step]").forEach((b) => b.addEventListener("click", () => {
-      text = Math.max(0, Math.min(2, text + Number(b.dataset.textStep)));
+      text = Math.max(-1, Math.min(2, text + Number(b.dataset.textStep)));
       store.set("pref-text", text); apply();
-      toast(["Text size: normal", "Text size: large", "Text size: largest"][text]);
+      toast(`Text size: ${TEXT_SIZES[text + 1].toLowerCase()}`);
+      if (b.disabled) b.parentElement.querySelector("button:not(:disabled)").focus();
     }));
     $("#contrast-toggle").addEventListener("click", () => {
       contrast = !contrast; store.set("pref-contrast", contrast); apply();
       toast(contrast ? "High contrast on" : "High contrast off");
     });
+    $("#theme-toggle").addEventListener("click", () => {
+      dark = !dark; store.set("pref-dark", dark); apply();
+      toast(dark ? "Dark mode on" : "Dark mode off");
+    });
+    $("#a11y-reset").addEventListener("click", () => {
+      text = 0; contrast = false; dark = false;
+      ["pref-text", "pref-contrast", "pref-dark"].forEach((k) => store.set(k, k === "pref-text" ? 0 : false));
+      apply(); toast("Settings reset"); toggle.focus();
+    });
+
+    const setOpen = (open) => { wrap.classList.toggle("open", open); toggle.setAttribute("aria-expanded", String(open)); };
+    toggle.addEventListener("click", () => setOpen(!wrap.classList.contains("open")));
+    document.addEventListener("click", (ev) => { if (!wrap.contains(ev.target)) setOpen(false); });
+    wrap.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && wrap.classList.contains("open")) { setOpen(false); toggle.focus(); } });
+    wrap.addEventListener("focusout", (ev) => { if (ev.relatedTarget && !wrap.contains(ev.relatedTarget)) setOpen(false); });
   }
 
   function initNav() {
@@ -447,9 +494,9 @@
           <li><strong><a href="${entryHref(e)}">${esc(e.name)}</a></strong>
             <button class="icon-btn" type="button" data-remove="${e.id}" aria-label="Remove ${esc(e.name)}">${icon("x")}</button>
             <small>${TYPES[e.type].label}${e.phone ? " · " + esc(e.phone) : ""}</small></li>`).join("")}</ul>`
-      : `<p class="drawer-empty">Your list is empty. Press <strong>Save to My List</strong> on any listing to keep it here, then print it or take it with you.</p>`;
-    $("#print-list").disabled = !items.length;
+      : `<p class="drawer-empty">Your list is empty. Press <strong>Save to My List</strong> on any listing to keep it here. Saved events show up on your calendar.</p>`;
     $("#clear-list").disabled = !items.length;
+    if (page === "calendar") renderCalendar();
   }
   function toggleSave(id) {
     const e = ENTRIES.find((x) => x.id === id);
@@ -467,7 +514,8 @@
       const r = ev.target.closest("[data-remove]"); if (r) toggleSave(r.dataset.remove);
     });
     $("#clear-list").addEventListener("click", () => { saved = []; store.set("my-list", saved); updateListUI(true); toast("My List cleared"); });
-    $("#print-list").addEventListener("click", printList);
+    $("#go-calendar").addEventListener("click", (ev) => { if (page === "calendar") { ev.preventDefault(); drawer.close(); } });
+    document.addEventListener("click", (ev) => { if (ev.target.closest("#print-list")) printList(); });
     updateListUI();
   }
   function printList() {
@@ -485,12 +533,135 @@
     setTimeout(() => document.body.classList.remove("printing"), 400);
   }
 
+  // My Calendar page: a month grid of saved events, with each day's details listed below it.
+  const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const firstOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  const CAL_MONTHS_AHEAD = 11;
+  let calMonth = firstOfMonth;
+  function occurrences(e, first) {
+    const last = new Date(first.getFullYear(), first.getMonth() + 1, 0);
+    if (e.date) { const d = parseDate(e.date); return d >= first && d <= last ? [d] : []; }
+    if (!e.recur) return [];
+    const out = [];
+    for (let d = new Date(first); d <= last; d.setDate(d.getDate() + 1)) {
+      if (!e.recur.weekdays.includes(d.getDay())) continue;
+      if (e.recur.nth && !e.recur.nth.includes(Math.ceil(d.getDate() / 7))) continue;
+      if (!inSeason(e, d)) continue;
+      out.push(new Date(d));
+    }
+    return out;
+  }
+  const occId = (e, d) => `on-${ymd(d)}-${e.id}`;
+  function renderCalendar() {
+    const mount = $("#calendar"); if (!mount) return;
+    const items = saved.map((id) => ENTRIES.find((e) => e.id === id)).filter(Boolean);
+    const events = items.filter((e) => e.type === "event");
+    const others = items.filter((e) => e.type !== "event");
+    const y = calMonth.getFullYear(), m = calMonth.getMonth();
+    const monthsAhead = (y - firstOfMonth.getFullYear()) * 12 + m - firstOfMonth.getMonth();
+    const label = `${MONTH_NAMES[m]} ${y}`;
+
+    const byDay = new Map();
+    const notThisMonth = [];
+    events.forEach((e) => {
+      const dates = occurrences(e, calMonth);
+      if (!dates.length) notThisMonth.push(e);
+      dates.forEach((d) => { const k = d.getDate(); if (!byDay.has(k)) byDay.set(k, []); byDay.get(k).push({ e, d }); });
+    });
+
+    const cells = [];
+    for (let i = 0; i < calMonth.getDay(); i++) cells.push(`<td class="cal-day is-blank"></td>`);
+    for (let day = 1, count = new Date(y, m + 1, 0).getDate(); day <= count; day++) {
+      const d = new Date(y, m, day), list = byDay.get(day) || [];
+      const cls = ["cal-day", d < today && "is-past", d.getTime() === today.getTime() && "is-today", list.length && "has-events"].filter(Boolean).join(" ");
+      cells.push(`<td class="${cls}"${d.getTime() === today.getTime() ? ' aria-current="date"' : ""}>
+          <span class="cal-num">${day}<span class="visually-hidden"> ${MONTH_NAMES[m]}${d.getTime() === today.getTime() ? ", today" : ""}</span></span>
+          ${list.length ? `<ul>${list.map(({ e, d }) => `<li><a class="cal-chip" href="#${occId(e, d)}">${esc(e.name)}</a></li>`).join("")}</ul>` : ""}
+        </td>`);
+    }
+    while (cells.length % 7) cells.push(`<td class="cal-day is-blank"></td>`);
+    const weeks = []; for (let i = 0; i < cells.length; i += 7) weeks.push(`<tr>${cells.slice(i, i + 7).join("")}</tr>`);
+
+    const days = [...byDay.keys()].sort((a, b) => a - b);
+    const detail = (e, d) => {
+      const times = e.recur && e.recur.time;
+      return `
+        <li class="agenda-event" id="${occId(e, d)}">
+          <h4><a href="${entryHref(e)}">${esc(e.name)}</a></h4>
+          <ul class="entry-details">
+            <li>${icon("clock")}<span>${esc(times || e.when || "See the event page for times")}${times && e.when ? `<br><small>${esc(e.when)}</small>` : ""}</span></li>
+            ${e.address ? `<li>${icon("map-pin")}<span><a href="${directionsUrl(e.address)}" target="_blank" rel="noopener">${esc(e.address)}<span class="visually-hidden"> (get directions in Google Maps, opens in a new tab)</span></a></span></li>` : ""}
+            ${e.phone ? `<li>${icon("phone")}<span><a href="tel:${e.phone.replace(/[^\d+]/g, "")}">${esc(e.phone)}</a></span></li>` : ""}
+            ${e.website ? `<li>${icon("globe")}<a href="${esc(e.website)}" target="_blank" rel="noopener">Visit website<span class="visually-hidden"> for ${esc(e.name)} (opens in a new tab)</span></a></li>` : ""}
+          </ul>
+          <p class="agenda-summary">${esc(e.summary)}</p>
+          <div class="agenda-actions">
+            ${d >= today ? calendarMenu(e, { date: d }) : ""}
+            <button class="btn btn-ghost agenda-remove" type="button" data-remove="${e.id}">${icon("trash-2")}Remove from My List<span class="visually-hidden">: ${esc(e.name)}</span></button>
+          </div>
+        </li>`;
+    };
+
+    mount.innerHTML = `
+      <div class="cal-toolbar">
+        <button class="icon-btn cal-step" type="button" data-cal-step="-1"${monthsAhead <= 0 ? " disabled" : ""} aria-label="Previous month">${icon("chevron-left")}</button>
+        <h2 id="cal-title" tabindex="-1" aria-live="polite">${label}</h2>
+        <button class="icon-btn cal-step" type="button" data-cal-step="1"${monthsAhead >= CAL_MONTHS_AHEAD ? " disabled" : ""} aria-label="Next month">${icon("chevron-right")}</button>
+        <button class="btn btn-ghost cal-print" type="button" id="print-list"${items.length ? "" : " disabled"}>${icon("printer")}Print my list</button>
+      </div>
+      ${events.length ? "" : `
+      <div class="cal-empty">
+        <p><strong>No events on My List yet.</strong> Press <strong>Save to My List</strong> on any event and it will show up here.</p>
+        <a class="btn btn-primary" href="events.html">${icon("calendar-days")}Browse events</a>
+      </div>`}
+      <table class="cal-grid" aria-labelledby="cal-title">
+        <thead><tr>${DAYS.map((d) => `<th scope="col"><abbr title="${d}">${d}</abbr></th>`).join("")}</tr></thead>
+        <tbody>${weeks.join("")}</tbody>
+      </table>
+      ${events.length ? `
+      <section class="agenda" aria-labelledby="agenda-title">
+        <h2 id="agenda-title">Your events in ${label}</h2>
+        ${days.length ? `<ol class="agenda-days">${days.map((day) => {
+          const d = new Date(y, m, day);
+          return `<li class="agenda-day${d < today ? " is-past" : ""}">
+            <h3>${dateBlock({ date: d })}<span>${fmtDate(d)}${d < today ? " <small>(past)</small>" : ""}</span></h3>
+            <ul class="agenda-events">${byDay.get(day).map(({ e, d }) => detail(e, d)).join("")}</ul>
+          </li>`;
+        }).join("")}</ol>` : `<p class="agenda-none">None of your saved events happen in ${MONTH_NAMES[m]}.</p>`}
+        ${notThisMonth.length ? `
+        <div class="agenda-later">
+          <h3>Not happening in ${MONTH_NAMES[m]}</h3>
+          <ul>${notThisMonth.map((e) => `<li><a href="${entryHref(e)}">${esc(e.name)}</a>: ${esc(e.when || nextLabel(e, nextDate(e)))}</li>`).join("")}</ul>
+        </div>` : ""}
+      </section>` : ""}
+      ${others.length ? `
+      <section class="agenda-others" aria-labelledby="others-title">
+        <h2 id="others-title">Also on your list</h2>
+        <p>These don't have set dates, so they aren't on the calendar.</p>
+        <ul>${others.map((e) => `
+          <li>
+            <a href="${entryHref(e)}"><strong>${esc(e.name)}</strong></a>
+            <small>${TYPES[e.type].label}${e.hours ? " · " + esc(e.hours) : ""}${e.phone ? " · " + esc(e.phone) : ""}</small>
+            ${e.address ? `<a class="agenda-directions" href="${directionsUrl(e.address)}" target="_blank" rel="noopener">${icon("navigation")}Directions<span class="visually-hidden"> to ${esc(e.name)} in Google Maps (opens in a new tab)</span></a>` : ""}
+          </li>`).join("")}</ul>
+      </section>` : ""}`;
+  }
+  function initCalendarPage() {
+    document.addEventListener("click", (ev) => {
+      const b = ev.target.closest("[data-cal-step]"); if (!b) return;
+      calMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() + Number(b.dataset.calStep), 1);
+      renderCalendar();
+      const again = $(`[data-cal-step="${b.dataset.calStep}"]`);
+      (again && !again.disabled ? again : $("#cal-title")).focus();
+    });
+  }
+
   function renderEntry(e, level = 2) {
     const src = SOURCES[e.source];
     const n = e.type === "event" ? nextDate(e) : null;
     const details = [
       e.type === "event" && `<li>${icon("calendar-days")}<span><span class="entry-next">${esc(nextLabel(e, n))}</span><br>${esc(e.when || "")}</span></li>`,
-      e.address && `<li>${icon("map-pin")}<span>${esc(e.address)}</span></li>`,
+      e.address && `<li>${icon("map-pin")}<span><a href="${directionsUrl(e.address)}" target="_blank" rel="noopener">${esc(e.address)}<span class="visually-hidden"> (get directions in Google Maps, opens in a new tab)</span></a></span></li>`,
       e.phone && `<li>${icon("phone")}<span>${/^[\d\s()+-]+$/.test(e.phone) ? `<a href="tel:${e.phone.replace(/[^\d+]/g, "")}">${esc(e.phone)}</a>` : esc(e.phone)}</span></li>`,
       e.hours && `<li>${icon("clock")}<span>${esc(e.hours)}</span></li>`,
       e.website && `<li>${icon("globe")}<a href="${esc(e.website)}" target="_blank" rel="noopener">Visit website<span class="visually-hidden"> for ${esc(e.name)} (opens in a new tab)</span></a></li>`
@@ -522,6 +693,52 @@
     el.classList.remove("is-target"); void el.offsetWidth; el.classList.add("is-target");
   }
 
+  const directionsUrl = (address) => `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+
+  // Map of every listing with coordinates; pins at the same spot share one popup.
+  function renderMap(items, plural) {
+    if (!window.L || !items.some((e) => e.lat != null)) return "";
+    return `
+      <section class="map-panel" aria-labelledby="map-title">
+        <div class="map-head">
+          <h2 id="map-title">${icon("map-pin")}Where to find ${plural}</h2>
+          <p>Select a pin to see what's there and get directions in Google Maps.</p>
+        </div>
+        <div class="map" id="map" role="region" aria-label="Map of ${plural}"></div>
+      </section>`;
+  }
+  let updateMap = () => {};
+  function initMap(items) {
+    const el = $("#map"); if (!el) return;
+    const places = new Map();
+    items.filter((e) => e.lat != null).forEach((e) => {
+      const key = `${e.lat},${e.lng}`;
+      if (!places.has(key)) places.set(key, { lat: e.lat, lng: e.lng, address: e.address, entries: [] });
+      places.get(key).entries.push(e);
+    });
+    const map = L.map(el, { scrollWheelZoom: false });
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    const pin = L.divIcon({ className: "map-pin", html: icon("map-pin"), iconSize: [40, 40], iconAnchor: [20, 38], popupAnchor: [0, -34] });
+    const markers = [...places.values()].map((p) => {
+      const names = p.entries.map((e) => e.name);
+      const marker = L.marker([p.lat, p.lng], { icon: pin, title: names.join(", ") }).bindPopup(`
+        <div class="map-popup">
+          <p class="map-popup-address">${esc(p.address)}</p>
+          <ul>${p.entries.map((e) => `<li><a href="#${e.id}">${esc(e.name)}</a></li>`).join("")}</ul>
+          <a class="btn btn-primary map-directions" href="${directionsUrl(p.address)}" target="_blank" rel="noopener">${icon("navigation")}Get directions<span class="visually-hidden"> in Google Maps (opens in a new tab)</span></a>
+        </div>`, { maxWidth: 260, autoPanPaddingTopLeft: [56, 16], autoPanPaddingBottomRight: [16, 16] });
+      return { marker, ids: p.entries.map((e) => e.id) };
+    });
+    markers.forEach(({ marker }) => marker.addTo(map));
+    map.fitBounds(L.latLngBounds(markers.map(({ marker }) => marker.getLatLng())), { paddingTopLeft: [48, 72], paddingBottomRight: [48, 32], maxZoom: 15 });
+    updateMap = (shownIds) => markers.forEach(({ marker, ids }) => {
+      if (ids.some((id) => shownIds.has(id))) marker.addTo(map); else marker.remove();
+    });
+  }
+
   let resetFilters = () => {};
   function renderCategory(type) {
     const mount = $("#listing"); if (!mount) return;
@@ -535,6 +752,7 @@
     const plural = TYPES[type].plural.toLowerCase();
 
     mount.innerHTML = `
+      ${renderMap(items, plural)}
       <div class="toolbar">
         <div class="toolbar-row">
           <div class="filter-search">
@@ -565,6 +783,7 @@
     let topic = "", q = "", when = "all";
     const apply = () => {
       const matches = new Set((q ? search(q) : items).map((e) => e.id));
+      const shownIds = new Set();
       let shown = 0;
       items.forEach((e) => {
         let ok = matches.has(e.id) && (!topic || (e.topics || []).includes(topic));
@@ -575,8 +794,9 @@
         const el = document.getElementById(e.id);
         if (ok && el.hidden) { el.classList.remove("slide-in"); void el.offsetWidth; el.classList.add("slide-in"); }
         el.hidden = !ok;
-        if (ok) shown++;
+        if (ok) { shown++; shownIds.add(e.id); }
       });
+      updateMap(shownIds);
       $$(".group").forEach((g) => { g.hidden = !$$(".entry", g).some((el) => !el.hidden); });
       $("#empty").hidden = shown > 0;
       $("#result-count").textContent = `Showing ${shown} of ${items.length} ${plural}`;
@@ -597,6 +817,7 @@
       apply();
     };
     $("#clear-filters").addEventListener("click", resetFilters);
+    initMap(items);
     apply();
   }
 
@@ -741,6 +962,7 @@
     if (page === "home") renderHome();
     if (TYPES[page]) renderCategory(page);
     if (page === "sources") renderSources();
+    if (page === "calendar") initCalendarPage();
     $$("[data-search]").forEach(initSearch);
     updateListUI();
     if (location.hash) setTimeout(highlightTarget, 60);
