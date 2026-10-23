@@ -123,7 +123,7 @@ window.ENTRIES = [
     id: "senior-program", type: "program", name: "Senior Program at Beaver Lake Lodge",
     topics: ["Seniors"],
     summary: "A weekly city program for older adults that about 200 residents attend each week. Ask the Senior Human Services Coordinator about schedules.",
-    address: "Beaver Lake Lodge, Sammamish, WA", phone: "(425) 295-0579",
+    address: "Beaver Lake Lodge, Sammamish, WA", lat: 47.58731, lng: -122.00433, phone: "(425) 295-0579",
     hours: "Weekly", website: "https://www.sammamish.us/news/sammamish-101-human-services/",
     image: "assets/img/sammamish-commons-winter.jpg", imageAlt: "Sammamish Commons in winter under a clear blue sky",
     source: "cityHumanServices", checked: "2026-10-21"
@@ -141,7 +141,7 @@ window.ENTRIES = [
     image: "assets/img/library-tutors.jpg", imageAlt: "A tutor helping a student at a library table",
     topics: ["Learning"],
     summary: "Free homework help and reading practice for students at Sammamish Library.",
-    address: "825 228th Ave SE, Sammamish, WA 98075", phone: "(425) 392-3130",
+    address: "825 228th Ave SE, Sammamish, WA 98075", lat: 47.6006, lng: -122.03695, phone: "(425) 392-3130",
     hours: "See KCLS event calendar", website: "https://kcls.org/sammamish",
     source: "kcls", checked: "2026-10-21"
   },
@@ -150,7 +150,7 @@ window.ENTRIES = [
     image: "assets/img/teens-around-the-fire.jpg", imageAlt: "Teens playing a game together at a library table",
     topics: ["Kids & Teens"],
     summary: "A relaxed hangout space for teens at Sammamish Library.",
-    address: "825 228th Ave SE, Sammamish, WA 98075", phone: "",
+    address: "825 228th Ave SE, Sammamish, WA 98075", lat: 47.6006, lng: -122.03695, phone: "",
     hours: "See KCLS event calendar", website: "https://kcls.org/sammamish",
     source: "kcls", checked: "2026-10-21"
   },
@@ -159,7 +159,7 @@ window.ENTRIES = [
     image: "assets/img/ell-classes.jpg", imageAlt: "Families gathered in a bright library reading space",
     topics: ["Learning"],
     summary: "Free classes and conversation practice (Talk Time) for adults learning English.",
-    address: "825 228th Ave SE, Sammamish, WA 98075", phone: "(425) 392-3130",
+    address: "825 228th Ave SE, Sammamish, WA 98075", lat: 47.6006, lng: -122.03695, phone: "(425) 392-3130",
     hours: "See KCLS event calendar", website: "https://kcls.org/sammamish",
     source: "kcls", checked: "2026-10-21"
   },
@@ -167,7 +167,7 @@ window.ENTRIES = [
     id: "ymca-youth", type: "program", name: "YMCA Youth & Teen Programs",
     topics: ["Kids & Teens"],
     summary: "Youth sports, swim lessons, and teen and tween drop-in activities at the Community & Aquatic Center.",
-    address: "Sammamish Commons, 228th Ave SE, Sammamish, WA 98075", phone: "",
+    address: "Sammamish Commons, 228th Ave SE, Sammamish, WA 98075", lat: 47.60066, lng: -122.03877, phone: "",
     hours: "See YMCA schedule", website: "https://www.seattleymca.org",
     image: "assets/img/community-center-day.jpg", imageAlt: "Sammamish Community and Aquatic Center on a sunny day",
     source: "aquaticCenter", checked: "2026-10-21"
@@ -230,7 +230,7 @@ window.ENTRIES = [
     image: "assets/img/sammamish-commons.jpg", imageAlt: "Sammamish Commons, home of City Hall",
     topics: ["Community"],
     summary: "Open to the public, with up to three minutes per person for public comment. Agendas are posted the Tuesday before.",
-    address: "City Hall, 801 228th Ave SE, Sammamish, WA 98075",
+    address: "City Hall, 801 228th Ave SE, Sammamish, WA 98075", lat: 47.60137, lng: -122.03676,
     recur: { weekdays: [2], nth: [1, 3], time: "6:30 pm" }, when: "1st & 3rd Tuesdays, 6:30 pm",
     website: "https://www.sammamish.us/news/events/2026-city-council-meetings/",
     source: "cityCouncil2026", checked: "2026-10-21"
@@ -240,7 +240,7 @@ window.ENTRIES = [
     image: "assets/img/sammamish-commons-winter.jpg", imageAlt: "Sammamish Commons in winter",
     topics: ["Community"],
     summary: "Council members discuss upcoming topics in detail. Open to the public.",
-    address: "City Hall, 801 228th Ave SE, Sammamish, WA 98075",
+    address: "City Hall, 801 228th Ave SE, Sammamish, WA 98075", lat: 47.60137, lng: -122.03676,
     recur: { weekdays: [2], nth: [2], time: "6:30 pm" }, when: "2nd Tuesday, 6:30 pm",
     website: "https://www.sammamish.us/news/events/2026-city-council-meetings/",
     source: "cityCouncil2026", checked: "2026-10-21"
@@ -250,7 +250,7 @@ window.ENTRIES = [
     image: "assets/img/friends-library.jpg", imageAlt: "Library volunteers smiling beside tables of books for sale",
     topics: ["Volunteer"],
     summary: "Monthly meeting of the volunteer group that supports the library. New members welcome.",
-    address: "Sammamish Library, 825 228th Ave SE, Sammamish, WA 98075",
+    address: "Sammamish Library, 825 228th Ave SE, Sammamish, WA 98075", lat: 47.6006, lng: -122.03695,
     recur: { weekdays: [4], nth: [1], time: "6:15 pm" }, when: "1st Thursday, 6:15 pm",
     website: "https://kcls.org/sammamish",
     source: "kcls", checked: "2026-10-21"
@@ -260,7 +260,7 @@ window.ENTRIES = [
     image: "assets/img/youth-library.jpg", imageAlt: "Young children choosing books from library shelves",
     topics: ["Kids & Teens"],
     summary: "Drop-in chess for kids and teens at the library. All skill levels.",
-    address: "Sammamish Library, 825 228th Ave SE, Sammamish, WA 98075",
+    address: "Sammamish Library, 825 228th Ave SE, Sammamish, WA 98075", lat: 47.6006, lng: -122.03695,
     recur: { weekdays: [2], nth: [1, 3, 5], time: "6:00–8:00 pm" }, when: "1st, 3rd & 5th Tuesdays, 6–8 pm",
     website: "https://kcls.org/sammamish",
     source: "burbioLibrary", checked: "2026-10-21"
@@ -270,7 +270,7 @@ window.ENTRIES = [
     image: "assets/img/diwali-bazaar.jpg", imageAlt: "A vendor in a teal sari beside her craft bazaar table of clothing and jewelry",
     topics: ["Community"],
     summary: "A festival market with Diwali pooja items, jewelry, and clothing vendors.",
-    address: "Pine Lake Community Center, 21333 SE 20th St, Sammamish, WA",
+    address: "Pine Lake Community Center, 21333 SE 20th St, Sammamish, WA", lat: 47.59163, lng: -122.05589,
     date: "2026-11-01", when: "Sunday, November 1, 2026",
     website: "https://www.thecraftmap.com/fair/sammamish-diwali-bazaar-2026-sammamish-wa",
     source: "diwaliBazaar", checked: "2026-10-21"
@@ -280,7 +280,7 @@ window.ENTRIES = [
     image: "assets/img/farmers-market.jpg", imageAlt: "Crowds walking between white vendor tents at the Sammamish Farmers Market",
     topics: ["Food"],
     summary: "Local produce, handmade goods, and about six food trucks every Wednesday in season. The 2026 season has ended. It returns in May 2027.",
-    address: "Sammamish Commons, 801 228th Ave SE, Sammamish, WA 98075",
+    address: "Sammamish Commons, 801 228th Ave SE, Sammamish, WA 98075", lat: 47.60137, lng: -122.03676,
     season: { startMonth: 5, endMonth: 9 }, recur: { weekdays: [3], time: "4:00–8:00 pm" }, when: "Wednesdays, 4–8 pm, May–September",
     website: "https://sammamishindependent.com/2026/05/sammamish-farmers-market-opens-for-2026/",
     source: "farmersMarket2026", checked: "2026-10-21"
@@ -527,7 +527,7 @@ window.ENTRIES = [
     image: "assets/img/pine-lake-park.jpg", imageAlt: "Pine Lake Park, home of the summer concerts",
     topics: ["Parks & Recreation"],
     summary: "Free outdoor concerts at Pine Lake Park on summer Thursday evenings. Bring a blanket and a picnic.",
-    address: "Pine Lake Park, 2401 228th Ave SE, Sammamish, WA 98075",
+    address: "Pine Lake Park, 2401 228th Ave SE, Sammamish, WA 98075", lat: 47.58815, lng: -122.03558,
     season: { startMonth: 7, endMonth: 8 }, recur: { weekdays: [4] }, when: "Thursdays in July and August",
     website: "https://www.parentmap.com/?p=10052850",
     source: "concerts", checked: "2026-10-21"

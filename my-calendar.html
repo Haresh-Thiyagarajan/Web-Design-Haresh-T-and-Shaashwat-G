@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Calendar | Sammamish Community Resources</title>
+  <meta name="description" content="A calendar of the events you saved to My List, with times, places, and directions.">
+  <meta name="theme-color" content="#1e6b45">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="calendar">
+  <div id="site-header"></div>
+  <script src="js/icons.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <main id="main" tabindex="-1">
+    <div class="page-head">
+      <div class="wrap">
+        <div>
+          <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">My Calendar</span></nav>
+          <h1><span class="icon-badge" data-icon="calendar-days"></span>My Calendar</h1>
+          <p class="page-lede">Every event on My List, on the days it happens. Select an event to see the time, place, and directions.</p>
+        </div>
+        <img class="page-head-photo" src="assets/img/farmers-market.jpg" alt="Crowds walking between white vendor tents at the Sammamish Farmers Market" width="360" height="270">
+      </div>
+    </div>
+    <div class="wrap" id="calendar"></div>
+  </main>
+  <div id="site-footer"></div>
+</body>
+</html>
