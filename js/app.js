@@ -923,6 +923,203 @@
 
   const motionOff = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Homepage background: drone video embedded from YouTube (the clean middle of the video, looped).
+  // Until it plays, or if it can't, a tour of Sammamish photos runs instead.
+  // The pause button stops either one and is remembered.
+  const SCENE_MS = 8000, FADE_MS = 1700;
+  const BG_VIDEO = { id: "L6VZIEyO724", start: 9, end: 114, label: "Summer in Sammamish, video by Kevin Shi" };
+  const VIDEO_REVEAL_MS = 4500;
+  function initBannerMotion() {
+    const btn = $("#banner-motion"), banner = $(".banner"); if (!btn || !banner) return;
+    const scenes = $$(".banner-bg", banner), place = $("#banner-place-name"), videoBox = $("#banner-video");
+    let paused = store.get("pref-banner-paused", false), current = 0, timer = null, player = null, videoOn = false, revealTimer = null;
+    const show = (n) => {
+      const prev = scenes[current];
+      current = n % scenes.length;
+      const next = scenes[current];
+      prev.classList.replace("is-active", "is-leaving");
+      setTimeout(() => prev.classList.remove("is-leaving"), FADE_MS);
+      next.classList.add("is-active");
+      if (place) place.textContent = next.dataset.place;
+    };
+    const schedule = () => {
+      clearInterval(timer);
+      if (!paused && !videoOn && !motionOff() && scenes.length > 1) timer = setInterval(() => show(current + 1), SCENE_MS);
+    };
+    const apply = () => {
+      banner.classList.toggle("is-paused", paused);
+      btn.innerHTML = `${icon(paused ? "circle-play" : "circle-pause")}<span>${paused ? "Play" : "Pause"} background</span>`;
+      if (player && player.playVideo) { if (paused) player.pauseVideo(); else player.playVideo(); }
+      schedule();
+    };
+    btn.addEventListener("click", () => { paused = !paused; store.set("pref-banner-paused", paused); apply(); });
+    apply();
+
+    if (!videoBox || motionOff()) return;
+    window.onYouTubeIframeAPIReady = () => {
+      player = new YT.Player(videoBox.appendChild(document.createElement("div")), {
+        videoId: BG_VIDEO.id, host: "https://www.youtube-nocookie.com",
+        playerVars: { autoplay: 1, mute: 1, controls: 0, disablekb: 1, fs: 0, rel: 0, playsinline: 1, iv_load_policy: 3, start: BG_VIDEO.start, end: BG_VIDEO.end },
+        events: {
+          onReady: (e) => { e.target.mute(); if (paused) e.target.pauseVideo(); else e.target.playVideo(); },
+          onStateChange: (e) => {
+            // YouTube shows its title bar for a few seconds after playback starts, and a "More videos"
+            // panel whenever the video pauses or buffers. So the video only fades in after it has been
+            // playing for a few seconds, and fades back out to the photos whenever it stops.
+            clearTimeout(revealTimer);
+            if (e.data === YT.PlayerState.PLAYING) {
+              revealTimer = setTimeout(() => {
+                videoOn = true; videoBox.classList.add("is-on"); schedule();
+                if (place) place.textContent = BG_VIDEO.label;
+              }, VIDEO_REVEAL_MS);
+            } else {
+              videoBox.classList.remove("is-on");
+            }
+            if (e.data === YT.PlayerState.ENDED) { e.target.seekTo(BG_VIDEO.start, true); e.target.playVideo(); }
+          }
+        }
+      });
+      // Jump back to the start just before the clip's end, so the end credits never show.
+      setInterval(() => {
+        if (player && player.getCurrentTime && !paused && player.getCurrentTime() >= BG_VIDEO.end - 0.4) player.seekTo(BG_VIDEO.start, true);
+      }, 250);
+    };
+    const api = document.createElement("script");
+    api.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(api);
+  }
+
+  // Live weather card on the homepage, from Open-Meteo (free, no key). The sky behind it is drawn
+  // and animated to match the conditions: stars at night, sun, drifting clouds, rain, snow, fog, or storms.
+  const WEATHER_URL = "https://api.open-meteo.com/v1/forecast?latitude=47.6163&longitude=-122.0356" +
+    "&current=temperature_2m,apparent_temperature,weather_code,is_day" +
+    "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum" +
+    "&temperature_unit=fahrenheit&precipitation_unit=inch&timezone=America%2FLos_Angeles&forecast_days=1";
+  const WEATHER_REFRESH_MS = 15 * 60 * 1000;
+  // WMO weather codes -> label, sky scene, and icon (day / night).
+  function weatherInfo(code, day) {
+    const c = (label, sky, dayIcon, nightIcon = dayIcon) => ({ label, sky, icon: day ? dayIcon : nightIcon });
+    if (code === 0) return c(day ? "Sunny" : "Clear", "clear", "sun", "moon");
+    if (code === 1) return c(day ? "Mostly sunny" : "Mostly clear", "clear", "sun", "moon");
+    if (code === 2) return c("Partly cloudy", "partly", "cloud-sun", "cloud-moon");
+    if (code === 3) return c("Cloudy", "cloudy", "cloud");
+    if (code === 45 || code === 48) return c("Foggy", "fog", "cloud-fog");
+    if (code >= 51 && code <= 57) return c("Drizzle", "rain", "cloud-drizzle");
+    if ((code >= 61 && code <= 67) || (code >= 80 && code <= 82)) return c(code === 65 || code === 82 ? "Heavy rain" : code === 61 || code === 80 ? "Light rain" : "Rain", "rain", "cloud-rain");
+    if ((code >= 71 && code <= 77) || code === 85 || code === 86) return c("Snow", "snow", "cloud-snow");
+    if (code >= 95) return c("Thunderstorms", "storm", "cloud-lightning");
+    return c("Cloudy", "cloudy", "cloud");
+  }
+  const rand = (min, max) => min + Math.random() * (max - min);
+  function treeLine() {
+    let trees = "";
+    for (let x = -10; x < 1210; x += rand(26, 46)) {
+      const hgt = rand(38, 96), wid = hgt * rand(0.32, 0.42), base = 120;
+      trees += `<path d="M${x.toFixed(1)} ${base - hgt}L${(x + wid / 2).toFixed(1)} ${base}H${(x - wid / 2).toFixed(1)}Z"/>`;
+    }
+    return `<svg class="sky-trees" viewBox="0 0 1200 120" preserveAspectRatio="none">${trees}</svg>`;
+  }
+  function skyLayers(sky, day) {
+    const many = (n, make) => Array.from({ length: n }, make).join("");
+    const clouds = (n, dark) => many(n, (_, i) => `<span class="sky-cloud${dark ? " dark" : ""}" style="top:${rand(-6, 46).toFixed(0)}%;width:${rand(220, 420).toFixed(0)}px;animation-duration:${rand(55, 95).toFixed(0)}s;animation-delay:-${rand(0, 90).toFixed(0)}s;opacity:${rand(0.35, 0.75).toFixed(2)}"></span>`);
+    let html = "";
+    if (!day && (sky === "clear" || sky === "partly")) html += many(140, () => `<span class="sky-star" style="left:${rand(0, 100).toFixed(2)}%;top:${rand(0, 92).toFixed(2)}%;--s:${rand(1, 2.6).toFixed(1)}px;animation-delay:-${rand(0, 6).toFixed(1)}s;animation-duration:${rand(2.5, 6).toFixed(1)}s"></span>`);
+    if (day && (sky === "clear" || sky === "partly")) html += `<span class="sky-sun"></span>`;
+    if (sky === "partly") html += clouds(3, false);
+    if (sky === "cloudy") html += clouds(6, !day);
+    if (sky === "rain" || sky === "storm") html += clouds(5, true) + many(sky === "storm" ? 110 : 80, () => `<span class="sky-drop" style="left:${rand(-5, 105).toFixed(1)}%;animation-delay:-${rand(0, 1.2).toFixed(2)}s;animation-duration:${rand(0.55, 0.95).toFixed(2)}s"></span>`);
+    if (sky === "storm") html += `<span class="sky-flash"></span>`;
+    if (sky === "snow") html += clouds(4, false) + many(90, () => `<span class="sky-flake" style="left:${rand(0, 100).toFixed(1)}%;--s:${rand(3, 7).toFixed(1)}px;--drift:${rand(-40, 40).toFixed(0)}px;animation-delay:-${rand(0, 10).toFixed(1)}s;animation-duration:${rand(7, 13).toFixed(1)}s"></span>`);
+    if (sky === "fog") html += many(4, (_, i) => `<span class="sky-fog" style="top:${18 + i * 18}%;animation-duration:${40 + i * 12}s;animation-delay:-${i * 9}s"></span>`);
+    return html + treeLine();
+  }
+  function clockTime(iso) {
+    const [hh, mm] = iso.split("T")[1].split(":").map(Number);
+    return `${((hh + 11) % 12) + 1}:${pad2(mm)} ${hh < 12 ? "AM" : "PM"}`;
+  }
+  async function loadWeather() {
+    const card = $("#weather"), body = $("#weather-body"); if (!card) return;
+    try {
+      const res = await fetch(WEATHER_URL);
+      if (!res.ok) throw new Error(res.status);
+      const { current: now, daily } = await res.json();
+      const day = now.is_day === 1, info = weatherInfo(now.weather_code, day);
+      const deg = (v) => `${Math.round(v)}°`;
+      const filled = ["sun", "moon", "cloud"].includes(info.icon);
+      if (card.dataset.sky !== `${info.sky}-${day ? "day" : "night"}`) {
+        card.dataset.sky = `${info.sky}-${day ? "day" : "night"}`;
+        $(".weather-sky", card).innerHTML = skyLayers(info.sky, day);
+      }
+      body.innerHTML = `
+        <div class="weather-top">
+          <p class="weather-temp"><span class="visually-hidden">Temperature in Sammamish: </span>${deg(now.temperature_2m)}</p>
+          <p class="weather-now"><span class="weather-icon${filled ? " is-filled" : ""}">${icon(info.icon)}</span><span>${info.label}</span></p>
+        </div>
+        <div class="weather-bottom">
+          <div class="weather-stats">
+            <ul>
+              <li>Feels like <strong>${deg(now.apparent_temperature)}</strong></li>
+              <li>High <strong>${deg(daily.temperature_2m_max[0])}</strong></li>
+              <li>Low <strong>${deg(daily.temperature_2m_min[0])}</strong></li>
+            </ul>
+            <ul>
+              <li>Chance of rain <strong>${daily.precipitation_probability_max[0] ?? 0}%</strong></li>
+              <li><strong>${Number((daily.precipitation_sum[0] ?? 0).toFixed(2))} in</strong><span class="visually-hidden"> of rain today</span></li>
+            </ul>
+          </div>
+          <p class="weather-source">Sammamish, WA · Updated ${clockTime(now.time)} · Data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo<span class="visually-hidden"> (opens in a new tab)</span></a></p>
+        </div>`;
+    } catch (e) {
+      card.dataset.sky = "error";
+      body.innerHTML = `<p class="weather-loading">The weather isn't available right now. Check the <a href="https://forecast.weather.gov/MapClick.php?lat=47.6163&lon=-122.0356" target="_blank" rel="noopener">National Weather Service forecast for Sammamish<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>`;
+    }
+  }
+  function initWeather() {
+    const card = $("#weather"); if (!card) return;
+    loadWeather();
+    setInterval(loadWeather, WEATHER_REFRESH_MS);
+    // Only animate the sky while the card is on screen.
+    if ("IntersectionObserver" in window) new IntersectionObserver(([en]) => card.classList.toggle("is-offscreen", !en.isIntersecting)).observe(card);
+  }
+
+  // Homepage news: headlines saved to data/news.json every few hours by a GitHub Action
+  // (.github/workflows/update-news.yml). Each card links to the full story on the newspaper's site.
+  function newsDate(iso) {
+    const d = new Date(iso), day = new Date(d); day.setHours(0, 0, 0, 0);
+    const ago = Math.round((today - day) / 864e5);
+    if (ago <= 0) return "Today";
+    if (ago === 1) return "Yesterday";
+    if (ago < 7) return `${ago} days ago`;
+    return `${MONTHS[d.getMonth()]} ${d.getDate()}`;
+  }
+  async function initNews() {
+    const list = $("#news"); if (!list) return;
+    try {
+      const res = await fetch("data/news.json", { cache: "no-cache" });
+      if (!res.ok) throw new Error(res.status);
+      const { items, source, updated } = await res.json();
+      if (!items || !items.length) throw new Error("empty");
+      // First story is the big feature on the left; the next two stack on the right.
+      list.innerHTML = items.slice(0, 3).map((n, i) => {
+        const photo = i === 0 ? (n.imageLarge || n.image) : (n.image || n.imageLarge);
+        return `
+        <li class="${i === 0 ? "news-lead" : "news-side"}"><a class="news-card" href="${esc(n.url)}" target="_blank" rel="noopener">
+          <span class="news-photo">${photo ? `<img src="${esc(photo)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">` : ""}${icon("newspaper", "news-photo-fallback")}</span>
+          <span class="news-text">
+            <span class="news-meta"><span class="tag">${esc(n.section)}</span><time datetime="${esc(n.date)}">${newsDate(n.date)}</time></span>
+            <strong class="news-title">${esc(n.title)}</strong>
+            <span class="news-source">${icon("newspaper")}${esc(source.name)}${icon("external-link", "ext")}<span class="visually-hidden"> (opens in a new tab)</span></span>
+          </span>
+        </a></li>`;
+      }).join("");
+      $$(".news-photo img", list).forEach((img) => img.addEventListener("error", () => img.remove()));
+      const u = new Date(updated);
+      $("#news-updated").textContent = `The latest local stories from the ${source.name}. Checked ${MONTHS[u.getMonth()]} ${u.getDate()}.`;
+    } catch (e) {
+      list.innerHTML = `<li class="news-empty">News isn't available right now. Read the latest at the <a href="https://sammamishindependent.com/" target="_blank" rel="noopener">Sammamish Independent<span class="visually-hidden"> (opens in a new tab)</span></a>.</li>`;
+    }
+  }
+
   const navIndex = (url) => {
     try { const f = new URL(url, location.href).pathname.split("/").pop() || "index.html"; return NAV.findIndex((n) => n.href === f); }
     catch (e) { return -1; }
@@ -959,7 +1156,7 @@
     renderFooter();
     initList();
     initCalendar();
-    if (page === "home") renderHome();
+    if (page === "home") { renderHome(); initBannerMotion(); initWeather(); initNews(); }
     if (TYPES[page]) renderCategory(page);
     if (page === "sources") renderSources();
     if (page === "calendar") initCalendarPage();

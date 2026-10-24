@@ -16,9 +16,19 @@
   <script src="js/app.js"></script>
   <main id="main" tabindex="-1">
     <section class="banner" aria-labelledby="banner-title">
-      <img class="banner-bg" src="assets/img/sammamish-landing.jpg" alt="" width="584" height="342" fetchpriority="high">
+      <div class="banner-scenes" aria-hidden="true">
+        <img class="banner-bg is-active" src="assets/img/lake-sammamish-aerial.jpg" alt="" width="1600" height="1200" data-place="Lake Sammamish State Park" style="--motion: glide-right" fetchpriority="high">
+        <img class="banner-bg" src="assets/img/scene-city-hall.jpg" alt="" width="1600" height="1071" data-place="Sammamish Commons and City Hall" style="--motion: push-in" decoding="async">
+        <img class="banner-bg" src="assets/img/scene-pine-lake.jpg" alt="" width="1597" height="1600" data-place="Pine Lake" style="--motion: rise" decoding="async">
+        <img class="banner-bg is-soft" src="assets/img/metropolitan-market.jpg" alt="" width="547" height="365" data-place="Metropolitan Market" style="--motion: glide-left" decoding="async">
+        <img class="banner-bg" src="assets/img/scene-beaver-lake.jpg" alt="" width="1400" height="1050" data-place="Beaver Lake Park" style="--motion: pull-out" decoding="async">
+        <img class="banner-bg" src="assets/img/scene-library.jpg" alt="" width="1400" height="1050" data-place="Sammamish Library" style="--motion: glide-right" decoding="async">
+        <img class="banner-bg" src="assets/img/scene-seattle-view.jpg" alt="" width="1600" height="1001" data-place="Seattle and the Olympics, seen from Sammamish" style="--motion: push-in" decoding="async">
+        <div class="banner-video" id="banner-video"></div>
+      </div>
       <div class="wrap banner-inner">
-        <img class="banner-logo" src="assets/img/sammamish-logo.png" alt="City of Sammamish, Washington logo" width="734" height="263">
+        <img class="banner-logo logo-light-theme" src="assets/img/sammamish-logo-white.png" alt="City of Sammamish, Washington logo" width="734" height="263">
+        <img class="banner-logo logo-dark-theme" src="assets/img/sammamish-logo-black.png" alt="City of Sammamish, Washington logo" width="734" height="263">
         <h1 id="banner-title">Find help, programs, and things to do in Sammamish</h1>
         <p class="banner-lede">Food help, parks, programs, and events across the plateau.</p>
         <div id="hero-search"></div>
@@ -33,7 +43,11 @@
         </div>
         <a class="scroll-cue" href="#browse"><span>Explore the guide</span><span data-icon="chevron-down"></span></a>
       </div>
-      <p class="banner-note">City of Sammamish logo shown for an FBLA student project. This is not an official City website. Background: Sammamish Landing Park.</p>
+      <p class="banner-note">City of Sammamish logo shown for an FBLA student project. This is not an official City website. Background video: <a href="https://www.youtube.com/watch?v=L6VZIEyO724" target="_blank" rel="noopener">Summer in Sammamish by Kevin Shi<span class="visually-hidden"> (opens YouTube in a new tab)</span></a>. More credits on the Sources page.</p>
+      <div class="banner-controls">
+        <button class="banner-motion" type="button" id="banner-motion"></button>
+        <p class="banner-place" aria-hidden="true"><span data-icon="map-pin"></span><span id="banner-place-name">Lake Sammamish State Park</span></p>
+      </div>
     </section>
 
     <section class="section" id="browse" aria-labelledby="browse-title">
@@ -97,6 +111,31 @@
           <li><a class="place" href="organizations.html#sammamish-ymca"><img src="assets/img/community-center-dusk.jpg" alt="Sammamish Community and Aquatic Center at dusk" loading="lazy" width="738" height="318"><span class="place-label"><strong>Community &amp; Aquatic Center</strong><span>Pools, gyms, and youth sports</span></span></a></li>
           <li class="wide"><a class="place" href="resources.html#sammamish-landing"><img src="assets/img/sammamish-landing.jpg" alt="Swim dock at Sammamish Landing Park" loading="lazy" width="584" height="342"><span class="place-label"><strong>Sammamish Landing Park</strong><span>Lakefront swimming and the East Lake Sammamish Trail</span></span></a></li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section weather-section" aria-labelledby="weather-title">
+      <div class="wrap">
+        <h2 class="visually-hidden" id="weather-title">Weather in Sammamish right now</h2>
+        <div class="weather" id="weather" data-sky="loading">
+          <div class="weather-sky" aria-hidden="true"></div>
+          <div class="weather-body" id="weather-body" aria-live="polite">
+            <p class="weather-loading">Loading the weather in Sammamish…</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section news-section" aria-labelledby="news-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 id="news-title">Sammamish news</h2>
+            <p id="news-updated">The latest local stories, updated every few hours.</p>
+          </div>
+          <a class="btn btn-ghost" href="https://sammamishindependent.com/" target="_blank" rel="noopener">More local news<span class="visually-hidden"> at the Sammamish Independent (opens in a new tab)</span></a>
+        </div>
+        <ul class="news" id="news"></ul>
       </div>
     </section>
   </main>
