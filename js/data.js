@@ -46,7 +46,7 @@ window.ENTRIES = [
     id: "city-of-sammamish", type: "organization", name: "City of Sammamish",
     topics: ["Community"],
     summary: "City government for Sammamish. City Hall handles permits, parks, and human services, and connects residents to its 44 nonprofit partners.",
-    address: "801 228th Ave SE, Sammamish, WA 98075", phone: "(425) 295-0500",
+    address: "801 228th Ave SE, Sammamish, WA 98075", lat: 47.60137, lng: -122.03676, phone: "(425) 295-0500",
     hours: "Mon–Fri, 8:30 am–5:00 pm", website: "https://www.sammamish.us",
     image: "assets/img/sammamish-commons.jpg", imageAlt: "Cedar-sided Sammamish Commons building with tall wood columns at the entrance",
     source: "cityContact", checked: "2026-10-21"
@@ -55,7 +55,7 @@ window.ENTRIES = [
     id: "sammamish-library", type: "organization", name: "Sammamish Library (KCLS)",
     topics: ["Learning"],
     summary: "Free public library run by the King County Library System. Books, study rooms, computers, English classes, tutoring, and teen programs.",
-    address: "825 228th Ave SE, Sammamish, WA 98075", phone: "(425) 392-3130",
+    address: "825 228th Ave SE, Sammamish, WA 98075", lat: 47.6006, lng: -122.03695, phone: "(425) 392-3130",
     hours: "Mon 10–6 · Tue–Wed 10–8 · Thu–Fri 10–6 · Sat–Sun 11–6", website: "https://kcls.org/sammamish",
     image: "assets/img/sammamish-library.jpg", imageAlt: "Sammamish Library at dusk, its glass walls glowing under a wide overhanging roof",
     source: "kcls", checked: "2026-10-21"
@@ -64,7 +64,7 @@ window.ENTRIES = [
     id: "sammamish-ymca", type: "organization", name: "Sammamish Community YMCA",
     topics: ["Kids & Teens"],
     summary: "Runs the city-owned Sammamish Community & Aquatic Center: lap and leisure pools, two gyms, a jogging track, fitness classes, and youth programs.",
-    address: "Sammamish Commons, 228th Ave SE, Sammamish, WA 98075", phone: "",
+    address: "Sammamish Commons, 228th Ave SE, Sammamish, WA 98075", lat: 47.60066, lng: -122.03877, phone: "",
     hours: "See YMCA website for current hours", website: "https://www.seattleymca.org",
     image: "assets/img/community-center-dusk.jpg", imageAlt: "Sammamish Community and Aquatic Center at dusk with a landscaped roundabout in front",
     source: "ymca", checked: "2026-10-21"
@@ -74,7 +74,7 @@ window.ENTRIES = [
     image: "assets/img/issaquah-food-bank.png", imageAlt: "Issaquah Food & Clothing Bank logo", logo: true,
     topics: ["Food"],
     summary: "The closest food bank to Sammamish (Sammamish has none of its own). Market shopping and referrals are open to everyone; home delivery covers ZIP codes 98074 and 98075.",
-    address: "179 1st Ave SE, Issaquah, WA 98027", phone: "(425) 392-4123",
+    address: "179 1st Ave SE, Issaquah, WA 98027", lat: 47.52868, lng: -122.03494, phone: "(425) 392-4123",
     hours: "Varies by week, check the calendar or call", website: "https://issaquahfoodbank.org",
     source: "foodBank211", checked: "2026-10-21"
   },

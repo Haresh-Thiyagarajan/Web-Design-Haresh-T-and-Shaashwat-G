@@ -36,7 +36,6 @@
     { href: "services.html", label: "Services", key: "service" },
     { href: "events.html", label: "Events", key: "event" },
     { href: "resources.html", label: "Resources", key: "resource" },
-    { href: "sources.html", label: "Sources", key: "sources" },
     { href: "about.html", label: "About", key: "about" }
   ];
 
@@ -661,6 +660,7 @@
     const n = e.type === "event" ? nextDate(e) : null;
     const details = [
       e.type === "event" && `<li>${icon("calendar-days")}<span><span class="entry-next">${esc(nextLabel(e, n))}</span><br>${esc(e.when || "")}</span></li>`,
+      !e.address && e.type === "organization" && `<li class="no-location">${icon("map-pin")}<span>No location provided</span></li>`,
       e.address && `<li>${icon("map-pin")}<span><a href="${directionsUrl(e.address)}" target="_blank" rel="noopener">${esc(e.address)}<span class="visually-hidden"> (get directions in Google Maps, opens in a new tab)</span></a></span></li>`,
       e.phone && `<li>${icon("phone")}<span>${/^[\d\s()+-]+$/.test(e.phone) ? `<a href="tel:${e.phone.replace(/[^\d+]/g, "")}">${esc(e.phone)}</a>` : esc(e.phone)}</span></li>`,
       e.hours && `<li>${icon("clock")}<span>${esc(e.hours)}</span></li>`,
