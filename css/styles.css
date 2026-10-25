@@ -532,6 +532,8 @@ html { scrollbar-color: var(--line-strong) var(--sand-soft); }
 .entry-details li { display: flex; gap: 10px; align-items: flex-start; }
 .entry-details .icon { color: var(--brand); margin-top: 3px; width: 1.1em; height: 1.1em; }
 .entry-details a { word-break: break-word; }
+.entry-details .no-location { color: var(--ink-soft); font-style: italic; }
+.entry-details .no-location .icon { color: var(--ink-soft); }
 .entry-next { color: var(--lake-deep); font-weight: 700; }
 
 .entry.is-target { animation: target-glow 2.4s var(--ease-out); }
