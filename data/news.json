@@ -1,10 +1,18 @@
 {
-  "updated": "2026-10-24T08:04:34+00:00",
+  "updated": "2026-10-26T04:42:07+00:00",
   "source": {
     "name": "Sammamish Independent",
     "url": "https://sammamishindependent.com/"
   },
   "items": [
+    {
+      "title": "LWSD bans use of personal laptops at school",
+      "url": "https://sammamishindependent.com/2026/10/lwsd-bans-use-of-personal-laptops-at-school/",
+      "date": "2026-10-26T01:35:47+00:00",
+      "section": "Education",
+      "image": "https://sammamishindependent.com/wp-content/uploads/2023/11/Eastlake-High-School-2-560x420.jpg",
+      "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2023/11/Eastlake-High-School-2.jpg"
+    },
     {
       "title": "Independent candidate challenges state house deputy majority leader in LD-41",
       "url": "https://sammamishindependent.com/2026/10/independent-candidate-challenges-state-house-deputy-majority-leader-in-ld-41/",
@@ -20,14 +28,6 @@
       "section": "City Hall",
       "image": "https://sammamishindependent.com/wp-content/uploads/2026/10/Spencer-Meline-560x373.jpg",
       "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2026/10/Spencer-Meline.jpg"
-    },
-    {
-      "title": "Kritzer glides in LD-45 state house race as GOP opponent fails to campaign",
-      "url": "https://sammamishindependent.com/2026/10/kritzer-glides-in-ld-45-state-house-race-as-gop-opponent-fails-to-campaign/",
-      "date": "2026-10-21T23:23:18+00:00",
-      "section": "City Hall",
-      "image": "https://sammamishindependent.com/wp-content/uploads/2026/10/Vanessa-Kritzer-1-560x373.jpg",
-      "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2026/10/Vanessa-Kritzer-1.jpg"
     }
   ]
 }
