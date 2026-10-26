@@ -710,9 +710,6 @@ html { scrollbar-color: var(--line-strong) var(--sand-soft); }
 .banner .banner-note a { color: #fff; }
 .banner .banner-note a:hover { color: var(--amber); }
 /* The logo sits directly on the photos with no outline or box: white in light mode, black in dark mode. */
-.banner-logo.logo-dark-theme { display: none; }
-:root[data-theme="dark"] .banner-logo.logo-light-theme { display: none; }
-:root[data-theme="dark"] .banner-logo.logo-dark-theme { display: block; }
 :root[data-theme="dark"] img.banner-logo { filter: none; }
 .scroll-cue {
   margin-top: clamp(28px, 4vw, 44px); display: inline-flex; flex-direction: column; align-items: center; gap: 2px;
