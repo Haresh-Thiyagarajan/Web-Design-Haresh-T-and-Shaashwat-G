@@ -1,10 +1,18 @@
 {
-  "updated": "2026-10-26T04:42:07+00:00",
+  "updated": "2026-11-02T00:41:00+00:00",
   "source": {
     "name": "Sammamish Independent",
     "url": "https://sammamishindependent.com/"
   },
   "items": [
+    {
+      "title": "Dhingra fundraiser highlights South Asian clout on the Eastside",
+      "url": "https://sammamishindependent.com/2026/11/dhingra-fundraiser-highlights-south-asian-clout-on-the-eastside/",
+      "date": "2026-11-01T21:19:26+00:00",
+      "section": "City Hall",
+      "image": "https://sammamishindependent.com/wp-content/uploads/2026/11/Dhingra-Bollywood-560x420.jpeg",
+      "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2026/11/Dhingra-Bollywood.jpeg"
+    },
     {
       "title": "LWSD bans use of personal laptops at school",
       "url": "https://sammamishindependent.com/2026/10/lwsd-bans-use-of-personal-laptops-at-school/",
@@ -20,14 +28,6 @@
       "section": "City Hall",
       "image": "https://sammamishindependent.com/wp-content/uploads/2026/10/LD-41-2026-race-560x315.jpg",
       "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2026/10/LD-41-2026-race.jpg"
-    },
-    {
-      "title": "Meline strives to bring back the ‘American Dream’ in longshot bid for Congress",
-      "url": "https://sammamishindependent.com/2026/10/meline-strives-to-bring-back-the-american-dream-in-longshot-bid-for-congress/",
-      "date": "2026-10-23T02:09:42+00:00",
-      "section": "City Hall",
-      "image": "https://sammamishindependent.com/wp-content/uploads/2026/10/Spencer-Meline-560x373.jpg",
-      "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2026/10/Spencer-Meline.jpg"
     }
   ]
 }
