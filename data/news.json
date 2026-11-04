@@ -1,10 +1,18 @@
 {
-  "updated": "2026-11-02T00:41:00+00:00",
+  "updated": "2026-11-04T21:17:21+00:00",
   "source": {
     "name": "Sammamish Independent",
     "url": "https://sammamishindependent.com/"
   },
   "items": [
+    {
+      "title": "Teens scramble to start impactful clubs as competition for college intensifies",
+      "url": "https://sammamishindependent.com/2026/11/teens-scramble-to-start-impactful-clubs-as-competition-for-college-intensifies/",
+      "date": "2026-11-04T19:16:29+00:00",
+      "section": "Education",
+      "image": "https://sammamishindependent.com/wp-content/uploads/2021/09/Skyline-HS-560x372.jpg",
+      "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2021/09/Skyline-HS.jpg"
+    },
     {
       "title": "Dhingra fundraiser highlights South Asian clout on the Eastside",
       "url": "https://sammamishindependent.com/2026/11/dhingra-fundraiser-highlights-south-asian-clout-on-the-eastside/",
@@ -20,14 +28,6 @@
       "section": "Education",
       "image": "https://sammamishindependent.com/wp-content/uploads/2023/11/Eastlake-High-School-2-560x420.jpg",
       "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2023/11/Eastlake-High-School-2.jpg"
-    },
-    {
-      "title": "Independent candidate challenges state house deputy majority leader in LD-41",
-      "url": "https://sammamishindependent.com/2026/10/independent-candidate-challenges-state-house-deputy-majority-leader-in-ld-41/",
-      "date": "2026-10-23T14:43:00+00:00",
-      "section": "City Hall",
-      "image": "https://sammamishindependent.com/wp-content/uploads/2026/10/LD-41-2026-race-560x315.jpg",
-      "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2026/10/LD-41-2026-race.jpg"
     }
   ]
 }
