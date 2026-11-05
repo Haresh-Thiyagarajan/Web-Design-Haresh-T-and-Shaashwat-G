@@ -1,10 +1,18 @@
 {
-  "updated": "2026-11-05T06:40:41+00:00",
+  "updated": "2026-11-05T23:36:54+00:00",
   "source": {
     "name": "Sammamish Independent",
     "url": "https://sammamishindependent.com/"
   },
   "items": [
+    {
+      "title": "Eastlake’s expansion eases crowding for students and teachers",
+      "url": "https://sammamishindependent.com/2026/11/eastlakes-expansion-eases-crowding-for-students-and-teachers/",
+      "date": "2026-11-05T17:58:06+00:00",
+      "section": "Education",
+      "image": "https://sammamishindependent.com/wp-content/uploads/2026/11/Eastlake-E-wing-560x350.jpg",
+      "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2026/11/Eastlake-E-wing.jpg"
+    },
     {
       "title": "Lake Washington eliminates Skyline from football playoffs",
       "url": "https://sammamishindependent.com/2026/11/lake-washington-eliminates-skyline-from-football-playoffs/",
@@ -20,14 +28,6 @@
       "section": "Education",
       "image": "https://sammamishindependent.com/wp-content/uploads/2021/09/Skyline-HS-560x372.jpg",
       "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2021/09/Skyline-HS.jpg"
-    },
-    {
-      "title": "Dhingra fundraiser highlights South Asian clout on the Eastside",
-      "url": "https://sammamishindependent.com/2026/11/dhingra-fundraiser-highlights-south-asian-clout-on-the-eastside/",
-      "date": "2026-11-01T21:19:26+00:00",
-      "section": "City Hall",
-      "image": "https://sammamishindependent.com/wp-content/uploads/2026/11/Dhingra-Bollywood-560x420.jpeg",
-      "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2026/11/Dhingra-Bollywood.jpeg"
     }
   ]
 }
