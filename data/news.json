@@ -1,10 +1,18 @@
 {
-  "updated": "2026-11-04T21:17:21+00:00",
+  "updated": "2026-11-05T06:40:41+00:00",
   "source": {
     "name": "Sammamish Independent",
     "url": "https://sammamishindependent.com/"
   },
   "items": [
+    {
+      "title": "Lake Washington eliminates Skyline from football playoffs",
+      "url": "https://sammamishindependent.com/2026/11/lake-washington-eliminates-skyline-from-football-playoffs/",
+      "date": "2026-11-05T01:01:16+00:00",
+      "section": "Sports & Rec",
+      "image": "https://sammamishindependent.com/wp-content/uploads/2026/11/Skyline-LW-2026-560x374.jpg",
+      "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2026/11/Skyline-LW-2026.jpg"
+    },
     {
       "title": "Teens scramble to start impactful clubs as competition for college intensifies",
       "url": "https://sammamishindependent.com/2026/11/teens-scramble-to-start-impactful-clubs-as-competition-for-college-intensifies/",
@@ -20,14 +28,6 @@
       "section": "City Hall",
       "image": "https://sammamishindependent.com/wp-content/uploads/2026/11/Dhingra-Bollywood-560x420.jpeg",
       "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2026/11/Dhingra-Bollywood.jpeg"
-    },
-    {
-      "title": "LWSD bans use of personal laptops at school",
-      "url": "https://sammamishindependent.com/2026/10/lwsd-bans-use-of-personal-laptops-at-school/",
-      "date": "2026-10-26T01:35:47+00:00",
-      "section": "Education",
-      "image": "https://sammamishindependent.com/wp-content/uploads/2023/11/Eastlake-High-School-2-560x420.jpg",
-      "imageLarge": "https://sammamishindependent.com/wp-content/uploads/2023/11/Eastlake-High-School-2.jpg"
     }
   ]
 }
